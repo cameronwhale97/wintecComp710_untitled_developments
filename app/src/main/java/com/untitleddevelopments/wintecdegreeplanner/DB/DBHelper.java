@@ -9,7 +9,7 @@ public class DBHelper extends SQLiteOpenHelper{
      * Created 28 May 2019, Geoff Genner
      *
      ***********/
-    private static final String TAG = "degPlanMessage";
+    private static final String TAG = "DPMMessage";
 
     private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "DegPlan.sqlite";
@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public static final String M_DESCRIPTION = "module_description";
     public static final String M_NZQALEVEL = "module_nzqalevel";
     public static final String M_NZQACREDITS = "module_nzqacredits";
-    public static final String M_COREQ = "module_video_coreq";
+    public static final String M_COREQ = "module_coreq";
 
     private String CREATE_TBL_MODULE = "CREATE TABLE " + TBL_MODULE + " (" +
             MODULE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -38,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public static final String TBL_STREAM = "stream_table";
     public static final String STREAM_ID = "stream_id";
     public static final String STREAM_NAME = "stream_name";
-    public static final String STREAM_ICONURI = "stream_name";
+    public static final String STREAM_ICONURI = "stream_icon_uri";
 
 
     private String CREATE_TBL_STREAM = "CREATE TABLE " + TBL_STREAM + " (" +
@@ -109,9 +109,9 @@ public class DBHelper extends SQLiteOpenHelper{
 
 
     //*************************************** PreReqisite Table Constants **************************************
-    public static final String TBL_PREREQ = "prerequisite_table";
-    public static final String PREREQ_MOD_ID = "prerequisite_id";
-    public static final String PREREQ_PREREQ_ID = "prerequisite_module_id";
+    public static final String TBL_PREREQ = "prereq_table";
+    public static final String PREREQ_MOD_ID = "prereq_module_id";
+    public static final String PREREQ_PREREQ_ID = "prereq_prereq_id";
 
 
     private String CREATE_TBL_PREREQ = "CREATE TABLE " + TBL_PREREQ + " (" +

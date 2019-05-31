@@ -13,7 +13,7 @@ public class DBManager {
      * Created 28 May 2019, Geoff Genner
      *
      ***********/
-    private static final String TAG = "degPlanMessage";
+    private static final String TAG = "DPMMessage";
 
     private static DBManager instance;
     private static SQLiteOpenHelper mDatabaseHelper;
