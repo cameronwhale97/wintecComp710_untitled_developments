@@ -17,21 +17,21 @@ public class DBHelper extends SQLiteOpenHelper{
     //*******************************  Module Table Constants **************************************
     public static final String TBL_MODULE = "module_table";
     public static final String MODULE_ID = "module_id";
-    public static final String M_CODE = "module_code";
-    public static final String M_NAME = "module_name";
-    public static final String M_DESCRIPTION = "module_description";
-    public static final String M_NZQALEVEL = "module_nzqalevel";
-    public static final String M_NZQACREDITS = "module_nzqacredits";
-    public static final String M_COREQ = "module_coreq";
+    public static final String MODULE_CODE = "module_code";
+    public static final String MODULE_NAME = "module_name";
+    public static final String MODULE_DESCRIPTION = "module_description";
+    public static final String MODULE_NZQALEVEL = "module_nzqalevel";
+    public static final String MODULE_NZQACREDITS = "module_nzqacredits";
+    public static final String MODULE_COREQ = "module_coreq";
 
     private String CREATE_TBL_MODULE = "CREATE TABLE " + TBL_MODULE + " (" +
-            MODULE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            M_CODE + " TEXT NOT NULL UNIQUE, " +
-            M_NAME + " TEXT NOT NULL UNIQUE," +
-            M_DESCRIPTION + " TEXT NOT NULL, " +
-            M_NZQALEVEL + " INTEGER NOT NULL, " +
-            M_NZQACREDITS + " INTEGER NOT NULL," +
-            M_COREQ + " TEXT)";
+            MODULE_ID + " INTEGER PRIMARY KEY," +
+            MODULE_CODE + " TEXT NOT NULL UNIQUE, " +
+            MODULE_NAME + " TEXT NOT NULL UNIQUE," +
+            MODULE_DESCRIPTION + " TEXT NOT NULL, " +
+            MODULE_NZQALEVEL + " INTEGER NOT NULL, " +
+            MODULE_NZQACREDITS + " INTEGER NOT NULL," +
+            MODULE_COREQ + " TEXT)";
     private final String DROP_TBL_MODULE = "DROP TABLE IF EXISTS " + TBL_MODULE;
 
     //*******************************  Stream Table Constants **************************************
@@ -42,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
 
     private String CREATE_TBL_STREAM = "CREATE TABLE " + TBL_STREAM + " (" +
-            STREAM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            STREAM_ID + " INTEGER PRIMARY KEY," +
             STREAM_NAME + " TEXT NOT NULL UNIQUE," +
             STREAM_ICONURI +" TEXT UNIQUE)";
     private final String DROP_TBL_STREAM = "DROP TABLE IF EXISTS " + TBL_STREAM;
@@ -75,8 +75,8 @@ public class DBHelper extends SQLiteOpenHelper{
 
     //*************************************** ModuleStream Table Constants **************************************
     public static final String TBL_MODSTR = "module_stream_table";
-    public static final String MODSTR_MOD_ID = "module_stream_id";
-    public static final String MODSTR_STR_ID = "module_stream_module_id";
+    public static final String MODSTR_MOD_ID = "module_stream_module_id";
+    public static final String MODSTR_STR_ID = "module_stream_stream_id";
 
 
     private String CREATE_TBL_MODSTR = "CREATE TABLE " + TBL_MODSTR + " (" +
