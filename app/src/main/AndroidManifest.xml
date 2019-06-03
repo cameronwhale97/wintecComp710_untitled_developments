@@ -10,14 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name="com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity" />
-
+        <activity android:name=".global.PrefsTestActivity"></activity>
+        <activity android:name=".tests.DBTestActivity" />
         <activity
             android:name=".GeoffsSandpit.GeoffTest"
             android:label="@string/title_activity_geoff_test"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">
@@ -27,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
