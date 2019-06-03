@@ -14,6 +14,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 import com.untitleddevelopments.wintecdegreeplanner.GeoffsSandpit.GeoffTest;
+import com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -47,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
+                Log.d(TAG,"------------- Got to geoff ------------------");
                 if(!DBManager.getInstance().ensureDatabaseExists(this)) {
                     Toast.makeText(this, "Warning: Database does not exist!!!", Toast.LENGTH_LONG).show();
                 }
 
-                Intent intent = new Intent(this, GeoffTest.class);
+                Intent intent = new Intent(this, DBTestActivity.class);
                 startActivity(intent);
             case "cameron":
                 //do Camerons stuff
