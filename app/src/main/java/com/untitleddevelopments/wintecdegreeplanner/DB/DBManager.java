@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import android.content.Context;
+import android.widget.Toast;
 
 
 import java.io.BufferedReader;
@@ -208,7 +209,9 @@ public class DBManager {
             return false;
         }
 
-        Log.i(TAG, "Database created successfully");
+        String msg = "Database created successfully";
+        Log.i(TAG, msg);
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
         return true;
     }
 
