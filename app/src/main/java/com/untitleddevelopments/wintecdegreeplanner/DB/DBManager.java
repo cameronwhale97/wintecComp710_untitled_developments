@@ -5,6 +5,15 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import android.content.Context;
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class DBManager {
@@ -72,4 +81,135 @@ public class DBManager {
         }
         return true;
     }
+    private boolean databaseContainsData(){
+        //Check to see if version data is in the version table if it is then return true
+        openDatabase();
+        String query = "SELECT * FROM " + DBHelper.TBL_APP_VERSION;
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+        Log.e(TAG, "Get Database Query: " + query + "CursorCount: " + cursor.getCount());
+        return (cursor != null && cursor.getCount() > 0);
+    }
+
+    public boolean ensureDatabaseExists(Context context) {
+        boolean ret = true;
+
+        if(!databaseContainsData()) ret = loadUpTheDB(context);
+        return ret;
+    }
+
+
+    private boolean loadUpTheDB(Context context){
+        //the database is empty so load her up...
+        String myMsg;           //used for log tag message
+        boolean inserted;       //true when the SQL insert worked!
+
+        Log.e(TAG, "Loading the database...");
+        //******************************Easy one first load App Version.
+        ContentValues contentAppVer = new ContentValues();
+        contentAppVer.put(DBHelper.APP_VERSION_VERSION,"1.0");
+        DBManager.getInstance().openDatabase();
+        inserted = DBManager.getInstance().insert(DBHelper.TBL_APP_VERSION, contentAppVer);
+        myMsg = inserted ? " Inserted Yay!" : " Not inserted Bohoo";
+        Log.e(TAG, "version 1.0 " + myMsg);
+
+        //**************************** Load the module table
+        try {
+            InputStream is = context.getAssets().open("module.txt");
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8"))
+            );
+            String line;
+            reader.readLine();      //step over header in the CSV
+            while( (line = reader.readLine()) != null) {
+                String[] tokens = line.split("\t");
+                ContentValues contentModule = new ContentValues();
+                contentModule.put(DBHelper.MODULE_ID, Integer.parseInt(tokens[0]));
+                contentModule.put(DBHelper.MODULE_CODE, tokens[1]);
+                contentModule.put(DBHelper.MODULE_NAME, tokens[2]);
+                contentModule.put(DBHelper.MODULE_DESCRIPTION, tokens[3]);
+                contentModule.put(DBHelper.MODULE_NZQALEVEL, Integer.parseInt(tokens[4]));
+                contentModule.put(DBHelper.MODULE_NZQACREDITS, Integer.parseInt(tokens[5]));
+                if(tokens.length == 7) contentModule.put(DBHelper.MODULE_COREQ, tokens[6]);
+                DBManager.getInstance().openDatabase();
+                inserted = DBManager.getInstance().insert(DBHelper.TBL_MODULE, contentModule);
+                myMsg = inserted ? " Inserted Yay!" : " Not inserted Bohoo";
+                Log.e(TAG, tokens[0] + " " + tokens[1] + myMsg);
+            }
+        } catch (IOException ex){
+            ex.printStackTrace();
+            return false;
+        }
+        //**************************** Load the stream table
+        try {
+            InputStream is = context.getAssets().open("stream.txt");
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8"))
+            );
+            String line;
+            reader.readLine();      //step over header in the CSV
+            while( (line = reader.readLine()) != null) {
+                String[] tokens = line.split("\t");
+                ContentValues contentStream = new ContentValues();
+                contentStream.put(DBHelper.STREAM_ID, Integer.parseInt(tokens[0]));
+                contentStream.put(DBHelper.STREAM_NAME, tokens[1]);
+                contentStream.put(DBHelper.STREAM_ICONURI, tokens[2]);
+                DBManager.getInstance().openDatabase();
+                inserted = DBManager.getInstance().insert(DBHelper.TBL_STREAM, contentStream);
+                myMsg = inserted ? " Inserted Yay!" : " Not inserted Bohoo";
+                Log.e(TAG, tokens[1] + myMsg);
+            }
+        } catch (IOException ex){
+            ex.printStackTrace();
+            return false;
+        }
+        //**************************** Load the module_stream table
+        try {
+            InputStream is = context.getAssets().open("module_stream.txt");
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8"))
+            );
+            String line;
+            reader.readLine();      //step over header in the CSV
+            while( (line = reader.readLine()) != null) {
+                String[] tokens = line.split("\t");
+                ContentValues contentModStr = new ContentValues();
+                contentModStr.put(DBHelper.MODSTR_MOD_ID, Integer.parseInt(tokens[0]));
+                contentModStr.put(DBHelper.MODSTR_STR_ID, Integer.parseInt(tokens[1]));
+                DBManager.getInstance().openDatabase();
+                inserted = DBManager.getInstance().insert(DBHelper.TBL_MODSTR, contentModStr);
+                myMsg = inserted ? " Inserted Yay!" : " Not inserted Bohoo";
+                Log.e(TAG, tokens[0] + " " + tokens[1] + myMsg);
+            }
+        } catch (IOException ex){
+            ex.printStackTrace();
+            return false;
+        }
+        //**************************** Load the pre_req table
+        try {
+            InputStream is = context.getAssets().open("pre_req.txt");
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8"))
+            );
+            String line;
+            reader.readLine();      //step over header in the CSV
+            while( (line = reader.readLine()) != null) {
+                String[] tokens = line.split("\t");
+                ContentValues contentModStr = new ContentValues();
+                contentModStr.put(DBHelper.PREREQ_MOD_ID, Integer.parseInt(tokens[0]));
+                contentModStr.put(DBHelper.PREREQ_PREREQ_ID, Integer.parseInt(tokens[1]));
+                DBManager.getInstance().openDatabase();
+                inserted = DBManager.getInstance().insert(DBHelper.TBL_PREREQ, contentModStr);
+                myMsg = inserted ? " Inserted Yay!" : " Not inserted Bohoo";
+                Log.e(TAG, tokens[0] + " " + tokens[1] + myMsg);
+            }
+        } catch (IOException ex){
+            ex.printStackTrace();
+            Log.e(TAG, "loadUpTheDB() got exception: " + ex);
+            return false;
+        }
+
+        Log.i(TAG, "Database created successfully");
+        return true;
+    }
+
 }
