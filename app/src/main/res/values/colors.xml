@@ -3,6 +3,10 @@
     <!-- Degree Programme Mapper Colours -->
     <color name="colorDPMbackground">#FFDD00</color>
 
+    <!-- debug colours -->
+    <color name="overlay">#B0000000</color>
+
+
 
     <!-- Original Colours setup by default -->
     <color name="colorPrimary">#008577</color>

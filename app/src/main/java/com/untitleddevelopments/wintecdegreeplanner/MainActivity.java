@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
-import com.untitleddevelopments.wintecdegreeplanner.GeoffsSandpit.GeoffTest;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity;
 
@@ -22,12 +21,19 @@ public class MainActivity extends AppCompatActivity {
         if(!DBManager.getInstance().ensureDatabaseExists(this)) {
             Toast.makeText(this, "Warning: Database does not exist!!!", Toast.LENGTH_LONG).show();
         }
+
         //Get the shared preferences...
         // ******** Programmers if you need to get your name or userType into the shared preferences for testing
         //I can help you get them into your emulator - as it is a little tricky
         //
         //PrefsManager.setProgrammer("geoff");
         //PrefsManager.setUserType("admin");
+
+        //PrefsManager.setProgrammer("cameron");
+        //PrefsManager.setUserType("admin");
+
+
+
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
         Log.d(TAG, "programmer is: " + programmer);
@@ -42,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             case "cameron":
                 //do Camerons stuff
+
+                Log.d(TAG," Got to cameron ");
+
+                Intent cw_intent = new Intent(this, otsStudentAdmin.class);
+                startActivity(cw_intent);
 
 
             case "maria":

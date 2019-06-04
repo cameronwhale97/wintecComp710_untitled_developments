@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDPMbackground"
+    tools:context=".otsDisclaimer">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:padding="0dp"
+        android:scaleType="center"
+        android:src="@drawable/bg" />
+
+    <ImageView
+        android:id="@+id/wintecLogo"
+        android:layout_width="355dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="152dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/splash3_500px" />
+
+    <RelativeLayout
+        android:id="@+id/r1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/overlay"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".MainActivity">
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ots_Box"
+        android:layout_width="364dp"
+        android:layout_height="396dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ots_box" />
+
+    <ImageView
+        android:id="@+id/ots_Admin"
+        android:layout_width="322dp"
+        android:layout_height="154dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="456dp"
+        android:layout_marginEnd="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ots_ok_button" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="290dp"
+        android:layout_height="168dp"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/roboto"
+        android:text="The DPM App is a Prototype version of a degree planner only and NOT an official study plan. It is intended that students shall use this to get an understanding of the pathways offered and then discuss study plans with a Wintec representative. Pathways may change accordingly making older versions redundant  Wintec takes no responsibility of outdated pathways or information displayed on the app."
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ots_Box" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Disclaimer"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ots_Box" />
+
+
+</android.support.constraint.ConstraintLayout>
