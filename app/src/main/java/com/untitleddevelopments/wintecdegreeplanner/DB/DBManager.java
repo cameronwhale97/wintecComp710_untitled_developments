@@ -5,11 +5,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import android.content.Context;
 import android.widget.Toast;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +18,7 @@ public class DBManager {
     /************
      *
      * Created 28 May 2019, Geoff Genner
+     * Edited 4 June, Bringing all of the database initial loading into this class
      *
      ***********/
     private static final String TAG = "DPMMessage";
@@ -52,31 +50,33 @@ public class DBManager {
             //Open new Database
             mDB = mDatabaseHelper.getWritableDatabase();
         }
-    }
+    }//openDatabase
+
     public synchronized void closeDatabase() {
         if(mOpenCounter.decrementAndGet() == 0){
             //Close Database
             mDB.close();
         }
-    }
+    } //closeDatabase
+
     public Cursor getDetails(String query){
         return mDB.rawQuery(query, null);
-    }
+    } //getDetails
 
     public boolean insert(String tableName, ContentValues values) {
         long l = -1;
         try {
-            Log.e(TAG, "Trying to insert: " + tableName + values);
+            Log.d(TAG, "Trying to insert: " + tableName + values);
             l = mDB.insert(tableName, null, values);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return l != -1;
-    }
+    } //insert
 
-    public boolean delete(String tableName){
+    public boolean delete(String tableName, String delWhereClause, String[] delWhereArgs){
         try {
-            mDB.delete(tableName, null, null);
+            mDB.delete(tableName, delWhereClause, delWhereArgs);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -89,14 +89,13 @@ public class DBManager {
         Cursor cursor = DBManager.getInstance().getDetails(query);
         Log.e(TAG, "Get Database Query: " + query + "CursorCount: " + cursor.getCount());
         return (cursor != null && cursor.getCount() > 0);
-    }
+    } //databaseContainsData
 
     public boolean ensureDatabaseExists(Context context) {
         boolean ret = true;
-
         if(!databaseContainsData()) ret = loadUpTheDB(context);
         return ret;
-    }
+    }//ensureDatabaseExists
 
 
     private boolean loadUpTheDB(Context context){
@@ -162,7 +161,7 @@ public class DBManager {
         } catch (IOException ex){
             ex.printStackTrace();
             return false;
-        }
+        } //load stream
         //**************************** Load the module_stream table
         try {
             InputStream is = context.getAssets().open("module_stream.txt");
@@ -184,7 +183,7 @@ public class DBManager {
         } catch (IOException ex){
             ex.printStackTrace();
             return false;
-        }
+        } //load module
         //**************************** Load the pre_req table
         try {
             InputStream is = context.getAssets().open("pre_req.txt");
@@ -207,12 +206,11 @@ public class DBManager {
             ex.printStackTrace();
             Log.e(TAG, "loadUpTheDB() got exception: " + ex);
             return false;
-        }
+        } //load pre_req
 
         String msg = "Database created successfully";
         Log.i(TAG, msg);
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
         return true;
-    }
-
-}
+    } //loadUpTheDB
+} //DBManager
