@@ -43,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
         switch (programmer){
             case "geoff":
                 //do Geoffs stuff
+                /*
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                */
                 Log.d(TAG,"------------- Got to geoff ------------------");
                 if(!DBManager.getInstance().ensureDatabaseExists(this)) {
                     Toast.makeText(this, "Warning: Database does not exist!!!", Toast.LENGTH_LONG).show();
