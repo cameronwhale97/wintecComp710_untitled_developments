@@ -1,0 +1,5 @@
+stream_ID	name	icon_uri
+1	Multimedia and Web Development 	stream_multi_web
+2	Network Engineering	stream_network
+3	Software Engineering	stream_sw_engine
+4	Database Architecture	stream_db

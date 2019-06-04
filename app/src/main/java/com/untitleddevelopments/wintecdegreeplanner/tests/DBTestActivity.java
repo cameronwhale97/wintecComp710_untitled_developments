@@ -12,7 +12,12 @@ import com.untitleddevelopments.wintecdegreeplanner.R;
 import java.util.ArrayList;
 
 public class DBTestActivity extends AppCompatActivity {
+    /*
+    *Created by Geoff 4/6/19
+    * This gives examples of select, insert, delete
+     */
     private static final String TAG = "DPMMessage";  //used for logCat
+    private String myMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +64,7 @@ public class DBTestActivity extends AppCompatActivity {
             }
         }
         //Once in an arraylist we can play with it.
-        //I know we have lots of modules in the DB .. so..
+        //I know we have lots of modules in the DB .. so get the fifth one
         String geoff = modules.get(5).toString();
         Log.d(TAG, "module in arraylist is: " + geoff);
 
@@ -72,7 +77,6 @@ public class DBTestActivity extends AppCompatActivity {
 
     private void testInsert() {
         boolean inserted;
-        String myMsg;
         ContentValues contentModule = new ContentValues();
         contentModule.put(DBHelper.MODULE_ID, 100);
         contentModule.put(DBHelper.MODULE_CODE, "CompGeoff");
@@ -89,15 +93,22 @@ public class DBTestActivity extends AppCompatActivity {
 
     private void testDelete() {
         //I will get the max id then delete it...
+        //Delete has different syntax to select and insert 3 paremeters are passed in
         String query;
         Cursor cursor;
-        int mod_ID = 0;
+        String mod_ID = "";
         query = "SELECT MAX(" + DBHelper.MODULE_ID + ")" +
                 " FROM " + DBHelper.TBL_MODULE;
-        Log.e(TAG, "Get max module id " + query);
+        Log.d(TAG, "Get max module id " + query);
         DBManager.getInstance().openDatabase();
         cursor = DBManager.getInstance().getDetails(query);
-        mod_ID = (cursor.moveToFirst() ? cursor.getInt(0): 0);
-        Log.e(TAG, "And the  module id is:" + mod_ID);
+        mod_ID = (cursor.moveToFirst() ? cursor.getString(0): "");      //This is the max id that we want to delete
+        Log.e(TAG, "And the  module id to delete is:" + mod_ID);
+        boolean deletedOK = DBManager.getInstance().delete(
+                DBHelper.TBL_MODULE,                            //pass in table name
+                DBHelper.MODULE_ID + " ?",        //pass in where clause - note the ?
+                new String[] {mod_ID});                         //pass in a String array - in this case my array is just 1 item
+        myMsg = deletedOK ? " Deleted Success!" : " Not Deleted - bugger";
+        Log.e(TAG,  myMsg);
     }//testDelete
 }//DBTestActivity
