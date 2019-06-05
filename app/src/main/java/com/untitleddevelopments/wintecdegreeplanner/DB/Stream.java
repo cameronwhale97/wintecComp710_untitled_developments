@@ -6,7 +6,8 @@ public class Stream {
     private String iconURI;
 
     //constructor
-    public Stream(String name, String iconURI) {
+    public Stream(int stream_ID, String name, String iconURI) {
+        this.stream_ID = stream_ID;
         this.name = name;
         this.iconURI = iconURI;
     }

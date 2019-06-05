@@ -20,6 +20,18 @@ public class Student {
         this.photoURI = photoURI;
         this.status = status;
     }
+    //constructor with _ID
+    public Student(int student_ID, String firstname, String surname, String studentID, int stream_ID, String startDate, String photoURI, int status) {
+        this.student_ID = student_ID;
+        this.firstname = firstname;
+        this.surname = surname;
+        this.studentID = studentID;
+        this.stream_ID = stream_ID;
+        this.startDate = startDate;
+        this.photoURI = photoURI;
+        this.status = status;
+    }
+
     //getter setter
 
     public int getStudent_ID() {

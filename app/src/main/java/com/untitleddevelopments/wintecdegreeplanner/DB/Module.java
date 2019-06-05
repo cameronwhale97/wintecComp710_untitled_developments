@@ -9,7 +9,7 @@ public class Module {
     private int NZQACredits;
     private String coReq;
 
-    //constructor without _ID
+    //constructor
     public Module(int module_ID, String code, String name, String description, int NZQALevel, int NZQACredits, String coReq) {
         this.module_ID = module_ID;
         this.code = code;

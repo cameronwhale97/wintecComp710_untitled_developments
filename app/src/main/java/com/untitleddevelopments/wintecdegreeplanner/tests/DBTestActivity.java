@@ -24,7 +24,7 @@ public class DBTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dbtest);
 
-        Log.d(TAG, "****************Got to DBTestActivity");
+        Log.d(TAG, "Got to DBTestActivity");
         testSelect();
         testInsert();
         testDelete();
