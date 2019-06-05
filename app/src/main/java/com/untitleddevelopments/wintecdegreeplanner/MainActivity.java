@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
             case "geoff":
                 //do Geoffs stuff
                 Log.d(TAG," Got to geoff ");
-
                 Intent intent = new Intent(this, DBTestActivity.class);
                 startActivity(intent);
+                return;
             case "cameron":
                 //do Camerons stuff
 

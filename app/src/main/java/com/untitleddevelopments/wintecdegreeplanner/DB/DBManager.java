@@ -74,6 +74,15 @@ public class DBManager {
         return l != -1;
     } //insert
 
+    public boolean update(String tableName, ContentValues values, String whereClause, String whereArgs[]) {
+        try {
+            mDB.update(tableName, values, whereClause, whereArgs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     public boolean delete(String tableName, String delWhereClause, String[] delWhereArgs){
         try {
             mDB.delete(tableName, delWhereClause, delWhereArgs);
@@ -81,7 +90,8 @@ public class DBManager {
             e.printStackTrace();
         }
         return true;
-    }
+    }//delete
+
     private boolean databaseContainsData(){
         //Check to see if version data is in the version table if it is then return true
         openDatabase();
