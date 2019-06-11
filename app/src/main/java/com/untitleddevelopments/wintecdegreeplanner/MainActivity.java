@@ -28,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
         // ******** Programmers if you need to get your name or userType into the shared preferences for testing
         //I can help you get them into your emulator - as it is a little tricky
         //
-        //PrefsManager.setProgrammer("geoff");
-        //PrefsManager.setUserType("admin");
-
-        PrefsManager.setProgrammer("cameron");
+        PrefsManager.setProgrammer("geoff");
         PrefsManager.setUserType("admin");
+
+        //PrefsManager.setProgrammer("cameron");
+        //PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
             case "geoff":
                 //do Geoffs stuff
                 Log.d(TAG," Got to geoff ");
-                //Intent intent = new Intent(this, DBTestActivity.class);
                 startActivity(new Intent(this, DBTestActivity.class));
                 //startActivity(new Intent(this, GeoffTest.class));
 
