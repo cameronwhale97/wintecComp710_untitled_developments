@@ -5,9 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
-import com.untitleddevelopments.wintecdegreeplanner.GeoffsSandpit.GeoffTest;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
-import com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             case "geoff":
                 //do Geoffs stuff
                 Log.d(TAG," Got to geoff ");
-                startActivity(new Intent(this, DBTestActivity.class));
+                startActivity(new Intent(this, StuPlanActivity.class));
                 //startActivity(new Intent(this, GeoffTest.class));
 
                 return;

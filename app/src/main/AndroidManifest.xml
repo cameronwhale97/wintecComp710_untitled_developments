@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".StuPlan"
+            android:name=".ui.StuPlan.StuPlanActivity"
             android:label="@string/title_activity_stu_plan"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".global.PrefsTestActivity" />

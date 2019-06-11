@@ -1,0 +1,72 @@
+package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
+import com.untitleddevelopments.wintecdegreeplanner.R;
+import java.util.List;
+
+public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.ViewHolder>{
+    //The ViewHolder class is defined as a class at the bottom
+    private static final String TAG = "SPRecycViewAdapt";
+    private List<SPMod> mSPMods;
+    private Context mContext;
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
+    //constructor
+    public SPRecycViewAdapt(Context context, List<SPMod> mMods ) {
+        Log.d(TAG, "SPRecycViewAdapt Constrcting: First Item= " + mMods);
+        this.mSPMods = mMods;
+        this.mContext = context;
+    }
+    @NonNull
+    @Override
+    //this method is responsible for inflating the view...
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        return holder;
+    }
+    //This method gets called every time an item gets added to the list...
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        Log.d(TAG, "onBindViewHolder position: " + Integer.toString(position));
+        holder.code.setText(mSPMods.get(position).getCode());
+        holder.name.setText(mSPMods.get(position).getName());
+        holder.preReq.setText(mSPMods.get(position).getPreReqs());
+        holder.layoutItem.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: clicked on: " + mSPMods.get(position).getCode());
+                Toast.makeText(mContext, mSPMods.get(position).getCode() + " " +mSPMods.get(position).getModule_ID(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    @Override
+    public int getItemCount() {
+        return mSPMods.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView code;
+        TextView name;
+        TextView preReq;
+        LinearLayout layoutItem;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            code = itemView.findViewById(R.id.tvCode);
+            name = itemView.findViewById(R.id.tvName);
+            preReq = itemView.findViewById(R.id.tvPreReq);
+            layoutItem = itemView.findViewById(R.id.itemLayout);
+        }
+    }
+}

@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Wintec Degree Planner</string>
     <string name="title_activity_module_v2">ModuleV2</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="Tab_All">All</string>
+    <string name="Tab_Year1">Year 1</string>
+    <string name="Tab_Year2">Year 2</string>
+    <string name="Tab_Year3">Year 3</string>
     <string name="title_activity_geoff_test">GeoffTest</string>
     <string name="title_activity_stu_plan">StuPlan</string>
 </resources>
