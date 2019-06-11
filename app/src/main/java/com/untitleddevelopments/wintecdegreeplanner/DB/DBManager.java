@@ -21,7 +21,7 @@ public class DBManager {
      * Edited 4 June, Bringing all of the database initial loading into this class
      *
      ***********/
-    private static final String TAG = "DPMMessage";
+    private static final String TAG = "DBManager";
 
     private static DBManager instance;
     private static SQLiteOpenHelper mDatabaseHelper;
@@ -119,7 +119,7 @@ public class DBManager {
         contentAppVer.put(DBHelper.APP_VERSION_VERSION,"1.0");
         DBManager.getInstance().openDatabase();
         inserted = DBManager.getInstance().insert(DBHelper.TBL_APP_VERSION, contentAppVer);
-        myMsg = inserted ? " Inserted Yay!" : " Not inserted Bohoo";
+        myMsg = inserted ? " Inserted Yay" : " Not inserted Bohoo";
         Log.e(TAG, "version 1.0 " + myMsg);
 
         //**************************** Load the module table

@@ -5,18 +5,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
+import com.untitleddevelopments.wintecdegreeplanner.GeoffsSandpit.GeoffTest;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "DPMMessage";
+    private static final String TAG = "MainActivity";
     private String userType;        //from prefsManager - either "admin" or "student" "newApp"
     private String programmer;      //from prefsManager either cameron geoff maria jonah or navi
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "***************************  First line of onCreate Main");
+        Log.d(TAG, "onCreate: --------------------  first line of code in main activity -----------------");
         //set up database if needed...
         if(!DBManager.getInstance().ensureDatabaseExists(this)) {
             Toast.makeText(this, "Warning: Database does not exist!!!", Toast.LENGTH_LONG).show();
@@ -32,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
         //PrefsManager.setProgrammer("cameron");
         //PrefsManager.setUserType("admin");
 
-
-
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
         Log.d(TAG, "programmer is: " + programmer);
@@ -43,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
             case "geoff":
                 //do Geoffs stuff
                 Log.d(TAG," Got to geoff ");
-                Intent intent = new Intent(this, DBTestActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(this, DBTestActivity.class);
+                startActivity(new Intent(this, DBTestActivity.class));
+                //startActivity(new Intent(this, GeoffTest.class));
+
                 return;
             case "cameron":
                 //do Camerons stuff
