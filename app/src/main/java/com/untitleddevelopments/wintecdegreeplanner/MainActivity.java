@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
         //PrefsManager.setProgrammer("geoff");
         //PrefsManager.setUserType("admin");
 
-        //PrefsManager.setProgrammer("cameron");
-        //PrefsManager.setUserType("admin");
+        PrefsManager.setProgrammer("cameron");
+        PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d(TAG," Got to cameron ");
 
-                Intent cw_intent = new Intent(this, otsStudentAdmin.class);
+                Intent cw_intent = new Intent(this, otsDisclaimer.class);
                 startActivity(cw_intent);
 
 

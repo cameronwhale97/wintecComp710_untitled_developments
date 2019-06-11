@@ -57,7 +57,7 @@
         app:srcCompat="@drawable/ots_admin_button" />
 
     <ImageView
-        android:id="@+id/ots_Student"
+        android:id="@+id/otsStudent"
         android:layout_width="280dp"
         android:layout_height="114dp"
         android:layout_marginStart="31dp"
