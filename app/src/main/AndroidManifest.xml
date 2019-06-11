@@ -10,7 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".global.PrefsTestActivity"></activity>
+        <activity
+            android:name=".StuPlan"
+            android:label="@string/title_activity_stu_plan"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".global.PrefsTestActivity" />
         <activity android:name=".tests.DBTestActivity" />
         <activity
             android:name=".GeoffsSandpit.GeoffTest"
@@ -24,21 +28,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- cw apps -->
+        </activity> <!-- cw apps -->
         <activity
             android:name=".otsStudentSignup"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".otsDisclaimer"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".otsStudentAdmin"
             android:theme="@style/AppTheme.NoActionBar" />
-
 
         <meta-data
             android:name="preloaded_fonts"
