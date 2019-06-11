@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 public class PrefsManager {
-    private static final String TAG = "DPMMessage";
+    private static final String TAG = "PrefsManager";
     private static SharedPreferences prefs;
     private static SharedPreferences.Editor prefsEditor;
 
