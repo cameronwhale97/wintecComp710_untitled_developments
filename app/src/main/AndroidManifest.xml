@@ -39,6 +39,10 @@
             android:name=".otsStudentAdmin"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".otsStudentDone"
+            android:theme="@style/AppTheme.NoActionBar" />
+
 
         <meta-data
             android:name="preloaded_fonts"
