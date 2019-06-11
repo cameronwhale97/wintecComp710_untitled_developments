@@ -29,6 +29,7 @@
         <!-- cw apps -->
         <activity android:name=".otsDisclaimer"></activity>
         <activity android:name=".otsStudentAdmin"></activity>
+        <activity android:name=".otsStudentSignup"></activity>
 
 
         <meta-data
