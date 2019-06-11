@@ -5,7 +5,7 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar"> <!-- needs to be set on no action bar, otherwise most of the screen real estate could be cut off (cw) -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"> <!-- Edited to this for GG and anyone else for the overflow menu (CW) -->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

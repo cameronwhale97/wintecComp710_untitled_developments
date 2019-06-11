@@ -5,85 +5,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorDPMbackground"
-    tools:context=".otsStudentSignup">
-
+    tools:context=".otsStudentAdmin">
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:padding="0dp"
         android:scaleType="center"
-        android:src="@drawable/bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/bg" />
 
 
     <ImageView
         android:id="@+id/wintecLogo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="355dp"
+        android:layout_height="153dp"
+        android:layout_marginStart="31dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="77dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        android:layout_marginEnd="31dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/splash3_500px" />
 
     <ImageView
-        android:id="@+id/ots_Box5"
-        android:layout_width="364dp"
-        android:layout_height="396dp"
+        android:id="@+id/ots_Box"
+        android:layout_width="356dp"
+        android:layout_height="441dp"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="160dp"
         android:layout_marginEnd="31dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ots_box" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="38dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:srcCompat="@drawable/ots_textbox" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="291dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/ots_textbox" />
+        app:srcCompat="@drawable/ots_box_bigger" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="First Name"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ots_Box" />
+
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Last Name"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Student ID"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.192"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="Let's get started"
+        android:text="Please enter your details"
         android:textColor="@android:color/black"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wintecLogo" />
+        app:layout_constraintTop_toTopOf="@+id/ots_Box" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="270dp"
+        android:layout_height="33dp"
+        android:background="@drawable/ots_textfield"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:inputType="textPersonName"
+        android:text=" First Name"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        tools:layout_editor_absoluteY="263dp" />
 
 
 </android.support.constraint.ConstraintLayout>
