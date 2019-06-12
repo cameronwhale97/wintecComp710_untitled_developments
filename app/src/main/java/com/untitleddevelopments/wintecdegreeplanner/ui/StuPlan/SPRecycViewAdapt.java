@@ -66,7 +66,7 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
             code = itemView.findViewById(R.id.SPTVModuleCode);
             name = itemView.findViewById(R.id.SPTVModuleName);
             preReq = itemView.findViewById(R.id.SPTVPreReqs);
-            layoutItem = itemView.findViewById(R.id.itemLayout);
+            layoutItem = itemView.findViewById(R.id.SPListItemLayout);
         }
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
@@ -42,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
             case "geoff":
                 //do Geoffs stuff
                 Log.d(TAG," Got to geoff ");
+                Globals.setStream_ID(1);
+                Globals.setStudent_ID(1);
                 startActivity(new Intent(this, StuPlanActivity.class));
-                //startActivity(new Intent(this, GeoffTest.class));
-
                 return;
             case "cameron":
                 //do Camerons stuff

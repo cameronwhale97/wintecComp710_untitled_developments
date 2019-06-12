@@ -89,6 +89,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/colorDPMWhite"
+                    android:onClick="onClickEditStudent"
                     android:src="@drawable/edit_pencil" />
 
                 <ImageView
@@ -97,6 +98,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/colorDPMWhite"
+                    android:onClick="onClickDeleteStudent"
                     android:src="@drawable/trash_can" />
             </LinearLayout>
 

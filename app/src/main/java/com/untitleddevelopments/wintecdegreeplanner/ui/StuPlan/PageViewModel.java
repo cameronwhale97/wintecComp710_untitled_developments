@@ -1,15 +1,12 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
-
 import android.arch.core.util.Function;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
-
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPModRepo;
-
 import java.util.List;
 
 public class PageViewModel extends ViewModel {
@@ -17,7 +14,6 @@ public class PageViewModel extends ViewModel {
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
     //gg
     private SPModRepo SPModRepo;      //Create reference to the repo
-
     private MutableLiveData<List<SPMod>> modsYetToComp;
     public LiveData<List<SPMod>> getModsYetToComp(){
         return modsYetToComp;
