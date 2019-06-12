@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorDPMBgLgrey"
     android:fitsSystemWindows="true"
     tools:context=".ui.StuPlan.StuPlanActivity">
 
@@ -43,12 +43,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/SPStreamName"
+                android:id="@+id/SPTVStreamName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorDPMCTA"
                 android:gravity="center"
-                android:minHeight="50dp"
+                android:minHeight="70dp"
                 android:padding="5dp"
                 android:text="Multimedia and Web Development"
                 android:textAlignment="center"
@@ -57,13 +57,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="242dp"
-                    android:layout_height="50dp"
+                    android:id="@+id/SPIVPersonICON"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="start"
                     android:layout_weight="1"
                     android:background="@color/colorDPMWhite"
@@ -71,14 +71,33 @@
                     android:src="@drawable/baseline_account_circle_5" />
 
                 <TextView
+                    android:id="@+id/SPTVStuNameAndStuID"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:background="@color/colorDPMWhite"
                     android:gravity="center"
                     android:minHeight="50dp"
                     android:padding="5dp"
-                    android:text="Jon Snow"
-                    android:textAlignment="center"
-                    android:textSize="24sp" />
+                    android:text="Geoff Genner, 1234567"
+                    android:textAlignment="viewStart"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:id="@+id/SPIVPencilIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorDPMWhite"
+                    android:src="@drawable/edit_pencil" />
+
+                <ImageView
+                    android:id="@+id/SPBinIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorDPMWhite"
+                    android:src="@drawable/trash_can" />
             </LinearLayout>
 
 
@@ -94,9 +113,11 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#D7E0DF"
+                android:background="@color/colorDPMWhite"
                 android:minHeight="?actionBarSize"
                 app:tabGravity="fill"
+                app:tabIndicatorColor="@color/colorDPMTabHighlight"
+                app:tabIndicatorHeight="50dp"
                 app:tabMode="fixed" />
 
             <LinearLayout

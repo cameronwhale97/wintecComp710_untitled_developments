@@ -6,6 +6,10 @@
     <color name="colorDPMBlack">#111111</color>
     <color name="colorDPMSecondayButton">#3E3E3E</color>
     <color name="colorDPMWhite">#FFFFFF</color>
+    <color name="colorDPMFieldColour">#9E9999</color>
+    <color name="colorDPMTabHighlight">#C5C5C5</color>
+    <color name="colorDPMBgLgrey">#EFEFEF</color>
+
 
 
     <!-- debug colours -->

@@ -9,10 +9,14 @@
     tools:context=".ui.StuPlan.PlaceholderFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/SPTVModsToComplet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Modules Yet to Complete" />
+        android:layout_height="50dp"
+        android:background="@color/colorDPMWhite"
+        android:paddingLeft="20dp"
+        android:text="Modules to Complete"
+        android:textAlignment="textStart"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/section_label"
@@ -29,9 +33,14 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/SPTVModsCompleted"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Completed Modules" />
+        android:layout_height="50dp"
+        android:background="@color/colorDPMWhite"
+        android:paddingLeft="20dp"
+        android:text="Completed Modules"
+        android:textAlignment="textStart"
+        android:textSize="30sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sp_recyclerv_comp"

@@ -63,9 +63,9 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         LinearLayout layoutItem;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            code = itemView.findViewById(R.id.tvCode);
-            name = itemView.findViewById(R.id.tvName);
-            preReq = itemView.findViewById(R.id.tvPreReq);
+            code = itemView.findViewById(R.id.SPTVModuleCode);
+            name = itemView.findViewById(R.id.SPTVModuleName);
+            preReq = itemView.findViewById(R.id.SPTVPreReqs);
             layoutItem = itemView.findViewById(R.id.itemLayout);
         }
     }
