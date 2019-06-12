@@ -2,6 +2,11 @@
 <resources>
     <!-- Degree Programme Mapper Colours -->
     <color name="colorDPMbackground">#FFDD00</color>
+    <color name="colorDPMCTA">#FC5C00</color>
+    <color name="colorDPMBlack">#111111</color>
+    <color name="colorDPMSecondayButton">#3E3E3E</color>
+    <color name="colorDPMWhite">#FFFFFF</color>
+
 
     <!-- debug colours -->
     <color name="overlay">#B0000000</color>
