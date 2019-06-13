@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG," Got to geoff ");
                 Globals.setStream_ID(1);
                 Globals.setStudent_ID(1);
+                //FakeDB2.InsertStudents();
                 startActivity(new Intent(this, StuPlanActivity.class));
                 return;
             case "cameron":

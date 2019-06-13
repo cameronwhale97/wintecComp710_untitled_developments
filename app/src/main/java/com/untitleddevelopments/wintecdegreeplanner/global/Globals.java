@@ -1,5 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.global;
 
+import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
+import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 
 public class Globals {
@@ -10,6 +12,8 @@ public class Globals {
     private static int module_ID;
 
     private static Student student;
+    private static Module module;
+    private static Stream stream;
 
     public static synchronized void setStudent_ID(int student_ID) { Globals.student_ID = student_ID;    }
     public static synchronized int getStudent_ID() {
@@ -44,7 +48,19 @@ public class Globals {
         return Globals.student;
     }
 
+    public static synchronized void setModule(Module module) {
+        Globals.module = module;
+    }
+    public static synchronized Module getModule() {
+        return Globals.module;
+    }
 
+    public static synchronized void setStream(Stream stream) {
+        Globals.stream = stream;
+    }
+    public static synchronized Stream getStream() {
+        return Globals.stream;
+    }
 
 
 

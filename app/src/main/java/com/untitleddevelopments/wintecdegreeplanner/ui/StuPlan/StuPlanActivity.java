@@ -1,6 +1,4 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
-import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -11,8 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
-import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
@@ -43,7 +39,7 @@ public class StuPlanActivity extends AppCompatActivity {
         //viewPager.setPagingEnabled(false);          //GG ToDo talk to Navi
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        InsertStudent();                                //ToDo delete this once the rest of our team have set up students
+                                       //ToDo delete this once the rest of our team have set up students
     }
     @Override
 
@@ -52,6 +48,7 @@ public class StuPlanActivity extends AppCompatActivity {
         int student_ID = Globals.getStudent_ID();
         currentStudent = new Student(student_ID);
         currentStream = new Stream(currentStudent.getStream_ID());
+        Globals.setStream(currentStream);
         SPTVStuNameAndStuID.setText(currentStudent.getFullName()+ " " + currentStudent.getStudentID());
         SPTVStreamName.setText(currentStream.getName());
     }
@@ -76,19 +73,5 @@ public class StuPlanActivity extends AppCompatActivity {
     }
 
 
-    private void InsertStudent() {      //delete this once team have set up students
-        boolean inserted;
-        ContentValues contentStudent = new ContentValues();
-        contentStudent.put(DBHelper.STUDENT_FIRSTNAME, "Peter");
-        contentStudent.put(DBHelper.STUDENT_SURNAME, "Jackson");
-        contentStudent.put(DBHelper.STUDENT_STUDENTID, "7654123");
-        contentStudent.put(DBHelper.STUDENT_PHOTOURI, "");
-        contentStudent.put(DBHelper.STUDENT_STARTDATE, "12/06/2019");
-        contentStudent.put(DBHelper.STUDENT_STATUS, 1);
-        contentStudent.put(DBHelper.STUDENT_STREAM_ID, 2);
-        DBManager.getInstance().openDatabase();
-        inserted = DBManager.getInstance().insert(DBHelper.TBL_STUDENT, contentStudent);
-        String myMsg = inserted ? " Inserted Yay!" : " Not inserted Bohoo";
-        Log.e(TAG, "Peter Jackson" + myMsg);
-    }
+
 }
