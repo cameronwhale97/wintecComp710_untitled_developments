@@ -11,6 +11,9 @@
     <color name="colorDPMBgLgrey">#EFEFEF</color>
 
 
+    <color name="adminTitleBar">#444444</color>
+    <color name="adminText">#444444</color>
+
 
     <!-- debug colours -->
     <color name="overlay">#B0000000</color>

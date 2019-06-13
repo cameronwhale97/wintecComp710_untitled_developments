@@ -10,19 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".global.PrefsTestActivity"></activity>
-        <activity android:name=".tests.DBTestActivity" />
-        <!--Geoffs activities -->
-
+        <activity android:name=".global.PrefsTestActivity" />
+        <activity android:name=".tests.DBTestActivity" /> <!-- Geoffs activities -->
         <activity
             android:name=".ui.StuPlan.StuPlanActivity"
-            android:label="@string/title_activity_stu_plan"/>
+            android:label="@string/title_activity_stu_plan" />
         <activity
             android:name=".GeoffsSandpit.GeoffTest"
             android:label="@string/title_activity_geoff_test"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- End of Geoffs -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- End of Geoffs -->
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">
@@ -31,20 +27,23 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- cw apps -->
+        </activity> <!-- cw apps -->
         <activity
             android:name=".otsStudentSignup"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".otsDisclaimer"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".otsStudentAdmin"
             android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+        <!-- ADMIN UI/ACTIVITIES -->
+        <activity android:name=".admin.AdminMainActivity">
+
+        </activity>
 
 
         <meta-data
