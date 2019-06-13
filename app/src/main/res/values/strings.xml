@@ -9,7 +9,6 @@
     <string name="title_activity_stu_plan">StuPlan</string>
 
 
-
     <!-- admin string literals/constants -->
     <string name="adminWelcome">Welcome To Admin Area</string>
     <string name="manageStudents">Manage Students</string>

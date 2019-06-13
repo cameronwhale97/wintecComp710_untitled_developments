@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".about_screen"
+    >
+
+
+    <TextView
+        android:id="@+id/About_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto"
+        android:text="About App"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/aboutTable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/About_title"
+        app:layout_constraintVertical_bias="0.0">>
+
+        <TableRow android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:fontFamily="@font/roboto_light"
+                android:padding="3dip"
+                android:text="Clients"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="right|left"
+                android:padding="10dp"
+                android:text="@string/AppClients"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:padding="3dip"
+                android:text="App Version"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:id="@+id/TextView_About_AppVer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="right|left"
+                android:padding="10dp"
+                android:text="@string/AppVersion"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:padding="3dip"
+                android:text="Developer Group"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="right|left"
+                android:padding="10dp"
+                android:text="@string/AppDeveloperGroup"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp"
+                android:layout_width="match_parent" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:padding="3dip"
+                android:text="Android Version"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp"
+                android:layout_width="match_parent" />
+
+            <TextView
+                android:id="@+id/TextView_About_AndroidVer"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="right|left"
+                android:padding="10dp"
+                android:text="Can't get version"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textSize="15dp"
+                android:layout_width="match_parent" />
+        </TableRow>
+    </TableLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutTable"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/AboutScreenButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="#FFFFFF"
+            android:onClick="startAboutEditActivity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aboutTable"
+            app:srcCompat="@drawable/ots_student_button" />
+
+        <TextView
+            android:id="@+id/editAppVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Edit App Version"
+            android:textColor="#FFFFFF"></TextView>
+
+    </FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>
+

@@ -12,6 +12,7 @@ public class PrefsManager {
 
     private final static String USER_TYPE = "USER_TYPE";
     private final static String PROGRAMMER = "PROGRAMMER";
+    private final static String APPVERSION = "APPVERSION";
 
 
     public static void initPrefs(Context context)
@@ -38,6 +39,13 @@ public class PrefsManager {
     public static String getProgrammer(){
         return prefs.getString(PROGRAMMER, "noProg" );
     }
+
+    public static void setAppVersion(String ver){
+        prefsEditor.putString(APPVERSION, ver);
+        prefsEditor.apply();
+    }
+
+    public static String getAppversion(){ return prefs.getString(APPVERSION, "noAppVer"); }
 }//PrefsManager
 
 

@@ -7,9 +7,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"> <!-- Edited to this for GG and anyone else for the overflow menu (CW) -->
     <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
+    <item name="colorPrimary">@color/colorDPMbackground</item>
+    <item name="colorPrimaryDark">@color/colorDPMbackground</item>
+    <item name="colorAccent">@color/colorDPMbackground</item>
     <!-- Geoff Added -->
     <item name="android:windowBackground">@color/colorDPMWhite</item>
 </style>

@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         // ******** Programmers if you need to get your name or userType into the shared preferences for testing
         //I can help you get them into your emulator - as it is a little tricky
         //
-        PrefsManager.setProgrammer("geoff");
-        PrefsManager.setUserType("admin");
+        PrefsManager.setProgrammer("jonah");
+        PrefsManager.setUserType("user");
 
        // PrefsManager.setProgrammer("cameron");
        // PrefsManager.setUserType("admin");
@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
             case "jonah":
                 //do Jonahs stuff
+                Intent jonahIntent = new Intent(this, about_screen.class);
+                startActivity(jonahIntent);
 
 
             default:
