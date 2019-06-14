@@ -6,6 +6,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import com.untitleddevelopments.wintecdegreeplanner.R;
 
@@ -18,6 +19,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.Tab_All, R.string.Tab_Year1, R.string.Tab_Year2, R.string.Tab_Year3};
     private final Context mContext;
+    private static final String TAG = "SectionsPagerAdapter";
+
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);

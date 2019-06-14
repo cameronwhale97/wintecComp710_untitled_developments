@@ -14,10 +14,13 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
+ * Author Geoff Genner
+ * Works with the tabs near the top of the StuPlanActivity
  */
 public class PlaceholderFragment extends Fragment {
     private static final String TAG = "PlaceholderFragment";
@@ -28,9 +31,10 @@ public class PlaceholderFragment extends Fragment {
     private SPRecycViewAdapt adapterYTC;
     private RecyclerView recyclerVComp;
     private SPRecycViewAdapt adapterComp;
+    private TextView SPGeoffTV;
 
     public static PlaceholderFragment newInstance(int index) {
-        Log.d(TAG, "Placeholder fragment");
+        Log.d(TAG, "Placeholder fragment New Instance index: "+Integer.toString(index));
         PlaceholderFragment fragment = new PlaceholderFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
@@ -39,7 +43,6 @@ public class PlaceholderFragment extends Fragment {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         //instantiate the view model
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
@@ -48,24 +51,35 @@ public class PlaceholderFragment extends Fragment {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
         pageViewModel.setIndex(index);
-        //initModules();
+        pageViewModel.init();
+
+        pageViewModel.setmIndexText(Integer.toString(index));
+        Log.d(TAG, "*onCreate: index =  " + Integer.toString(index));
+        Globals.setYear(index);
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: ");
+        Log.d(TAG, "onCreateView: " );
         View view = inflater.inflate(R.layout.fragment_stu_plan, container, false);
+        SPGeoffTV = view.findViewById(R.id.SPGeoffTV);
         final TextView textView = view.findViewById(R.id.section_label);
-
         pageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
-        //Initialise  both Arraylists
-        pageViewModel.init();
+        pageViewModel.getmIndexText().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                int temp = Integer.parseInt(s);
+                temp--;
+                pageViewModel.setModsYetToComp(temp);
+                pageViewModel.setModsCompleted(temp);
+                SPGeoffTV.setText(Integer.toString(temp));
+            }
+        });
         //Deal to yet to complete...
-
         pageViewModel.getModsYetToComp().observe(this, new Observer<List<SPMod>>() {
             @Override
             public void onChanged(@Nullable List<SPMod> modsYetToComp) {
@@ -95,5 +109,11 @@ public class PlaceholderFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated: ");
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: ");
     }
 }

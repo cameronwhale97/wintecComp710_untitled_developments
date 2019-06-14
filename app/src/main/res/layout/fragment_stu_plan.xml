@@ -9,6 +9,13 @@
     tools:context=".ui.StuPlan.PlaceholderFragment">
 
     <TextView
+        android:id="@+id/SPGeoffTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Geoffs test"
+        android:textSize="36sp" />
+
+    <TextView
         android:id="@+id/SPTVModsToComplet"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -30,7 +37,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sp_recyclerv_yet_to_comp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="400dp" />
 
     <TextView
         android:id="@+id/SPTVModsCompleted"
@@ -45,5 +52,5 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sp_recyclerv_comp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="400dp" />
 </LinearLayout>

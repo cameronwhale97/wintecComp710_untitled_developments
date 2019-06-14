@@ -7,7 +7,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 public class Globals {
 
     private static int student_ID;
-    private static String year;
+    private static int year;
     private static int stream_ID;
     private static int module_ID;
 
@@ -20,10 +20,10 @@ public class Globals {
         return Globals.student_ID;
     }
 
-    public static synchronized void setYear(String year) {
+    public static synchronized void setYear(int year) {
         Globals.year = year;
     }
-    public static synchronized String getYear() {
+    public static synchronized int getYear() {
         return Globals.year;
     }
 

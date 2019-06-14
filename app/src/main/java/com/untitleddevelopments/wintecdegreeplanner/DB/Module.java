@@ -89,4 +89,8 @@ public class Module {
     public void setCoReq(String coReq) {
         this.coReq = coReq;
     }
+
+    public int getYear() {
+        return Integer.parseInt(this.code.substring(5,6)) -4;
+    }
 }

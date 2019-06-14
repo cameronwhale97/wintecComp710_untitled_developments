@@ -23,6 +23,7 @@ public class StuPlanActivity extends AppCompatActivity {
     Stream currentStream;
     TextView SPTVStuNameAndStuID;
     TextView SPTVStreamName;
+    ViewPager viewPager;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +34,19 @@ public class StuPlanActivity extends AppCompatActivity {
         SPTVStreamName = findViewById(R.id.SPTVStreamName);
         SPTVStuNameAndStuID = findViewById((R.id.SPTVStuNameAndStuID));
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
 //        CustomViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         //viewPager.setPagingEnabled(false);          //GG ToDo talk to Navi
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-                                       //ToDo delete this once the rest of our team have set up students
     }
     @Override
 
     protected void onResume() {
         super.onResume();
+        int vpno = viewPager.getCurrentItem();
+        Log.d(TAG, "*********************************onResume viewpager current no: "+ Integer.toString(vpno));
         int student_ID = Globals.getStudent_ID();
         currentStudent = new Student(student_ID);
         currentStream = new Stream(currentStudent.getStream_ID());
@@ -56,14 +58,14 @@ public class StuPlanActivity extends AppCompatActivity {
         //ToDO Code this once Navi has done his stuff
         DisplayMessage("onClickEditStudent clicked ");
         Globals.setStudent(currentStudent);
-        //startActivity(new Intent(this, ToDo Navis edit Activity.class));
+        //startActivity(new Intent(this, ToDo Jonah's edit Activity.class));
 
     }
     public void onClickDeleteStudent(View view){
         //ToDO Code this once Navi has done his stuff
         DisplayMessage("onClick Delete Student clicked ");
         Globals.setStudent(currentStudent);
-        //startActivity(new Intent(this, ToDo Navis edit Activity.class));
+        //startActivity(new Intent(this, ToDo
 
     }
 
