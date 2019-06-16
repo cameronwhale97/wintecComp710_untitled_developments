@@ -1,5 +1,6 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 import android.os.Bundle;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -66,25 +67,7 @@ public class PlaceholderFragment extends Fragment {
         pageViewModel.setModsYetToComp(yearIndex);
         pageViewModel.setModsCompleted(yearIndex);
         View view = inflater.inflate(R.layout.fragment_stu_plan, container, false);
-        //SPGeoffTV = view.findViewById(R.id.SPGeoffTV);
-        //final TextView textView = view.findViewById(R.id.section_label);
-        /*
-        pageViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        pageViewModel.getmIndexText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                int temp = Integer.parseInt(s);
-                temp--;
 
-                SPGeoffTV.setText(Integer.toString(temp));
-            }
-        });
-        */
         //Deal to yet to complete...
         pageViewModel.getModsYetToComp().observe(this, new Observer<List<SPMod>>() {
             @Override
@@ -97,6 +80,10 @@ public class PlaceholderFragment extends Fragment {
         adapterYTC = new SPRecycViewAdapt(getActivity(), pageViewModel.getModsYetToComp().getValue());
         recyclerVYetToComp.setAdapter(adapterYTC);
         recyclerVYetToComp.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        The follwing code is used to deal with swipes...
+        ItemTouchHelper itemTouchHelper = new
+                ItemTouchHelper(new SwipeToCompUncomp(adapterYTC));
+        itemTouchHelper.attachToRecyclerView(recyclerVYetToComp);
 
         //Deal to completed...
         pageViewModel.getModsCompleted().observe(this, new Observer<List<SPMod>>() {

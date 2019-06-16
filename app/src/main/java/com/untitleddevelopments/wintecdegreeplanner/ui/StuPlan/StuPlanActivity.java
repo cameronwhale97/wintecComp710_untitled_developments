@@ -32,8 +32,9 @@ public class StuPlanActivity extends AppCompatActivity {
         SPTVStreamName = findViewById(R.id.SPTVStreamName);
         SPTVStuNameAndStuID = findViewById((R.id.SPTVStuNameAndStuID));
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        viewPager = findViewById(R.id.view_pager);
-//        CustomViewPager viewPager = findViewById(R.id.view_pager);
+//        viewPager = findViewById(R.id.view_pager);  This was the original code. GG setup CustomViewPager to stop
+//        swiping in the. Tabbed activity - because want to use swiping to complete/uncomplete a module inside
+        CustomViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         //viewPager.setPagingEnabled(false);          //GG ToDo talk to Navi
         TabLayout tabs = findViewById(R.id.tabs);
@@ -43,8 +44,8 @@ public class StuPlanActivity extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-        int vpno = viewPager.getCurrentItem();
-        Log.d(TAG, "*********************************onResume StuPlanActivity current no: "+ Integer.toString(vpno));
+        //int vpno = viewPager.getCurrentItem();
+        //Log.d(TAG, "*********************************onResume StuPlanActivity current no: "+ Integer.toString(vpno));
         int student_ID = Globals.getStudent_ID();
         currentStudent = new Student(student_ID);
         currentStream = new Stream(currentStudent.getStream_ID());

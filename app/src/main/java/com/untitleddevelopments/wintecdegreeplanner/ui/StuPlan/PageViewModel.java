@@ -44,13 +44,7 @@ public class PageViewModel extends ViewModel {
             return "Hello world from section: " + input;
         }
     });
-    public void setIndex(int index) {
-        mIndex.setValue(index);
-    }
-    public LiveData<String> getText() {
-        return mText;
-    }
-    */
+        */
     public void init(){
         Log.d(TAG, "init: *********************************************************************************************");
         SPModRepo = SPModRepo.getInstance();

@@ -107,17 +107,11 @@
 
         </LinearLayout>
 
-        <!--
-        previously I had <android.support.v4.view.ViewPager.
-        To get CustomViewPager (which is used to stop L&R swiping inside tabs)
-        to work instead of referring to ViewPager need to refer to CustomViewPager -
-        which extends ViewPager
-        -->
-        <com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.CustomViewPager
+        <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
@@ -131,7 +125,7 @@
                 app:tabMode="fixed" />
 
 
-        </com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.CustomViewPager>
+        </android.support.v4.view.ViewPager>
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

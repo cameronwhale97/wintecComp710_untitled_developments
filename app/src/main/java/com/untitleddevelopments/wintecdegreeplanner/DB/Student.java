@@ -37,6 +37,7 @@ public class Student {
         this.status = status;
     }
     //constructor passing in an ID (to get from DB
+
     public Student(int student_ID) {
         this.student_ID = student_ID;
         String query = "SELECT * FROM " + DBHelper.TBL_STUDENT +

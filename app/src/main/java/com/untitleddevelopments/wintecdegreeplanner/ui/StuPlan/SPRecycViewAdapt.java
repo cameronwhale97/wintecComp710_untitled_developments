@@ -1,5 +1,4 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import java.util.List;
