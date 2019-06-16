@@ -1,5 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // ******** Programmers if you need to get your name or userType into the shared preferences for testing
         //I can help you get them into your emulator - as it is a little tricky
         //
-        PrefsManager.setProgrammer("geoff");
+        PrefsManager.setProgrammer("cameron");
         PrefsManager.setUserType("admin");
 
        // PrefsManager.setProgrammer("cameron");
@@ -52,13 +54,17 @@ public class MainActivity extends AppCompatActivity {
                 if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
                 startActivity(new Intent(this, StuPlanActivity.class));
                 return;
+
             case "cameron":
                 //do Camerons stuff
-
                 Log.d(TAG," Got to cameron ");
-
-                Intent cw_intent = new Intent(this, otsStudentDone.class);
+                Intent cw_intent = new Intent(this, otsDisclaimer.class);
                 startActivity(cw_intent);
+                break;
+
+
+
+
 
 
             case "maria":
@@ -71,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
             case "jonah":
                 //do Jonahs stuff
-                Intent jonahIntent = new Intent(this, about_screen.class);
-                startActivity(jonahIntent);
+                //Intent jonahIntent = new Intent(this, about_screen.class);
+                //startActivity(jonahIntent);
 
 
             default:
