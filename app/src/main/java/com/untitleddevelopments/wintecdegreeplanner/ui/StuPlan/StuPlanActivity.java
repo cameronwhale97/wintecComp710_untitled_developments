@@ -8,12 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
-
 
 public class StuPlanActivity extends AppCompatActivity {
     private static final String TAG = "StuPlanActivity";
@@ -46,7 +44,7 @@ public class StuPlanActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         int vpno = viewPager.getCurrentItem();
-        Log.d(TAG, "*********************************onResume viewpager current no: "+ Integer.toString(vpno));
+        Log.d(TAG, "*********************************onResume StuPlanActivity current no: "+ Integer.toString(vpno));
         int student_ID = Globals.getStudent_ID();
         currentStudent = new Student(student_ID);
         currentStream = new Stream(currentStudent.getStream_ID());

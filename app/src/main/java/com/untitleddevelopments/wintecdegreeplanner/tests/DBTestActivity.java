@@ -44,7 +44,7 @@ public class DBTestActivity extends AppCompatActivity {
                 " ON " + DBHelper.TBL_MODULE + "." + DBHelper.MODULE_ID + " = " +
                 DBHelper.TBL_MODSTR + "." + DBHelper.MODSTR_MOD_ID + " WHERE " +
                 DBHelper.MODSTR_STR_ID + " = " + 1;
-        Log.e(TAG, "Get Modules for stream 1: " + query);
+        Log.d(TAG, "Get Modules for stream 1: " + query);
         DBManager.getInstance().openDatabase();
         cursor = DBManager.getInstance().getDetails(query);
         if (cursor != null && cursor.getCount() > 0) {

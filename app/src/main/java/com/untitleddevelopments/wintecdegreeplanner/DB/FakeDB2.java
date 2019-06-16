@@ -7,7 +7,9 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import static android.content.ContentValues.TAG;
 
 public class FakeDB2 {
+    private static final String TAG = "FakeDB2";
     public static void InsertStudents() {
+        Log.d(TAG, "InsertStudents: Creating bogus students");
         ArrayList<Student> students = new ArrayList<>();
         students.add(new Student("Peter","Jackson","1654123",1,"12/06/2019","",1));
         students.add(new Student("Mike","Smith","2654123",2,"12/06/2018","",1));

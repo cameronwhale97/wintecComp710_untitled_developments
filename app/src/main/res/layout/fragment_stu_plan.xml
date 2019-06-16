@@ -9,13 +9,6 @@
     tools:context=".ui.StuPlan.PlaceholderFragment">
 
     <TextView
-        android:id="@+id/SPGeoffTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Geoffs test"
-        android:textSize="36sp" />
-
-    <TextView
         android:id="@+id/SPTVModsToComplet"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -24,15 +17,6 @@
         android:text="Modules to Complete"
         android:textAlignment="textStart"
         android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sp_recyclerv_yet_to_comp"
@@ -43,8 +27,10 @@
         android:id="@+id/SPTVModsCompleted"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="5dp"
         android:background="@color/colorDPMWhite"
         android:paddingLeft="20dp"
+        android:paddingTop="5dp"
         android:text="Completed Modules"
         android:textAlignment="textStart"
         android:textSize="30sp" />

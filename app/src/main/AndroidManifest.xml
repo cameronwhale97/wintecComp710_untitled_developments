@@ -17,10 +17,10 @@
         <activity
             android:name=".ui.StuPlan.StuPlanActivity"
             android:label="@string/title_activity_stu_plan" />
-        <activity
+        <!-- <activity
             android:name=".GeoffsSandpit.GeoffTest"
             android:label="@string/title_activity_geoff_test"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- End of Geoffs -->
+            android:theme="@style/AppTheme.NoActionBar" />  End of Geoffs -->
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">

@@ -1,6 +1,11 @@
 package com.untitleddevelopments.wintecdegreeplanner.DB;
 
+import android.database.Cursor;
+import android.util.Log;
+
 public class Module {
+    private static final String TAG = "Module";
+
     private int module_ID;
     private String code;
     private String name;
@@ -92,5 +97,27 @@ public class Module {
 
     public int getYear() {
         return Integer.parseInt(this.code.substring(5,6)) -4;
+    }
+
+    public static boolean isCompleted(int student_ID, int module_ID){
+        Log.d(TAG, "isCompleted: ");
+        boolean comp = false;
+        int compFromDB = 0;
+        String query = "SELECT " + DBHelper.STUMOD_COMPLETED +
+                " FROM " + DBHelper.TBL_STUMOD +
+                " WHERE " + DBHelper.STUMOD_STU_ID + " = " + student_ID +
+                " AND " + DBHelper.STUMOD_MOD_ID + " = " + module_ID;
+        Log.d(TAG, "Get Modules for stream 1: " + query);
+        DBManager.getInstance().openDatabase();
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                compFromDB = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.STUMOD_COMPLETED)));
+                cursor.moveToNext();
+            }
+            if(compFromDB == 1) comp = true;
+        }
+        return comp;
     }
 }

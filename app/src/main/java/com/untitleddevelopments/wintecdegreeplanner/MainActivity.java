@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
+import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB2;
+import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: --------------------  first line of code in main activity -----------------");
+        Log.d(TAG, "onCreate: --------------------  first line of code in main activity ----------------------------------------");
         //set up database if needed...
         if(!DBManager.getInstance().ensureDatabaseExists(this)) {
             Toast.makeText(this, "Warning: Database does not exist!!!", Toast.LENGTH_LONG).show();
@@ -28,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         // ******** Programmers if you need to get your name or userType into the shared preferences for testing
         //I can help you get them into your emulator - as it is a little tricky
         //
-        PrefsManager.setProgrammer("jonah");
-        PrefsManager.setUserType("user");
+        PrefsManager.setProgrammer("geoff");
+        PrefsManager.setUserType("admin");
 
        // PrefsManager.setProgrammer("cameron");
        // PrefsManager.setUserType("admin");
@@ -45,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG," Got to geoff ");
                 Globals.setStream_ID(1);
                 Globals.setStudent_ID(1);
-                //FakeDB2.InsertStudents();
+                Student testStu = new Student(1);
+                //if student 1 does not exist - then student 0 is returned
+                if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
                 startActivity(new Intent(this, StuPlanActivity.class));
                 return;
             case "cameron":

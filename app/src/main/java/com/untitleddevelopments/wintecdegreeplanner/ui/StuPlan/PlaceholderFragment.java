@@ -32,6 +32,7 @@ public class PlaceholderFragment extends Fragment {
     private RecyclerView recyclerVComp;
     private SPRecycViewAdapt adapterComp;
     private TextView SPGeoffTV;
+    private int yearIndex;
 
     public static PlaceholderFragment newInstance(int index) {
         Log.d(TAG, "Placeholder fragment New Instance index: "+Integer.toString(index));
@@ -50,19 +51,24 @@ public class PlaceholderFragment extends Fragment {
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        pageViewModel.setIndex(index);
+        yearIndex = index-1;
+        //pageViewModel.setIndex(index);
+        Log.d(TAG, "*onCreate: calling pageViewModelInit  ");
         pageViewModel.init();
 
-        pageViewModel.setmIndexText(Integer.toString(index));
+        //pageViewModel.setmIndexText(Integer.toString(index));
         Log.d(TAG, "*onCreate: index =  " + Integer.toString(index));
         Globals.setYear(index);
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: " );
+        Log.d(TAG, "onCreateView, yearIndex: " + Integer.toString(yearIndex) );
+        pageViewModel.setModsYetToComp(yearIndex);
+        pageViewModel.setModsCompleted(yearIndex);
         View view = inflater.inflate(R.layout.fragment_stu_plan, container, false);
-        SPGeoffTV = view.findViewById(R.id.SPGeoffTV);
-        final TextView textView = view.findViewById(R.id.section_label);
+        //SPGeoffTV = view.findViewById(R.id.SPGeoffTV);
+        //final TextView textView = view.findViewById(R.id.section_label);
+        /*
         pageViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -74,11 +80,11 @@ public class PlaceholderFragment extends Fragment {
             public void onChanged(@Nullable String s) {
                 int temp = Integer.parseInt(s);
                 temp--;
-                pageViewModel.setModsYetToComp(temp);
-                pageViewModel.setModsCompleted(temp);
+
                 SPGeoffTV.setText(Integer.toString(temp));
             }
         });
+        */
         //Deal to yet to complete...
         pageViewModel.getModsYetToComp().observe(this, new Observer<List<SPMod>>() {
             @Override

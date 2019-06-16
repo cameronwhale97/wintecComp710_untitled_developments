@@ -1,13 +1,19 @@
 package com.untitleddevelopments.wintecdegreeplanner.DB;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.database.Cursor;
 import android.util.Log;
+
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SPModRepo {
     private static final String TAG = "SPModRepo";
     private static SPModRepo instance;
+    private String query;
+    private Cursor cursor;
     private ArrayList<SPMod> modsYetToComp = new ArrayList<>();
     private ArrayList<SPMod> modsCompleted = new ArrayList<>();
     private ArrayList<SPMod> modListY0 = new ArrayList<SPMod>();
@@ -53,6 +59,7 @@ public class SPModRepo {
         }
         return data;
     }
+
     public MutableLiveData<List<SPMod>> getModsCompleted(int year){
         //loadUpCompleted();  //this is where database queries would go
         MutableLiveData<List<SPMod>> data = new MutableLiveData<>();
@@ -75,21 +82,82 @@ public class SPModRepo {
                 Log.d(TAG, "getModsCompleted: case 3");
                 data.setValue(modListC3);
                 return data;
-//            default:
-//                Log.d(TAG, "getModsYetToComp: ERROR in CASE***************************************************** year = " + Integer.toString(year));
         }
-        return data;
-    }
-    public MutableLiveData<List<SPYrData>> getModules(){
-        //loadUpYrData();  //this is where database queries would go
-        MutableLiveData<List<SPYrData>> data = new MutableLiveData<>();
-        //data.setValue(yrData);
-        Log.d(TAG, "getModules: ");
         return data;
     }
 
     public void loadUpYrData() {
-        //yrData.clear();
+        int stream_ID = Globals.getStream_ID();
+        query = "SELECT * FROM " + DBHelper.TBL_MODULE +
+                " INNER JOIN " + DBHelper.TBL_MODSTR +
+                " ON " + DBHelper.TBL_MODULE + "." + DBHelper.MODULE_ID + " = " +
+                DBHelper.TBL_MODSTR + "." + DBHelper.MODSTR_MOD_ID + " WHERE " +
+                DBHelper.MODSTR_STR_ID + " = " + stream_ID;
+        Log.e(TAG, "Get Modules for stream: " + query);
+        DBManager.getInstance().openDatabase();
+        cursor = DBManager.getInstance().getDetails(query);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                SPMod spMod = new SPMod( //using the Module Class constructor
+                        Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_ID))),
+                        cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_CODE)),
+                        cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_NAME)),
+                        "",
+                        false
+                );
+                if(Module.isCompleted(Globals.getStudent_ID(),spMod.getModule_ID())) spMod.setCompleted(true);
+                //ToDo get prereqs
+                loadAppropriateModList(spMod);
+                cursor.moveToNext();
+            }
+        }
+        Log.d(TAG, "loadUpYrData finished:****************************************************************** ");
+    }
+
+    private void loadAppropriateModList(SPMod spMod) {
+        Log.d(TAG, "loadAppropriateModList getYear: " + Integer.toString(spMod.getYear()));
+        Log.d(TAG, "loadAppropriateModList getYear: " + Integer.toString(spMod.getYear()));
+        Log.d(TAG, "loadAppropriateModList: ");
+
+        switch (spMod.getYear()){
+            case 1:
+                if(spMod.getCompleted()) {
+                    modListC1.add(spMod);
+                    modListC0.add(spMod);
+                }
+                else {
+                    modListY1.add(spMod);
+                    modListY0.add(spMod);
+                }
+                return;
+            case 2:
+                if(spMod.getCompleted()) {
+                    modListC2.add(spMod);
+                    modListC0.add(spMod);
+                }
+                else {
+                    modListY2.add(spMod);
+                    modListY0.add(spMod);
+                }
+                return;
+            case 3:
+                if(spMod.getCompleted()) {
+                    modListC3.add(spMod);
+                    modListC0.add(spMod);
+                }
+                else {
+                    modListY3.add(spMod);
+                    modListY0.add(spMod);
+                }
+                return;
+            default:
+                Log.d(TAG, "loadAppropriateModList: ************************************Errror in case");
+        }
+        Log.d(TAG, "loadAppropriateModList: ");
+    }//loadAppropriateModList
+    //Load Student Module
+               /*
         //Year 0..all years
         modListY0.clear();
         modListY0.add(new SPMod(51,"Comp501", "SPMod Name 501", "Description 501"));
@@ -98,7 +166,6 @@ public class SPModRepo {
         modListC0.clear();
         modListC0.add(new SPMod(53,"Comp503", "SPMod Name 503", "Description 503"));
         //Year 1
-
         modListY1.clear();
         modListY1.add(new SPMod(51,"Comp501", "SPMod Name 501", "Description 501"));
         modListY1.add(new SPMod(52,"Comp502", "SPMod Name 502", "Description 502"));
@@ -110,7 +177,6 @@ public class SPModRepo {
         modListC1.add(new SPMod(56,"Comp506", "SPMod Name 506", "Description 506"));
         modListC1.add(new SPMod(57,"Comp507", "SPMod Name 507", "Description 507"));
         //Year 2
-
         modListY2.clear();
         modListY2.add(new SPMod(61,"Comp601", "SPMod Name 601", "Description 601"));
         modListY2.add(new SPMod(62,"Comp602", "SPMod Name 602", "Description 602"));
@@ -122,20 +188,18 @@ public class SPModRepo {
         modListC2.clear();
         modListC2.add(new SPMod(67,"Comp607", "SPMod Name 607", "Description 607"));
         //Year 3
-
         modListY3.clear();
         modListY3.add(new SPMod(71,"Comp701", "SPMod Name 701", "Description 701"));
         modListY3.add(new SPMod(72,"Comp702", "SPMod Name 702", "Description 702"));
         modListY3.add(new SPMod(73,"Comp703", "SPMod Name 703", "Description 703"));
         modListY3.add(new SPMod(74,"Comp704", "SPMod Name 704", "Description 704"));
+
         modListC3.clear();
         modListC3.add(new SPMod(75,"Comp705", "SPMod Name 705", "Description 705"));
         modListC3.add(new SPMod(76,"Comp706", "SPMod Name 706", "Description 706"));
         modListC3.add(new SPMod(77,"Comp707", "SPMod Name 707", "Description 707"));
-        Log.d(TAG, "loadUpYrData: ");
-    }
-
-
+        */
+/*
     private void loadUpYetToComp() {
         Log.d(TAG, "loadUpYetToComp: ");
         modsYetToComp.clear();
@@ -158,4 +222,5 @@ public class SPModRepo {
         modsCompleted.add(new SPMod(56,"Comp506", "SPMod Name 506", "Description 506"));
         modsCompleted.add(new SPMod(57,"Comp507", "SPMod Name 507", "Description 507"));
     }
+    */
 }

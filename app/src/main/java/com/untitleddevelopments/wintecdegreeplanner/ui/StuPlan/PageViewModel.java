@@ -7,7 +7,6 @@ import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPModRepo;
-import com.untitleddevelopments.wintecdegreeplanner.DB.SPYrData;
 
 import java.util.List;
 
@@ -32,6 +31,7 @@ public class PageViewModel extends ViewModel {
         modsCompleted = SPModRepo.getModsCompleted(year);
     }
 
+    /*
     private MutableLiveData<String> mIndexText;
     public LiveData<String> getmIndexText() {return mIndexText; }
     public void setmIndexText(String index) {
@@ -50,16 +50,16 @@ public class PageViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+    */
     public void init(){
         Log.d(TAG, "init: *********************************************************************************************");
         SPModRepo = SPModRepo.getInstance();
         SPModRepo.loadUpYrData();
         modsYetToComp = SPModRepo.getModsYetToComp(0);
         modsCompleted = SPModRepo.getModsCompleted(0);
-        //mSPYearArray = SPModRepo.getModules();
         MutableLiveData<String> data = new MutableLiveData<>();
         data.setValue("");
-        mIndexText = data;
+        //mIndexText = data;
         return;
     }
 }
