@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.untitleddevelopments.wintecdegreeplanner">
 
     <application
@@ -9,9 +10,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".about_edit"></activity>
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+
+        <activity android:name=".about_edit" />
         <activity android:name=".about_screen" />
+
+
         <activity android:name=".global.PrefsTestActivity" />
         <activity android:name=".tests.DBTestActivity" /> <!-- Geoffs activities -->
         <activity
@@ -29,16 +35,31 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- cw apps -->
-        <activity
-            android:name=".otsStudentSignup"
-            android:theme="@style/AppTheme.NoActionBar" />
+        </activity>
+
+        <!-- cw apps -->
+
         <activity
             android:name=".otsDisclaimer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".otsStudentAdmin"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- ADMIN UI/ACTIVITIES -->
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".otsStudentSignup"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".otsAdminPassword"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".otsStudentDone"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <!-- ADMIN UI/ACTIVITIES -->
         <activity android:name=".admin.AdminMainActivity" />
 
         <meta-data
