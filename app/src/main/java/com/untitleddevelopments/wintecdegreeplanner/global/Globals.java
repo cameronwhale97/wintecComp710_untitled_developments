@@ -3,6 +3,7 @@ package com.untitleddevelopments.wintecdegreeplanner.global;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.PageViewModel;
 
 public class Globals {
 
@@ -14,6 +15,9 @@ public class Globals {
     private static Student student;
     private static Module module;
     private static Stream stream;
+
+
+    private static PageViewModel pageViewModel;
 
     public static synchronized void setStudent_ID(int student_ID) { Globals.student_ID = student_ID;    }
     public static synchronized int getStudent_ID() {
@@ -62,6 +66,11 @@ public class Globals {
         return Globals.stream;
     }
 
-
+    public static synchronized void setPageViewModel(PageViewModel pageViewModel) {
+        Globals.pageViewModel = pageViewModel;
+    }
+    public static synchronized PageViewModel getPageViewModel() {
+        return Globals.pageViewModel;
+    }
 
 }//Globals

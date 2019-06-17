@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         // ******** Programmers if you need to get your name or userType into the shared preferences for testing
         //I can help you get them into your emulator - as it is a little tricky
         //
-        //PrefsManager.setProgrammer("cameron");
-        //PrefsManager.setUserType("admin");
+//        PrefsManager.setProgrammer("cameron");
+//        PrefsManager.setUserType("admim");
 
         PrefsManager.setProgrammer("geoff");
         PrefsManager.setUserType("admin");
@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
 
         switch (userType) {
             case "admin":
-                //call the first admin screen
+                //call the first admin screen ToDo Navi
                 displayToast("Calling admin screen");
             case "student":
-                //call the first student screen
+                //Cam strt his returning student view
                 displayToast("Calling student screen");
             default:
-                //we must be in a first time setup situation
-                //so load up the DB
+                Intent cw_intent = new Intent(this, otsDisclaimer.class);
+                startActivity(cw_intent);
 
                 displayToast("First time setup");
         }

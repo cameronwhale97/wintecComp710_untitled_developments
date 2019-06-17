@@ -13,7 +13,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+
+import com.untitleddevelopments.wintecdegreeplanner.DB.DataChangedListener;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
+import com.untitleddevelopments.wintecdegreeplanner.DB.SPModRepo;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import java.util.List;
@@ -23,7 +26,9 @@ import java.util.List;
  * Author Geoff Genner
  * Works with the tabs near the top of the StuPlanActivity
  */
-public class PlaceholderFragment extends Fragment {
+
+//ToDo implements DataChangedListener
+public class PlaceholderFragment extends Fragment  {
     private static final String TAG = "PlaceholderFragment";
     private static final String ARG_SECTION_NUMBER = "section_number";
     private PageViewModel pageViewModel;
@@ -57,13 +62,17 @@ public class PlaceholderFragment extends Fragment {
         yearIndex = index-1;            //
         //Log.d(TAG, "onCreate Year Index=" + Integer.toString(yearIndex));
         //Globals.setYear(yearIndex);
+        Globals.setPageViewModel(pageViewModel);
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView, calling setMods methods: yearIndex: " + Integer.toString(yearIndex) );
+
+        Log.d(TAG, "onCreateView, calling setMods methods: " + yearIndex );
+
         pageViewModel.setModsYetToComp(yearIndex);
         pageViewModel.setModsCompleted(yearIndex);
         pageViewModel.setCurrYear(yearIndex);
+
         View view = inflater.inflate(R.layout.fragment_stu_plan, container, false);
 
         //Deal to yet to complete...
@@ -73,11 +82,13 @@ public class PlaceholderFragment extends Fragment {
                 adapterYTC.notifyDataSetChanged();
             }
         });
+
         //
         recyclerVYetToComp = view.findViewById(R.id.sp_recyclerv_yet_to_comp);
         adapterYTC = new SPRecycViewAdapt(getActivity(), pageViewModel.getModsYetToComp().getValue());
         recyclerVYetToComp.setAdapter(adapterYTC);
         recyclerVYetToComp.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 //        The follwing code is used to deal with swipes...
         ItemTouchHelper itemTouchHelper = new
                 ItemTouchHelper(new SwipeToCompUncomp(adapterYTC));
@@ -90,10 +101,15 @@ public class PlaceholderFragment extends Fragment {
                 adapterComp.notifyDataSetChanged();
             }
         });
+
         recyclerVComp = view.findViewById(R.id.sp_recyclerv_comp);
+
         adapterComp = new SPRecycViewAdapt(getActivity(),  pageViewModel.getModsCompleted().getValue());
+
         recyclerVComp.setAdapter(adapterComp);
         recyclerVComp.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
         return view;
     }
     @Override
@@ -102,15 +118,68 @@ public class PlaceholderFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    public void refreshDataLists() {
+        Log.d(TAG, "--------- refreshDataLists-----------" );
+        recyclerVComp.setAdapter(adapterComp);
+        recyclerVYetToComp.setAdapter(adapterYTC);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        /*
         int ggCurrentTab = 0;
-        Log.d(TAG, "onResume PVM year:"+Integer.toString(pageViewModel.getCurrYear()));
+        //Log.d(TAG, "onResume PVM year:"+Integer.toString(pageViewModel.getCurrYear()));
         if (getArguments() != null) {
             ggCurrentTab = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        Log.d(TAG, "onResume current tab: " + Integer.toString(ggCurrentTab));
+        //Log.d(TAG, "onResume current tab: " + Integer.toString(ggCurrentTab));
         //Globals.setYear(yearIndex);
+        */
     }
+
+    public void callback(String result) {
+
+    }
+
+
+    public class SwipeToCompUncomp extends ItemTouchHelper.SimpleCallback {
+        private SPModRepo sPModRepo;            //Create reference to Geoffs repo
+        private static final String TAG = "SwipeToCompUncomp";
+        private SPRecycViewAdapt mAdapter;
+        public SwipeToCompUncomp(SPRecycViewAdapt adapter) {
+            super(0, ItemTouchHelper.LEFT);
+            //super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+            sPModRepo = SPModRepo.getInstance();
+            mAdapter = adapter;
+        }
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+            Log.d(TAG, "onSwiped: direction:"+Integer.toString(direction)+ " position:"+Integer.toString(position));
+            dealWithCompleted(position, Globals.getYear());
+            //ToDo deal to the swipe
+        }
+
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            // used for up and down movements
+            return false;
+        }
+
+        public void dealWithCompleted (int position, int year) {
+            Log.d(TAG, "dealWithCompleted: year="+Integer.toString(year)+ " pos="+Integer.toString(position));
+            switch (year){
+                case 0:
+                    SPMod spMod = sPModRepo.modListY0.get(position);
+                    sPModRepo.modListC0.add(spMod);
+                    sPModRepo.modListY0.remove(position);
+                    Globals.getPageViewModel().setModsYetToComp(year);
+                    refreshDataLists();
+                    return;
+                default:
+            }
+        }
+    }
+
 }
