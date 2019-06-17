@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
         // ******** Programmers if you need to get your name or userType into the shared preferences for testing
         //I can help you get them into your emulator - as it is a little tricky
         //
-        PrefsManager.setProgrammer("cameron");
-        PrefsManager.setUserType("admin");
+        //PrefsManager.setProgrammer("cameron");
+        //PrefsManager.setUserType("admin");
 
-       // PrefsManager.setProgrammer("cameron");
-       // PrefsManager.setUserType("admin");
+        PrefsManager.setProgrammer("geoff");
+        PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();

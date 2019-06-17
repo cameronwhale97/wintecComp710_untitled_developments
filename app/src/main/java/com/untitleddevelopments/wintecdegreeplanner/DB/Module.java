@@ -100,14 +100,13 @@ public class Module {
     }
 
     public static boolean isCompleted(int student_ID, int module_ID){
-        Log.d(TAG, "isCompleted: ");
         boolean comp = false;
         int compFromDB = 0;
         String query = "SELECT " + DBHelper.STUMOD_COMPLETED +
                 " FROM " + DBHelper.TBL_STUMOD +
                 " WHERE " + DBHelper.STUMOD_STU_ID + " = " + student_ID +
                 " AND " + DBHelper.STUMOD_MOD_ID + " = " + module_ID;
-        Log.d(TAG, "Get Modules for stream 1: " + query);
+        Log.d(TAG, "isCompleted:" + query);
         DBManager.getInstance().openDatabase();
         Cursor cursor = DBManager.getInstance().getDetails(query);
         if (cursor != null && cursor.getCount() > 0) {

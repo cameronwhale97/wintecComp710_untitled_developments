@@ -52,20 +52,18 @@ public class PlaceholderFragment extends Fragment {
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        yearIndex = index-1;
-        //pageViewModel.setIndex(index);
-        Log.d(TAG, "*onCreate: calling pageViewModelInit  ");
-        pageViewModel.init();
-
-        //pageViewModel.setmIndexText(Integer.toString(index));
-        Log.d(TAG, "*onCreate: index =  " + Integer.toString(index));
-        Globals.setYear(index);
+        Log.d(TAG, "*onCreate: calling pageViewModel InitMuts. FYI index =  " + Integer.toString(index));
+        pageViewModel.initMutables();
+        yearIndex = index-1;            //
+        //Log.d(TAG, "onCreate Year Index=" + Integer.toString(yearIndex));
+        //Globals.setYear(yearIndex);
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView, yearIndex: " + Integer.toString(yearIndex) );
+        Log.d(TAG, "onCreateView, calling setMods methods: yearIndex: " + Integer.toString(yearIndex) );
         pageViewModel.setModsYetToComp(yearIndex);
         pageViewModel.setModsCompleted(yearIndex);
+        pageViewModel.setCurrYear(yearIndex);
         View view = inflater.inflate(R.layout.fragment_stu_plan, container, false);
 
         //Deal to yet to complete...
@@ -100,13 +98,19 @@ public class PlaceholderFragment extends Fragment {
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onViewCreated: ");
+        //Log.d(TAG, "onViewCreated yearIndex:"+Integer.toString(yearIndex));
         super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume: ");
+        int ggCurrentTab = 0;
+        Log.d(TAG, "onResume PVM year:"+Integer.toString(pageViewModel.getCurrYear()));
+        if (getArguments() != null) {
+            ggCurrentTab = getArguments().getInt(ARG_SECTION_NUMBER);
+        }
+        Log.d(TAG, "onResume current tab: " + Integer.toString(ggCurrentTab));
+        //Globals.setYear(yearIndex);
     }
 }

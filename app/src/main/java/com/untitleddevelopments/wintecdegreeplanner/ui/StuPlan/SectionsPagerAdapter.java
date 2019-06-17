@@ -37,6 +37,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
+        Log.d(TAG, "getPageTitle: " + mContext.getResources().getString(TAB_TITLES[position] ));
         return mContext.getResources().getString(TAB_TITLES[position]);
     }
 
@@ -45,4 +46,5 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Show 4 total pages.
         return 4;
     }
+
 }

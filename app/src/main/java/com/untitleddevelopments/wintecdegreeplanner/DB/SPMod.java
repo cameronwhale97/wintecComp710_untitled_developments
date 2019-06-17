@@ -63,10 +63,10 @@ public class SPMod {
     public void setCompleted(Boolean completed) {
         this.completed = completed;
     }
+
     public int getYear() {
-        Log.d(TAG, "getYear: " + this.code.substring(4,5));
         return (Integer.parseInt(this.code.substring(4,5) ) -4 );
 
-    }
+    } //getYear
 }
 

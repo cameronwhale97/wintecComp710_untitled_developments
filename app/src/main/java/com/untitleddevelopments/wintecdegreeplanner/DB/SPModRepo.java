@@ -14,16 +14,14 @@ public class SPModRepo {
     private static SPModRepo instance;
     private String query;
     private Cursor cursor;
-    private ArrayList<SPMod> modsYetToComp = new ArrayList<>();
-    private ArrayList<SPMod> modsCompleted = new ArrayList<>();
-    private ArrayList<SPMod> modListY0 = new ArrayList<SPMod>();
-    private ArrayList<SPMod> modListC0 = new ArrayList<SPMod>();
-    private ArrayList<SPMod> modListY1 = new ArrayList<SPMod>();
-    private ArrayList<SPMod> modListC1 = new ArrayList<SPMod>();
-    private ArrayList<SPMod> modListY2 = new ArrayList<SPMod>();
-    private ArrayList<SPMod> modListC2 = new ArrayList<SPMod>();
-    private ArrayList<SPMod> modListY3 = new ArrayList<SPMod>();
-    private ArrayList<SPMod> modListC3 = new ArrayList<SPMod>();
+    public ArrayList<SPMod> modListY0 = new ArrayList<SPMod>();
+    public ArrayList<SPMod> modListC0 = new ArrayList<SPMod>();
+    public ArrayList<SPMod> modListY1 = new ArrayList<SPMod>();
+    public ArrayList<SPMod> modListC1 = new ArrayList<SPMod>();
+    public ArrayList<SPMod> modListY2 = new ArrayList<SPMod>();
+    public ArrayList<SPMod> modListC2 = new ArrayList<SPMod>();
+    public ArrayList<SPMod> modListY3 = new ArrayList<SPMod>();
+    public ArrayList<SPMod> modListC3 = new ArrayList<SPMod>();
 
     /**
      * Singleton Pattern per coding with Mitch - MVVVM
@@ -87,6 +85,14 @@ public class SPModRepo {
     }
 
     public void loadUpYrData() {
+        modListY0.clear();
+        modListY1.clear();
+        modListY2.clear();
+        modListY3.clear();
+        modListC0.clear();
+        modListC1.clear();
+        modListC2.clear();
+        modListC3.clear();
         int stream_ID = Globals.getStream_ID();
         query = "SELECT * FROM " + DBHelper.TBL_MODULE +
                 " INNER JOIN " + DBHelper.TBL_MODSTR +
@@ -116,10 +122,7 @@ public class SPModRepo {
     }
 
     private void loadAppropriateModList(SPMod spMod) {
-        Log.d(TAG, "loadAppropriateModList getYear: " + Integer.toString(spMod.getYear()));
-        Log.d(TAG, "loadAppropriateModList getYear: " + Integer.toString(spMod.getYear()));
-        Log.d(TAG, "loadAppropriateModList: ");
-
+        //Log.d(TAG, "loadAppropriateModList getYear: " + Integer.toString(spMod.getYear()));
         switch (spMod.getYear()){
             case 1:
                 if(spMod.getCompleted()) {
@@ -154,6 +157,8 @@ public class SPModRepo {
             default:
                 Log.d(TAG, "loadAppropriateModList: ************************************Errror in case");
         }
-        Log.d(TAG, "loadAppropriateModList: ");
+        //Log.d(TAG, "loadAppropriateModList: ");
     }
+
+
 }

@@ -18,11 +18,9 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
     private static final String TAG = "SPRecycViewAdapt";
     private List<SPMod> mSPMods;
     private Context mContext;
-    private float x1,x2;
-    static final int MIN_DISTANCE = 150;
-    //constructor
+        //constructor
     public SPRecycViewAdapt(Context context, List<SPMod> mMods ) {
-        Log.d(TAG, "SPRecycViewAdapt Constrcting: First Item= " + mMods);
+        //Log.d(TAG, "SPRecycViewAdapt Constrcting: First Item= " + mMods.toString());
         this.mSPMods = mMods;
         this.mContext = context;
     }
@@ -45,9 +43,10 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked on: " + mSPMods.get(position).getCode());
-                Toast.makeText(mContext, mSPMods.get(position).getCode() + " " +mSPMods.get(position).getModule_ID(), Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, mSPMods.get(position).getCode() + " GGGGGGGGGG " +mSPMods.get(position).getModule_ID(), Toast.LENGTH_LONG).show();
             }
         });
+
     }
     @Override
     public int getItemCount() {

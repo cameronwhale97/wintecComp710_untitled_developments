@@ -12,48 +12,50 @@ import java.util.List;
 
 public class PageViewModel extends ViewModel {
     private static final String TAG = "PageViewModel";
-    private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
+
+    //private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
+    private int currYear;
+
     //gg     Create reference to the repo
-    private SPModRepo SPModRepo;
+    private SPModRepo sPModRepo;
     //yet to comp
     private MutableLiveData<List<SPMod>> modsYetToComp;
     public LiveData<List<SPMod>> getModsYetToComp(){
         return modsYetToComp;
     }
     public void setModsYetToComp(int year){
-        modsYetToComp = SPModRepo.getModsYetToComp(year);
+        modsYetToComp = sPModRepo.getModsYetToComp(year);
     }
 
     //completed
     private MutableLiveData<List<SPMod>> modsCompleted;
     public LiveData<List<SPMod>> getModsCompleted(){ return modsCompleted; }
     public void setModsCompleted(int year){
-        modsCompleted = SPModRepo.getModsCompleted(year);
+        modsCompleted = sPModRepo.getModsCompleted(year);
     }
 
-    /*
-    private MutableLiveData<String> mIndexText;
-    public LiveData<String> getmIndexText() {return mIndexText; }
-    public void setmIndexText(String index) {
-        mIndexText.setValue(index);
+
+    public void loadUpArrays(){
+        //Log.d(TAG, "load up arrys from repo - which accesses DB*******************************");
+        sPModRepo = sPModRepo.getInstance();
+        sPModRepo.loadUpYrData();
     }
-    //stuff from Tabs...
-    private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
-        @Override
-        public String apply(Integer input) {
-            return "Hello world from section: " + input;
-        }
-    });
-        */
-    public void init(){
-        Log.d(TAG, "init: *********************************************************************************************");
-        SPModRepo = SPModRepo.getInstance();
-        SPModRepo.loadUpYrData();
-        modsYetToComp = SPModRepo.getModsYetToComp(0);
-        modsCompleted = SPModRepo.getModsCompleted(0);
-        MutableLiveData<String> data = new MutableLiveData<>();
-        data.setValue("");
-        //mIndexText = data;
+
+    public void initMutables(){
+        Log.d(TAG, "init Mutables:");
+        currYear = 0;
+        sPModRepo = SPModRepo.getInstance();
+        //initialise our yet to comp and complete arrays to year 0
+        modsYetToComp = sPModRepo.getModsYetToComp(0);
+        modsCompleted = sPModRepo.getModsCompleted(0);
+        //MutableLiveData<String> data = new MutableLiveData<>();
+        //data.setValue("");
         return;
     }
+
+    public int getCurrYear(){
+        return currYear;
+    }
+
+    public void setCurrYear(int year){currYear = year;}
 }
