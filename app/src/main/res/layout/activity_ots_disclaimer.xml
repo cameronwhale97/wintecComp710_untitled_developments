@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:padding="0dp"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         android:src="@drawable/bg" />
 
     <ImageView
