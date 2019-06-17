@@ -26,7 +26,7 @@ public class about_screen extends AppCompatActivity {
 
         //YOU SHALL NOT PASS (if you aren't an admin)
         ImageButton b = (ImageButton) findViewById(R.id.AboutScreenButton);
-        if(PrefsManager.getUserType() == "user"){
+        if(PrefsManager.getUserType() != "admin"){
             b.setEnabled(false);
             b.setVisibility(View.GONE);
         }
