@@ -8,13 +8,13 @@
     tools:context=".otsStudentAdmin">
 
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="809dp"
+        android:layout_height="1303dp"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:padding="0dp"
-        android:scaleType="center"
+        android:scaleType="fitXY"
         android:src="@drawable/bg" />
 
 
