@@ -35,7 +35,6 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
     //This method gets called every time an item gets added to the list...
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        //Log.d(TAG, "onBindViewHolder position: " + Integer.toString(position));
         holder.code.setText(mSPMods.get(position).getCode());
         holder.name.setText(mSPMods.get(position).getName());
         holder.preReq.setText(mSPMods.get(position).getPreReqs());
@@ -43,7 +42,6 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked on: " + mSPMods.get(position).getCode());
-                Toast.makeText(mContext, mSPMods.get(position).getCode() + " GGGGGGGGGG " +mSPMods.get(position).getModule_ID(), Toast.LENGTH_LONG).show();
             }
         });
 

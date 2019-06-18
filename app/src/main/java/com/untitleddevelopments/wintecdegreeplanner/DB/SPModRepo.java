@@ -119,44 +119,87 @@ public class SPModRepo {
             }
         }
         Log.d(TAG, "loadUpYrData finished:****************************************************************** ");
-    }
+    } //loadUpYrData
 
-    private void loadAppropriateModList(SPMod spMod) {
-        //Log.d(TAG, "loadAppropriateModList getYear: " + Integer.toString(spMod.getYear()));
+    public void loadAppropriateModList(SPMod spMod) {
+    Log.d(TAG, "loadAppropriateModList getYear: " + spMod.getYear());
+        switch (spMod.getYear()){
+        case 1:
+            if(spMod.getCompleted()) {
+                modListC1.add(spMod);
+                modListC0.add(spMod);
+            }
+            else {
+                modListY1.add(spMod);
+                modListY0.add(spMod);
+            }
+            return;
+        case 2:
+            if(spMod.getCompleted()) {
+                modListC2.add(spMod);
+                modListC0.add(spMod);
+            }
+            else {
+                modListY2.add(spMod);
+                modListY0.add(spMod);
+            }
+            return;
+        case 3:
+            if(spMod.getCompleted()) {
+                modListC3.add(spMod);
+                modListC0.add(spMod);
+            }
+            else {
+                modListY3.add(spMod);
+                modListY0.add(spMod);
+            }
+            return;
+        default:
+            Log.d(TAG, "loadAppropriateModList: ************************************Errror in case");
+    }
+    //Log.d(TAG, "loadAppropriateModList: ");
+} //loadAppropriateModList
+
+    public void removeAppropriateModList(SPMod spMod) {
+        Log.d(TAG, "removeAppropriateModList getYear: " + spMod.getYear());
         switch (spMod.getYear()){
             case 1:
                 if(spMod.getCompleted()) {
-                    modListC1.add(spMod);
-                    modListC0.add(spMod);
+                    modListC1.remove(spMod);
+                    modListC0.remove(spMod);
                 }
                 else {
-                    modListY1.add(spMod);
-                    modListY0.add(spMod);
+                    modListY1.remove(spMod);
+                    modListY0.remove(spMod);
                 }
                 return;
             case 2:
                 if(spMod.getCompleted()) {
-                    modListC2.add(spMod);
-                    modListC0.add(spMod);
+                    modListC2.remove(spMod);
+                    modListC0.remove(spMod);
                 }
                 else {
-                    modListY2.add(spMod);
-                    modListY0.add(spMod);
+                    modListY2.remove(spMod);
+                    modListY0.remove(spMod);
                 }
                 return;
             case 3:
                 if(spMod.getCompleted()) {
-                    modListC3.add(spMod);
-                    modListC0.add(spMod);
+                    modListC3.remove(spMod);
+                    modListC0.remove(spMod);
                 }
                 else {
-                    modListY3.add(spMod);
-                    modListY0.add(spMod);
+                    modListY3.remove(spMod);
+                    modListY0.remove(spMod);
                 }
                 return;
             default:
                 Log.d(TAG, "loadAppropriateModList: ************************************Errror in case");
         }
         //Log.d(TAG, "loadAppropriateModList: ");
+    } //removeAppropriateModList
+
+    public void complModInDB(SPMod spMod){
+
     }
 }

@@ -14,7 +14,7 @@ public class PageViewModel extends ViewModel {
     private static final String TAG = "PageViewModel";
 
     //private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
-    private int currYear;
+//    private int currYear;
 
     //gg     Create reference to the repo
     private SPModRepo sPModRepo;
@@ -43,7 +43,7 @@ public class PageViewModel extends ViewModel {
 
     public void initMutables(){
         Log.d(TAG, "init Mutables:");
-        currYear = 0;
+//        currYear = 0;
         sPModRepo = SPModRepo.getInstance();
         //initialise our yet to comp and complete arrays to year 0
         modsYetToComp = sPModRepo.getModsYetToComp(0);
@@ -53,9 +53,9 @@ public class PageViewModel extends ViewModel {
         return;
     }
 
-    public int getCurrYear(){
-        return currYear;
-    }
+//    public int getCurrYear(){
+//        return currYear;
+//    }
 
-    public void setCurrYear(int year){currYear = year;}
+//    public void setCurrYear(int year){currYear = year;}
 }
