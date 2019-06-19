@@ -1,12 +1,14 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import com.untitleddevelopments.wintecdegreeplanner.R;
 
@@ -21,10 +23,25 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private final Context mContext;
     private static final String TAG = "SectionsPagerAdapter";
 
+    //ToDo remove code below
+    private Fragment mCurrentFragment;
+
+    public Fragment getCurrentFragment() {
+        return mCurrentFragment;
+    }
+//Down to here
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+    }
+//TODO remove this method
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        if (getCurrentFragment() != object) {
+            mCurrentFragment = ((Fragment) object);
+        }
+        super.setPrimaryItem(container, position, object);
     }
 
     @Override
@@ -47,4 +64,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         return 4;
     }
 
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return super.getItemPosition(object);
+    }
 }

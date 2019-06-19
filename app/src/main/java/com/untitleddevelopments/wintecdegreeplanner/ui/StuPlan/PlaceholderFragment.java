@@ -112,13 +112,22 @@ public class PlaceholderFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //Log.d(TAG, "onViewCreated yearIndex:"+Integer.toString(yearIndex));
         super.onViewCreated(view, savedInstanceState);
+
+    }
+
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            refreshDataLists();
+        }
     }
 
     public void refreshDataLists() {
         Log.d(TAG, "--------- refreshDataLists-----------" );
-        recyclerVComp.setAdapter(adapterComp);
-        recyclerVYetToComp.setAdapter(adapterYTC);
+        if(adapterComp != null ) recyclerVComp.setAdapter(adapterComp);
+        if(adapterYTC != null) recyclerVYetToComp.setAdapter(adapterYTC);
     }
+
 
     @Override
     public void onResume() {
@@ -172,8 +181,8 @@ public class PlaceholderFragment extends Fragment  {
             spMod.setCompleted(false);      //we want to remove a yet to complete item
             sPModRepo.removeAppropriateModList(spMod);
             //Globals.getPageViewModel().setModsYetToComp(year);
-            pageViewModel.setModsYetToComp(year);
-            pageViewModel.setModsCompleted(year);
+//            pageViewModel.setModsYetToComp(spMod.getYear());
+//            pageViewModel.setModsCompleted(spMod.getYear());
             refreshDataLists();
         } //dealWithCompleted
     }

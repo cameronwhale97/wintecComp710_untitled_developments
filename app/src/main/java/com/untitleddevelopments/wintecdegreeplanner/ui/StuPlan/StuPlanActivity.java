@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -59,18 +61,26 @@ public class StuPlanActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: setting to invisible...");
         }
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 //        viewPager = findViewById(R.id.view_pager);  This was the original code. GG setup CustomViewPager to stop
 //        swiping in the. Tabbed activity - because want to use swiping to complete/uncomplete a module inside
         viewPager.setAdapter(sectionsPagerAdapter);
+
         tabs.setupWithViewPager(viewPager);
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //Everytime a tabs is touched the year is updated to keep a track of what tab the user is in
                 //because tabbed activity keeps anticipating the next tab
-                Globals.setYear(tab.getPosition());
-                Log.d(TAG, "onTabSelected: " + tab.getPosition());
+                int position = tab.getPosition();
+                Globals.setYear(position);
+                Log.d(TAG, "onTabSelected: " + position);
+//                Fragment page = getSupportFragmentManager().findFragmentById(position);
+                // based on the current position you can then cast the page to the correct
+                // class and call the method:
+//                if (viewPager.getCurrentItem() == 0 && page != null) {
+//                    TODO ZAP IT
+//                }
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -97,6 +107,8 @@ public class StuPlanActivity extends AppCompatActivity {
             Globals.setStream(currentStream);
 
             pageViewModel.loadUpArrays();           //Freshly read from Database
+            pageViewModel.initMutables();
+
         }
         SPTVStuNameAndStuID.setText(currentStudent.getFullName()+ ", " + currentStudent.getStudentID());
         SPTVStreamName.setText(currentStream.getName());
