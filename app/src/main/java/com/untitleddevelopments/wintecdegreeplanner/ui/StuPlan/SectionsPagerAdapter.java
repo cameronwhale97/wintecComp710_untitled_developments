@@ -36,13 +36,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         mContext = context;
     }
 //TODO remove this method
-    @Override
-    public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        if (getCurrentFragment() != object) {
-            mCurrentFragment = ((Fragment) object);
-        }
-        super.setPrimaryItem(container, position, object);
-    }
+//    @Override
+//    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+//        if (getCurrentFragment() != object) {
+//            mCurrentFragment = ((Fragment) object);
+//        }
+//        super.setPrimaryItem(container, position, object);
+//    }
 
     @Override
     public Fragment getItem(int position) {

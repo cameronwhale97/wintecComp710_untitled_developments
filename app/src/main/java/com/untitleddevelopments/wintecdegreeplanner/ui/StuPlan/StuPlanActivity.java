@@ -1,11 +1,8 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -75,12 +72,6 @@ public class StuPlanActivity extends AppCompatActivity {
                 int position = tab.getPosition();
                 Globals.setYear(position);
                 Log.d(TAG, "onTabSelected: " + position);
-//                Fragment page = getSupportFragmentManager().findFragmentById(position);
-                // based on the current position you can then cast the page to the correct
-                // class and call the method:
-//                if (viewPager.getCurrentItem() == 0 && page != null) {
-//                    TODO ZAP IT
-//                }
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -107,8 +98,6 @@ public class StuPlanActivity extends AppCompatActivity {
             Globals.setStream(currentStream);
 
             pageViewModel.loadUpArrays();           //Freshly read from Database
-            pageViewModel.initMutables();
-
         }
         SPTVStuNameAndStuID.setText(currentStudent.getFullName()+ ", " + currentStudent.getStudentID());
         SPTVStreamName.setText(currentStream.getName());

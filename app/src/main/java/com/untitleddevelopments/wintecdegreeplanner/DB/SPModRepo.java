@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.DB;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -199,7 +200,23 @@ public class SPModRepo {
         //Log.d(TAG, "loadAppropriateModList: ");
     } //removeAppropriateModList
 
-    public void complModInDB(SPMod spMod){
+    public void updateDBStuMod(SPMod spMod){
+        int student_ID = Globals.getStudent_ID();
+        int module_ID = spMod.getModule_ID();
+        String myMsg;
 
+        boolean updatedOK = false;
+        ContentValues contentStuMod = new ContentValues();
+        contentStuMod.put(DBHelper.STUMOD_STU_ID, student_ID);
+        contentStuMod.put(DBHelper.STUMOD_MOD_ID, module_ID);
+        contentStuMod.put(DBHelper.STUMOD_COMPLETED,spMod.getCompleted());
+
+        updatedOK = DBManager.getInstance().update(
+                DBHelper.TBL_STUMOD,                          //pass in table name
+                contentStuMod,                                //pass in content values this can be one or many columns of a row.
+                DBHelper.STUMOD_STU_ID + "=? " + DBHelper.STUMOD_MOD_ID + "=?"  ,        //pass in where clause - note the ?
+                new String[] {Integer.toString(student_ID), Integer.toString(module_ID)});                         //pass in a String array - in this case my array is just 1 item
+        myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
+        Log.e(TAG,  myMsg);
     }
 }

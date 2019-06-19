@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.support.annotation.Nullable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -54,11 +53,12 @@ public class PlaceholderFragment extends Fragment  {
         super.onCreate(savedInstanceState);
         //instantiate the view model
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
+
         int index = 1;                          //index is used by tabs
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
         }
-        Log.d(TAG, "*onCreate: calling pageViewModel InitMuts. FYI index =  " + Integer.toString(index));
+        Log.d(TAG, "*onCreate: calling pageViewModel InitMuts. FYI index =  " + index);
         pageViewModel.initMutables();
         yearIndex = index-1;            //
         //Globals.setPageViewModel(pageViewModel);
@@ -184,6 +184,7 @@ public class PlaceholderFragment extends Fragment  {
 //            pageViewModel.setModsYetToComp(spMod.getYear());
 //            pageViewModel.setModsCompleted(spMod.getYear());
             refreshDataLists();
+            sPModRepo.updateDBStuMod(spMod);
         } //dealWithCompleted
     }
 
