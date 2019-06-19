@@ -73,7 +73,7 @@ public class PlaceholderFragment extends Fragment  {
 
         View view = inflater.inflate(R.layout.fragment_stu_plan, container, false);
 
-        //Deal to yet to complete...
+        // ********************************   Deal to yet to complete...
         pageViewModel.getModsYetToComp().observe(this, new Observer<List<SPMod>>() {
             @Override
             public void onChanged(@Nullable List<SPMod> modsYetToComp) {
@@ -85,12 +85,13 @@ public class PlaceholderFragment extends Fragment  {
         recyclerVYetToComp.setAdapter(adapterYTC);
         recyclerVYetToComp.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-//        The follwing code is used to deal with swipes...
-        ItemTouchHelper itemTouchHelper = new
+//        The follwing code is used to deal with swipes TO THE LEFT
+        ItemTouchHelper itemTouchHlpLeft = new
                 ItemTouchHelper(new SwipeToComplete(adapterYTC));
-        itemTouchHelper.attachToRecyclerView(recyclerVYetToComp);
+        itemTouchHlpLeft.attachToRecyclerView(recyclerVYetToComp);
 
-        //Deal to completed...
+        // ********************************   Deal to completed Modules
+
         pageViewModel.getModsCompleted().observe(this, new Observer<List<SPMod>>() {
             @Override
             public void onChanged(@Nullable List<SPMod> modsCompleted) {
@@ -104,7 +105,10 @@ public class PlaceholderFragment extends Fragment  {
 
         recyclerVComp.setAdapter(adapterComp);
         recyclerVComp.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+//        The follwing code is used to deal with swipes TO THE RIGHT
+        ItemTouchHelper itemTouchHlpRight = new
+                ItemTouchHelper(new SwipeToUnComp(adapterComp));
+        itemTouchHlpRight.attachToRecyclerView(recyclerVComp);
 
         return view;
     }
@@ -113,14 +117,15 @@ public class PlaceholderFragment extends Fragment  {
         //Log.d(TAG, "onViewCreated yearIndex:"+Integer.toString(yearIndex));
         super.onViewCreated(view, savedInstanceState);
 
-    }
+    } //onViewCreated
 
     public void setUserVisibleHint(boolean isVisibleToUser) {
+//        This is used to refresh the fragment as we enter so our lists are up to date
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser){
             refreshDataLists();
         }
-    }
+    } //setUserVisibleHint
 
     public void refreshDataLists() {
         Log.d(TAG, "--------- refreshDataLists-----------" );
@@ -132,7 +137,7 @@ public class PlaceholderFragment extends Fragment  {
     @Override
     public void onResume() {
         super.onResume();
-    }
+    } //onResume
 
     public class SwipeToComplete extends ItemTouchHelper.SimpleCallback {
         private SPModRepo sPModRepo;            //Create reference to Geoffs Data repo
@@ -148,19 +153,9 @@ public class PlaceholderFragment extends Fragment  {
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
             Log.d(TAG, "onSwiped: direction: "+ direction+ " position: "+ position);
-            dealWithCompleted(position, Globals.getYear());
-        }
-
-        @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-            // used for up and down movements
-            return false;
-        } //onMove
-
-        public void dealWithCompleted (int position, int year) {
-            Log.d(TAG, "dealWithCompleted: year="+ year + " pos=" + position);
+//            dealWithCompleted(position, Globals.getYear());
             SPMod spMod = new SPMod();
-            switch (year){          //get the module...
+            switch (Globals.getYear()){          //get the module we have swiped as complete
                 case 0:
                     spMod = sPModRepo.modListY0.get(position);
                     break;
@@ -174,7 +169,7 @@ public class PlaceholderFragment extends Fragment  {
                     spMod = sPModRepo.modListY3.get(position);
                     break;
                 default:
-                    Log.d(TAG, "dealWithCompleted: ******************** ERROR IN CASE Year not Valid");
+                    Log.d(TAG, "on swiped left : ******************** ERROR IN CASE Year not Valid");
             }
             spMod.setCompleted(true);       //we want to add a completed item
             sPModRepo.loadAppropriateModList(spMod);
@@ -185,7 +180,72 @@ public class PlaceholderFragment extends Fragment  {
 //            pageViewModel.setModsCompleted(spMod.getYear());
             refreshDataLists();
             sPModRepo.updateDBStuMod(spMod);
-        } //dealWithCompleted
-    }
+        } //onSwiped
 
-}
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            // used for up and down movements
+            return false;
+        } //onMove
+
+//        public void dealWithCompleted (int position, int year) {
+//            Log.d(TAG, "dealWithCompleted: year="+ year + " pos=" + position);
+
+        } //deal Swipe left to complete finished
+
+    public class SwipeToUnComp extends ItemTouchHelper.SimpleCallback {
+        private SPModRepo sPModRepo;            //Create reference to Geoffs Data repo
+        private static final String TAG = "SwipeToUnComp";
+        private SPRecycViewAdapt mAdapter;
+        public SwipeToUnComp(SPRecycViewAdapt adapter) {
+            super(0, ItemTouchHelper.RIGHT);
+            //super(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT);
+            sPModRepo = SPModRepo.getInstance();
+            mAdapter = adapter;
+        }
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+            Log.d(TAG, "onSwiped: direction: "+ direction+ " position: "+ position);
+//            dealWithCompleted(position, Globals.getYear());
+            SPMod spMod = new SPMod();
+            switch (Globals.getYear()){          //get the module we have swiped to undo
+                case 0:
+                    spMod = sPModRepo.modListC0.get(position);
+                    break;
+                case 1:
+                    spMod = sPModRepo.modListC1.get(position);
+                    break;
+                case 2:
+                    spMod = sPModRepo.modListC2.get(position);
+                    break;
+                case 3:
+                    spMod = sPModRepo.modListC3.get(position);
+                    break;
+                default:
+                    Log.d(TAG, "on swipe right ******************** ERROR IN CASE Year not Valid");
+            }
+            spMod.setCompleted(false);       //we want to add a completed item
+            sPModRepo.loadAppropriateModList(spMod);
+            spMod.setCompleted(true);      //we want to remove a yet to complete item
+            sPModRepo.removeAppropriateModList(spMod);
+            //Globals.getPageViewModel().setModsYetToComp(year);
+//            pageViewModel.setModsYetToComp(spMod.getYear());
+//            pageViewModel.setModsCompleted(spMod.getYear());
+            //refreshDataLists();
+            refreshDataLists();
+
+            sPModRepo.updateDBStuMod(spMod);
+        } //onSwiped
+
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            // used for up and down movements
+            return false;
+        } //onMove
+
+//        public void dealWithCompleted (int position, int year) {
+//            Log.d(TAG, "dealWithCompleted: year="+ year + " pos=" + position);
+    } //dealWith Swipe Right tio undo finished
+} //Pageholder Fragment
+
