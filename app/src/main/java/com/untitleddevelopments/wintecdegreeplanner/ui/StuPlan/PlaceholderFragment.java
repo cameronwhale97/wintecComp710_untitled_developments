@@ -1,4 +1,5 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
+
 import android.os.Bundle;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
@@ -13,8 +14,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-
-import com.untitleddevelopments.wintecdegreeplanner.DB.DataChangedListener;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPModRepo;
 import com.untitleddevelopments.wintecdegreeplanner.R;
@@ -62,7 +61,7 @@ public class PlaceholderFragment extends Fragment  {
         Log.d(TAG, "*onCreate: calling pageViewModel InitMuts. FYI index =  " + Integer.toString(index));
         pageViewModel.initMutables();
         yearIndex = index-1;            //
-        Globals.setPageViewModel(pageViewModel);
+        //Globals.setPageViewModel(pageViewModel);
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
