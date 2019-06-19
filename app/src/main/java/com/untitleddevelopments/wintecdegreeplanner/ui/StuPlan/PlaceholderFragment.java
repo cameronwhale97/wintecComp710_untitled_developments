@@ -47,7 +47,8 @@ public class PlaceholderFragment extends Fragment  {
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
         return fragment;
-    }
+    } //PlaceholderFragment static instance
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,8 @@ public class PlaceholderFragment extends Fragment  {
         pageViewModel.initMutables();
         yearIndex = index-1;            //
         //Globals.setPageViewModel(pageViewModel);
-    }
+    } //onCreate
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
@@ -111,7 +113,8 @@ public class PlaceholderFragment extends Fragment  {
         itemTouchHlpRight.attachToRecyclerView(recyclerVComp);
 
         return view;
-    }
+    } //onCreateView
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         //Log.d(TAG, "onViewCreated yearIndex:"+Integer.toString(yearIndex));
@@ -132,7 +135,6 @@ public class PlaceholderFragment extends Fragment  {
         if(adapterComp != null ) recyclerVComp.setAdapter(adapterComp);
         if(adapterYTC != null) recyclerVYetToComp.setAdapter(adapterYTC);
     }
-
 
     @Override
     public void onResume() {
