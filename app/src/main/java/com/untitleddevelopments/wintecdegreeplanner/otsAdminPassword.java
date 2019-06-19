@@ -15,6 +15,14 @@ public class otsAdminPassword extends AppCompatActivity {
         setContentView(R.layout.activity_ots_admin_password);
 
         ImageView otsStudent = findViewById(R.id.imageView6);
-        }
+        otsStudent.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent stusignupDone = new Intent(otsAdminPassword.this, otsStudentDone.class);
+                startActivity(stusignupDone);
+            }
+        });
     }
+}
 

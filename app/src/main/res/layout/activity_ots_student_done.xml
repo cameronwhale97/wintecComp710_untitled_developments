@@ -37,10 +37,9 @@
         android:layout_width="356dp"
         android:layout_height="441dp"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="168dp"
         android:layout_marginEnd="31dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ots_box_small" />
