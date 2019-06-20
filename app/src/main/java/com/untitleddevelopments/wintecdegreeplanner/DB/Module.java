@@ -3,6 +3,8 @@ package com.untitleddevelopments.wintecdegreeplanner.DB;
 import android.database.Cursor;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class Module {
     private static final String TAG = "Module";
 
@@ -152,4 +154,5 @@ public class Module {
         }
         return code;
     }
+
 }

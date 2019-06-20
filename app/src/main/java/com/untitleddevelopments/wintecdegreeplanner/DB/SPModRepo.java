@@ -109,12 +109,18 @@ public class SPModRepo {
                         cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_CODE)),
                         cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_NAME)),
                         null,           //I get pre reqs in the next few lines - because I need to access other Tables in DB
-                        false           //I get completed just below - because I need to access other tables in DB
+                        false,           //I get completed just below - because I need to access other tables in DB
+                        true
                 );
-                if(Module.isCompleted(Globals.getStudent_ID(),spMod.getModule_ID())) spMod.setCompleted(true);
                 ArrayList<PreReq> preReqs = getPreReqs(spMod.getModule_ID());
                 spMod.setPreReqs(preReqs);
-                Log.d(TAG, "loadUpYrData: allpre reqs" + spMod.toStringPreReqs());
+                Log.d(TAG, "loadUpYrData: allpre reqs done" + spMod.toStringPreReqs());
+                if(Module.isCompleted(Globals.getStudent_ID(),spMod.getModule_ID())) {
+                    spMod.setCompleted(true);
+                    spMod.setLocked(false);
+                } else {
+                    if (SPMod.preReqsAreDone(preReqs)) spMod.setLocked(false);
+                }
                 loadAppropriateModList(spMod);
                 cursorModule.moveToNext();
             }
@@ -243,4 +249,8 @@ public class SPModRepo {
         }
         return preReqs;
     } //getPreReqs
+
+
+
+
 }

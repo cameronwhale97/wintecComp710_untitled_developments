@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,11 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         holder.code.setText(mSPMods.get(position).getCode());
         holder.name.setText(mSPMods.get(position).getName());
         holder.preReq.setText(mSPMods.get(position).toStringPreReqs());
+        if(mSPMods.get(position).getLocked()) {
+            holder.padlock.setImageResource(R.drawable.baseline_lock_2);
+        } else {
+            holder.padlock.setImageResource(R.drawable.baseline_lock_open_11);
+        }
 //        Log.d(TAG, "onBindViewHolder:OBVHPre " + mSPMods.get(position).toStringPreReqs());
         holder.layoutItem.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -57,12 +63,14 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         TextView name;
         TextView preReq;
         LinearLayout layoutItem;
+        ImageView padlock;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             code = itemView.findViewById(R.id.SPTVModuleCode);
             name = itemView.findViewById(R.id.SPTVModuleName);
             preReq = itemView.findViewById(R.id.SPTVPreReqs);
             layoutItem = itemView.findViewById(R.id.SPListItemLayout);
+            padlock = itemView.findViewById(R.id.SPIVlock);
         }
     }
 }

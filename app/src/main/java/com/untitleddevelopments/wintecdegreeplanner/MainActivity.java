@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("cameron");
-        PrefsManager.setUserType("admin");
+        PrefsManager.setProgrammer("");
+        PrefsManager.setUserType("");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -62,11 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(cw_intent);
                 break;
 
-
-
-
-
-
             case "maria":
                 //do Marias stuff
 
@@ -89,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             case "admin":
                 //call the first admin screen ToDo Navi
                 displayToast("Calling admin screen");
+
             case "student":
                 //Cam strt his returning student view
                 displayToast("Calling student screen");
