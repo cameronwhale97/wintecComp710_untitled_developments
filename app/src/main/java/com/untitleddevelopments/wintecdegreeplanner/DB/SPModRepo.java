@@ -13,8 +13,6 @@ import java.util.List;
 public class SPModRepo {
     private static final String TAG = "SPModRepo";
     private static SPModRepo instance;
-    private String query;
-    private Cursor cursor;
     public ArrayList<SPMod> modListY0 = new ArrayList<SPMod>();
     public ArrayList<SPMod> modListC0 = new ArrayList<SPMod>();
     public ArrayList<SPMod> modListY1 = new ArrayList<SPMod>();
@@ -95,28 +93,30 @@ public class SPModRepo {
         modListC2.clear();
         modListC3.clear();
         int stream_ID = Globals.getStream_ID();
-        query = "SELECT * FROM " + DBHelper.TBL_MODULE +
+        String query = "SELECT * FROM " + DBHelper.TBL_MODULE +
                 " INNER JOIN " + DBHelper.TBL_MODSTR +
                 " ON " + DBHelper.TBL_MODULE + "." + DBHelper.MODULE_ID + " = " +
                 DBHelper.TBL_MODSTR + "." + DBHelper.MODSTR_MOD_ID + " WHERE " +
                 DBHelper.MODSTR_STR_ID + " = " + stream_ID;
         Log.e(TAG, "Get Modules for stream: " + query);
         DBManager.getInstance().openDatabase();
-        cursor = DBManager.getInstance().getDetails(query);
-        if (cursor != null && cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
+        Cursor cursorModule = DBManager.getInstance().getDetails(query);
+        if (cursorModule != null && cursorModule.getCount() > 0) {
+            cursorModule.moveToFirst();
+            while (!cursorModule.isAfterLast()) {
                 SPMod spMod = new SPMod( //using the Module Class constructor
-                        Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_ID))),
-                        cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_CODE)),
-                        cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_NAME)),
-                        "",
-                        false
+                        Integer.parseInt(cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_ID))),
+                        cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_CODE)),
+                        cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_NAME)),
+                        null,           //I get pre reqs in the next few lines - because I need to access other Tables in DB
+                        false           //I get completed just below - because I need to access other tables in DB
                 );
                 if(Module.isCompleted(Globals.getStudent_ID(),spMod.getModule_ID())) spMod.setCompleted(true);
-                //ToDo get prereqs
+                ArrayList<PreReq> preReqs = getPreReqs(spMod.getModule_ID());
+                spMod.setPreReqs(preReqs);
+                Log.d(TAG, "loadUpYrData: allpre reqs" + spMod.toStringPreReqs());
                 loadAppropriateModList(spMod);
-                cursor.moveToNext();
+                cursorModule.moveToNext();
             }
         }
         Log.d(TAG, "loadUpYrData finished:****************************************************************** ");
@@ -218,5 +218,29 @@ public class SPModRepo {
                 new String[] {Integer.toString(student_ID), Integer.toString(module_ID)});                         //pass in a String array - in this case my array is just 1 item
         myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
         Log.e(TAG,  myMsg);
-    }
+    } //updateDBStuMod
+
+    private ArrayList<PreReq> getPreReqs(int module_id) {
+        ArrayList<PreReq> preReqs = new ArrayList<PreReq>();
+        String query = "SELECT * FROM " + DBHelper.TBL_PREREQ +
+                " WHERE " + DBHelper.PREREQ_MOD_ID  + " = " + module_id;
+        Log.d(TAG, "Get Pre Reqs: " + query);
+        DBManager.getInstance().openDatabase();
+        Cursor cursorPreReq = DBManager.getInstance().getDetails(query);
+//        Log.d(TAG, "getPreReqs: cursor count: "+cursorPreReq.getCount());
+        if (cursorPreReq != null && cursorPreReq.getCount() > 0) {
+            cursorPreReq.moveToFirst();
+            while (!cursorPreReq.isAfterLast()) {
+                PreReq preSingle = new PreReq( //using the PreReq Class constructor
+                        Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_MOD_ID))),
+                        Module.getModCodeFrmDB(Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_PREREQ_ID))))
+                );
+//                Log.d(TAG, "getPreReqs: Add preSingle");
+                preReqs.add(preSingle);
+                cursorPreReq.moveToNext();
+            }
+//            Log.d(TAG, "getPreReqs: first prereq." + preReqs.get(0).getCode());
+        }
+        return preReqs;
+    } //getPreReqs
 }
