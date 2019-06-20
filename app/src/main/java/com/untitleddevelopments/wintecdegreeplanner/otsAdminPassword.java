@@ -19,7 +19,7 @@ public class otsAdminPassword extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent stusignupDone = new Intent(otsAdminPassword.this, otsStudentDone.class);
+                Intent stusignupDone = new Intent(otsAdminPassword.this, otsAdminDone.class);
                 startActivity(stusignupDone);
             }
         });
