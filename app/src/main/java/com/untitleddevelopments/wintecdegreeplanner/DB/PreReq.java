@@ -1,23 +1,14 @@
 package com.untitleddevelopments.wintecdegreeplanner.DB;
 
 public class PreReq {
-    private int module_ID;
     private int preReq_ID;
+    private String Code;
 
     //constructor
 
-    public PreReq(int module_ID, int preReq_ID) {
-        this.module_ID = module_ID;
+    public PreReq(int preReq_ID, String name) {
         this.preReq_ID = preReq_ID;
-    }
-    //getter setter
-
-    public int getModule_ID() {
-        return module_ID;
-    }
-
-    public void setModule_ID(int module_ID) {
-        this.module_ID = module_ID;
+        Code = name;
     }
 
     public int getPreReq_ID() {
@@ -26,5 +17,13 @@ public class PreReq {
 
     public void setPreReq_ID(int preReq_ID) {
         this.preReq_ID = preReq_ID;
+    }
+
+    public String getCode() {
+        return Code;
+    }
+
+    public void setCode(String name) {
+        Code = name;
     }
 }

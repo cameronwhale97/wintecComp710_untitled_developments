@@ -2,19 +2,21 @@ package com.untitleddevelopments.wintecdegreeplanner.DB;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import static android.support.constraint.Constraints.TAG;
 
 public class SPMod {
     private int module_ID;
     private String code;
     private String name;
-    private String preReqs;
+    private ArrayList<PreReq> preReqs;
     private Boolean completed;
 
 
     //constructor full
 
-    public SPMod(int module_ID, String code, String name, String preReqs, Boolean completed) {
+    public SPMod(int module_ID, String code, String name, ArrayList<PreReq> preReqs, Boolean completed) {
         this.module_ID = module_ID;
         this.code = code;
         this.name = name;
@@ -48,11 +50,11 @@ public class SPMod {
         this.name = name;
     }
 
-    public String getPreReqs() {
+    public ArrayList<PreReq> getPreReqs() {
         return preReqs;
     }
 
-    public void setPreReqs(String preReqs) {
+    public void setPreReqs(ArrayList<PreReq> preReqs) {
         this.preReqs = preReqs;
     }
 
@@ -68,5 +70,24 @@ public class SPMod {
         return (Integer.parseInt(this.code.substring(4,5) ) -4 );
 
     } //getYear
+
+    public String toStringPreReqs() {
+        int len = preReqs.size();
+        String preString = "";
+        if(len != 0){
+            if (len == 1){
+                preString = "Prerequsite: ";
+            } else {
+                preString = "Prerequsites: ";
+            }
+            int count = 0;
+            for (PreReq pReqSingle : preReqs){
+                if(count != 0) preString += ", ";
+                preString += pReqSingle.getCode();
+                count ++;
+            }
+        }
+        return preString;
+    }
 }
 

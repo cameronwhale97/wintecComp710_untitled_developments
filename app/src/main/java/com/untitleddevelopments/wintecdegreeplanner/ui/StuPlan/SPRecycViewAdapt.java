@@ -37,7 +37,8 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.code.setText(mSPMods.get(position).getCode());
         holder.name.setText(mSPMods.get(position).getName());
-        holder.preReq.setText(mSPMods.get(position).getPreReqs());
+        holder.preReq.setText(mSPMods.get(position).toStringPreReqs());
+//        Log.d(TAG, "onBindViewHolder:OBVHPre " + mSPMods.get(position).toStringPreReqs());
         holder.layoutItem.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {

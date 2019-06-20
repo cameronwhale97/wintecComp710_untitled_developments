@@ -24,6 +24,24 @@ public class Module {
         this.NZQACredits = NZQACredits;
         this.coReq = coReq;
     }
+//constructor passing in an ID - and getting details from DB
+    public Module(int module_ID) {
+        String query = "SELECT * FROM " + DBHelper.TBL_MODULE +
+               " WHERE " + DBHelper.MODULE_ID + " = " + module_ID;
+        Log.d(TAG, "Getting a module: " + query);
+        DBManager.getInstance().openDatabase();
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            this.module_ID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_ID)));
+            this.code = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_CODE));
+            this.name = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_NAME));
+            this.description = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_DESCRIPTION));
+            this.NZQALevel = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_NZQALEVEL)));
+            this.NZQACredits = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_NZQACREDITS)));
+            this.coReq = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_COREQ));
+        }
+    }
 
     @Override
     public String toString() {
@@ -118,5 +136,20 @@ public class Module {
             if(compFromDB == 1) comp = true;
         }
         return comp;
+    }
+
+    public static String getModCodeFrmDB(int module_ID){
+        String code = "";
+        String query = "SELECT " + DBHelper.MODULE_CODE +
+                " FROM " + DBHelper.TBL_MODULE +
+                " WHERE " + DBHelper.MODULE_ID + " = " + module_ID;
+        Log.d(TAG, "Getting module code: " + query);
+        DBManager.getInstance().openDatabase();
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            code = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_CODE));
+        }
+        return code;
     }
 }
