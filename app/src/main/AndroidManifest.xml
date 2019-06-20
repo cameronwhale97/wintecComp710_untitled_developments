@@ -12,12 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-
         <activity android:name=".about_edit" />
         <activity android:name=".about_screen" />
-
-
         <activity android:name=".global.PrefsTestActivity" />
         <activity android:name=".tests.DBTestActivity" /> <!-- Geoffs activities -->
         <activity
@@ -45,22 +41,27 @@
         <activity
             android:name=".otsStudentAdmin"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".otsStudentSignup"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".otsAdminPassword"
             android:theme="@style/AppTheme.NoActionBar"/>
-
         <activity
             android:name=".otsStudentDone"
             android:theme="@style/AppTheme.NoActionBar"/>
 
 
-        <!-- ADMIN UI/ACTIVITIES -->
-        <activity android:name=".admin.AdminMainActivity" />
+        <!-- ADMIN UI/ACTIVITIES STARTS -->
+        <activity android:name=".admin.AdminMainActivity">
+        </activity>
+
+        <activity
+            android:name=".admin.AdminAddStudentActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <!-- ADMIN UI/ACTIVITIES ENDS -->
 
         <meta-data
             android:name="preloaded_fonts"
