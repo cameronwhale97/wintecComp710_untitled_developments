@@ -97,7 +97,7 @@ public class SPMod {
         return preString;
     } //toStringPreReqs
 
-    public static Boolean preReqsAreDone(ArrayList<PreReq> preReqs){
+    public static Boolean arePreReqsDone(ArrayList<PreReq> preReqs){
         Boolean done = true;
         if(preReqs == null){
             done = true; //there are no prereqs we say they are done
@@ -108,6 +108,8 @@ public class SPMod {
             }
         }
         return done;
-    } //preReqsAreDone
+    } //arePreReqsDone
+
+
 }
 

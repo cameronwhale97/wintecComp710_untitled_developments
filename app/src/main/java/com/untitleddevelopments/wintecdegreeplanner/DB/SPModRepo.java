@@ -119,7 +119,7 @@ public class SPModRepo {
                     spMod.setCompleted(true);
                     spMod.setLocked(false);
                 } else {
-                    if (SPMod.preReqsAreDone(preReqs)) spMod.setLocked(false);
+                    if (SPMod.arePreReqsDone(preReqs)) spMod.setLocked(false);
                 }
                 loadAppropriateModList(spMod);
                 cursorModule.moveToNext();
@@ -209,22 +209,14 @@ public class SPModRepo {
     public void updateDBStuMod(SPMod spMod){
         int student_ID = Globals.getStudent_ID();
         int module_ID = spMod.getModule_ID();
-        String myMsg;
 
-        boolean updatedOK = false;
         ContentValues contentStuMod = new ContentValues();
         contentStuMod.put(DBHelper.STUMOD_STU_ID, student_ID);
         contentStuMod.put(DBHelper.STUMOD_MOD_ID, module_ID);
-        contentStuMod.put(DBHelper.STUMOD_COMPLETED,spMod.getCompleted());
-
-        updatedOK = DBManager.getInstance().update(
-                DBHelper.TBL_STUMOD,                          //pass in table name
-                contentStuMod,                                //pass in content values this can be one or many columns of a row.
-                DBHelper.STUMOD_STU_ID + "=? " + DBHelper.STUMOD_MOD_ID + "=?"  ,        //pass in where clause - note the ?
-                new String[] {Integer.toString(student_ID), Integer.toString(module_ID)});                         //pass in a String array - in this case my array is just 1 item
-        myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
-        Log.e(TAG,  myMsg);
-    } //updateDBStuMod
+        contentStuMod.put(DBHelper.STUMOD_COMPLETED, 1);
+        DBManager.getInstance().openDatabase();
+        DBManager.getInstance().replace(DBHelper.TBL_STUMOD, contentStuMod);
+        Log.d(TAG, "updateDBStuMod: ");    } //updateDBStuMod
 
     private ArrayList<PreReq> getPreReqs(int module_id) {
         ArrayList<PreReq> preReqs = new ArrayList<PreReq>();

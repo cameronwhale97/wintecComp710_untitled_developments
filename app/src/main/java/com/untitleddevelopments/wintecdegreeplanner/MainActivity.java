@@ -11,6 +11,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB2;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
+import com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("");
-        PrefsManager.setUserType("");
+        PrefsManager.setProgrammer("geoff");
+        PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -53,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 //if student 1 does not exist - then student 0 is returned
                 if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
                 startActivity(new Intent(this, StuPlanActivity.class));
-                return;
+//                startActivity(new Intent(this, DBTestActivity.class));
+                break;
 
             case "cameron":
                 //do Camerons stuff

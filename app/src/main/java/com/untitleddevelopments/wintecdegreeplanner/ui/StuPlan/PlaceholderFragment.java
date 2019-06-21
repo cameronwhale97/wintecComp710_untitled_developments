@@ -13,6 +13,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.widget.Toast;
+
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPModRepo;
 import com.untitleddevelopments.wintecdegreeplanner.R;
@@ -141,6 +143,7 @@ public class PlaceholderFragment extends Fragment  {
         super.onResume();
     } //onResume
 
+//    ******************************************* Deal with Left Swipe Complete ******************************************
     public class SwipeToComplete extends ItemTouchHelper.SimpleCallback {
         private SPModRepo sPModRepo;            //Create reference to Geoffs Data repo
         private static final String TAG = "SwipeToComplete";
@@ -173,15 +176,19 @@ public class PlaceholderFragment extends Fragment  {
                 default:
                     Log.d(TAG, "on swiped left : ******************** ERROR IN CASE Year not Valid");
             }
-            spMod.setCompleted(true);       //we want to add a completed item
-            sPModRepo.loadAppropriateModList(spMod);
-            spMod.setCompleted(false);      //we want to remove a yet to complete item
-            sPModRepo.removeAppropriateModList(spMod);
+            if(spMod.getLocked()) {
+                displayToast("This course cannot be completed until it's pre-requisites have been completed");
+            } else {
+                sPModRepo.removeAppropriateModList(spMod);
+                spMod.setCompleted(true);       //we want to add a completed item
+                sPModRepo.loadAppropriateModList(spMod);
+                sPModRepo.updateDBStuMod(spMod);
+                //deal to its parents
+            }
             //Globals.getPageViewModel().setModsYetToComp(year);
 //            pageViewModel.setModsYetToComp(spMod.getYear());
 //            pageViewModel.setModsCompleted(spMod.getYear());
             refreshDataLists();
-            sPModRepo.updateDBStuMod(spMod);
         } //onSwiped
 
         @Override
@@ -190,10 +197,9 @@ public class PlaceholderFragment extends Fragment  {
             return false;
         } //onMove
 
-//        public void dealWithCompleted (int position, int year) {
-//            Log.d(TAG, "dealWithCompleted: year="+ year + " pos=" + position);
+    } //deal Swipe left to complete finished
 
-        } //deal Swipe left to complete finished
+//    ******************************************* Deal with Right Swipe Undo ******************************************
 
     public class SwipeToUnComp extends ItemTouchHelper.SimpleCallback {
         private SPModRepo sPModRepo;            //Create reference to Geoffs Data repo
@@ -249,5 +255,10 @@ public class PlaceholderFragment extends Fragment  {
 //        public void dealWithCompleted (int position, int year) {
 //            Log.d(TAG, "dealWithCompleted: year="+ year + " pos=" + position);
     } //dealWith Swipe Right tio undo finished
+
+    private void displayToast(String message){
+        //this is used for debugging
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+    }
 } //Pageholder Fragment
 
