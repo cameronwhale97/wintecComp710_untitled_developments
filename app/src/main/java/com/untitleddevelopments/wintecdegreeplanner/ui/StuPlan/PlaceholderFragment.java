@@ -15,10 +15,14 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.widget.Toast;
 
+import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
+import com.untitleddevelopments.wintecdegreeplanner.DB.PreReq;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPModRepo;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -179,15 +183,28 @@ public class PlaceholderFragment extends Fragment  {
             if(spMod.getLocked()) {
                 displayToast("This course cannot be completed until it's pre-requisites have been completed");
             } else {
+                //process the change from incomplete to complete
                 sPModRepo.removeAppropriateModList(spMod);
                 spMod.setCompleted(true);       //we want to add a completed item
                 sPModRepo.loadAppropriateModList(spMod);
                 sPModRepo.updateDBStuMod(spMod);
-                //deal to its parents
+
+                //*** now we need to check all other courses which were previously locked to see if we have to unlock
+                ArrayList<Module> parents = SPModRepo.getParentsOf(spMod.getModule_ID());
+                //parents is a list of modules that depend on the current module we have just swiped
+                for (Module modSingle : parents){
+                    //now check if each of the parents prereqs to see if they have been completed
+                    ArrayList<PreReq> preReqs = SPModRepo.getPreReqs(modSingle.getModule_ID());
+                    if(SPModRepo.arePreReqsDone(preReqs)){
+                        //we can unlock the modsingle. First we need to find the modsingle. Given that we have just completed
+                        //a module its parents must be in yet to complete
+                        //TODO upto here
+
+                    }
+
+                }
+
             }
-            //Globals.getPageViewModel().setModsYetToComp(year);
-//            pageViewModel.setModsYetToComp(spMod.getYear());
-//            pageViewModel.setModsCompleted(spMod.getYear());
             refreshDataLists();
         } //onSwiped
 
@@ -233,10 +250,13 @@ public class PlaceholderFragment extends Fragment  {
                 default:
                     Log.d(TAG, "on swipe right ******************** ERROR IN CASE Year not Valid");
             }
-            spMod.setCompleted(false);       //we want to add a completed item
-            sPModRepo.loadAppropriateModList(spMod);
-            spMod.setCompleted(true);      //we want to remove a yet to complete item
+
             sPModRepo.removeAppropriateModList(spMod);
+            spMod.setCompleted(false);       //we want to add a yet to complete
+            sPModRepo.loadAppropriateModList(spMod);
+            sPModRepo.updateDBStuMod(spMod);
+
+
             //Globals.getPageViewModel().setModsYetToComp(year);
 //            pageViewModel.setModsYetToComp(spMod.getYear());
 //            pageViewModel.setModsCompleted(spMod.getYear());

@@ -10,6 +10,8 @@ import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Integer.parseInt;
+
 public class SPModRepo {
     private static final String TAG = "SPModRepo";
     private static SPModRepo instance;
@@ -105,7 +107,7 @@ public class SPModRepo {
             cursorModule.moveToFirst();
             while (!cursorModule.isAfterLast()) {
                 SPMod spMod = new SPMod( //using the Module Class constructor
-                        Integer.parseInt(cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_ID))),
+                        parseInt(cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_ID))),
                         cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_CODE)),
                         cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_NAME)),
                         null,           //I get pre reqs in the next few lines - because I need to access other Tables in DB
@@ -119,7 +121,7 @@ public class SPModRepo {
                     spMod.setCompleted(true);
                     spMod.setLocked(false);
                 } else {
-                    if (SPMod.arePreReqsDone(preReqs)) spMod.setLocked(false);
+                    if (arePreReqsDone(preReqs)) spMod.setLocked(false);
                 }
                 loadAppropriateModList(spMod);
                 cursorModule.moveToNext();
@@ -207,18 +209,17 @@ public class SPModRepo {
     } //removeAppropriateModList
 
     public void updateDBStuMod(SPMod spMod){
-        int student_ID = Globals.getStudent_ID();
-        int module_ID = spMod.getModule_ID();
+        int completed = spMod.getCompleted() ? 1 : 0;
 
         ContentValues contentStuMod = new ContentValues();
-        contentStuMod.put(DBHelper.STUMOD_STU_ID, student_ID);
-        contentStuMod.put(DBHelper.STUMOD_MOD_ID, module_ID);
-        contentStuMod.put(DBHelper.STUMOD_COMPLETED, 1);
+        contentStuMod.put(DBHelper.STUMOD_STU_ID, Globals.getStudent_ID());
+        contentStuMod.put(DBHelper.STUMOD_MOD_ID, spMod.getModule_ID());
+        contentStuMod.put(DBHelper.STUMOD_COMPLETED, completed );
         DBManager.getInstance().openDatabase();
         DBManager.getInstance().replace(DBHelper.TBL_STUMOD, contentStuMod);
         Log.d(TAG, "updateDBStuMod: ");    } //updateDBStuMod
 
-    private ArrayList<PreReq> getPreReqs(int module_id) {
+    public static ArrayList<PreReq> getPreReqs(int module_id) {
         ArrayList<PreReq> preReqs = new ArrayList<PreReq>();
         String query = "SELECT * FROM " + DBHelper.TBL_PREREQ +
                 " WHERE " + DBHelper.PREREQ_MOD_ID  + " = " + module_id;
@@ -230,8 +231,8 @@ public class SPModRepo {
             cursorPreReq.moveToFirst();
             while (!cursorPreReq.isAfterLast()) {
                 PreReq preSingle = new PreReq( //using the PreReq Class constructor
-                        Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_MOD_ID))),
-                        Module.getModCodeFrmDB(Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_PREREQ_ID))))
+                        parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_MOD_ID))),
+                        Module.getModCodeFrmDB(parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_PREREQ_ID))))
                 );
 //                Log.d(TAG, "getPreReqs: Add preSingle");
                 preReqs.add(preSingle);
@@ -242,7 +243,43 @@ public class SPModRepo {
         return preReqs;
     } //getPreReqs
 
+    public static Boolean arePreReqsDone(ArrayList<PreReq> preReqs){
+        Boolean done = true;
+        if(preReqs == null){
+            done = true; //there are no prereqs we say they are done
+        } else {
+            for (PreReq pReqSingle : preReqs){
+                if(!Module.isCompleted(Globals.getStudent_ID(), pReqSingle.getPreReq_ID())) done = false;
+                //so if any pre-req is not completed our preReqs are not done
+            }
+        }
+        return done;
+    } //arePreReqsDone
 
+    public static ArrayList<Module> getParentsOf(int module_ID) {
+        ArrayList<Module> parents = new ArrayList<>();
+
+        String query = "SELECT " + DBHelper.PREREQ_MOD_ID + "" +
+                " FROM " + DBHelper.TBL_PREREQ +
+                " WHERE " + DBHelper.PREREQ_PREREQ_ID  + " = " + module_ID;
+        Log.d(TAG, "Get Parents: " + query);
+        DBManager.getInstance().openDatabase();
+        Cursor cursorPreReq = DBManager.getInstance().getDetails(query);
+//        Log.d(TAG, "getPreReqs: cursor count: "+cursorPreReq.getCount());
+        if (cursorPreReq != null && cursorPreReq.getCount() > 0) {
+            cursorPreReq.moveToFirst();
+            while (!cursorPreReq.isAfterLast()) {
+                int parent_ID = Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_MOD_ID)));
+                Module mod = new Module(parent_ID);
+                Log.d(TAG, "getParentsOf: Add parent");
+                parents.add(mod);
+                cursorPreReq.moveToNext();
+            }
+//            Log.d(TAG, "getPreReqs: first prereq." + preReqs.get(0).getCode());
+        }
+
+        return parents;
+    }
 
 
 }

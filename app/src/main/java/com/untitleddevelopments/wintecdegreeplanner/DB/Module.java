@@ -138,7 +138,7 @@ public class Module {
             if(compFromDB == 1) comp = true;
         }
         return comp;
-    }
+    } //isCompleted
 
     public static String getModCodeFrmDB(int module_ID){
         String code = "";
@@ -153,6 +153,9 @@ public class Module {
             code = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_CODE));
         }
         return code;
-    }
+    } //getModCodeFrmDB
+
+
+
 
 }
