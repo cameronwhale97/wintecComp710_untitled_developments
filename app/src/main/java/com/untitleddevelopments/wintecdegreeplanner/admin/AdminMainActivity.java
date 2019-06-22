@@ -26,6 +26,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.about_screen;
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 
@@ -138,7 +139,6 @@ public class AdminMainActivity extends AppCompatActivity
         return studentNames;
     }
 
-
     private  void setupListAdapter() {
         // set data to Adapter
         adapter = new ArrayAdapter<String>(
@@ -222,12 +222,20 @@ public class AdminMainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position,
+    public void onItemClick(AdapterView<?> parent,
+                            View view,
+                            int position,
                             long id) {
 
-        //TODO - put student ID in globals
+        // getting student ID from pre-loaded student list from database
+        int student_ID = students.get(position).getStudent_ID();
 
-        Toast.makeText(this, "ToDo: Add student ID in globals", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Student ID:" + student_ID, Toast.LENGTH_LONG).show();
+
+        // setting student ID in globals
+        Globals.setStudent_ID(student_ID);
+
+        // showing Student Plan Activity
         startActivity(new Intent(this, StuPlanActivity.class));
 
     }
