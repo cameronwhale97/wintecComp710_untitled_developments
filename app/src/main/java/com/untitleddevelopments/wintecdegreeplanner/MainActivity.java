@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB2;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
+import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("geoff");
+        PrefsManager.setProgrammer("");
         PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();

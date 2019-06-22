@@ -42,7 +42,11 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         if(mSPMods.get(position).getLocked()) {
             holder.padlock.setImageResource(R.drawable.baseline_lock_2);
         } else {
-            holder.padlock.setImageResource(R.drawable.baseline_lock_open_11);
+            if(mSPMods.get(position).getCompleted()){
+                holder.padlock.setImageResource(R.drawable.green_tick);
+            } else {
+                holder.padlock.setImageResource(R.drawable.baseline_lock_open_11);
+            }
         }
 //        Log.d(TAG, "onBindViewHolder:OBVHPre " + mSPMods.get(position).toStringPreReqs());
         holder.layoutItem.setOnClickListener(new View.OnClickListener(){

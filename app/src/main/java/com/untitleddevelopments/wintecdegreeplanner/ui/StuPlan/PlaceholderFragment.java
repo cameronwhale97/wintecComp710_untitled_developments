@@ -232,7 +232,7 @@ public class PlaceholderFragment extends Fragment  {
                     Log.d(TAG, "on swipe right ******************** ERROR IN CASE Year not Valid");
             }
             ArrayList<Module> completedParents = SPModRepo.completedParentModules(spMod.getModule_ID());
-            if( completedParents == null){
+            if( completedParents.size() == 0){
                 //there are no parent modules that have been completed so we are good to undo the module
                 spMod.setCompleted(false);
                 sPModRepo.updateDBStuMod(spMod);

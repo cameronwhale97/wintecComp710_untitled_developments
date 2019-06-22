@@ -4,12 +4,9 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
-
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.lang.Integer.parseInt;
 
 public class SPModRepo {
@@ -170,45 +167,6 @@ public class SPModRepo {
     //Log.d(TAG, "loadAppropriateModList: ");
 } //loadAppropriateModList
 
-    public void removeAppropriateModList(SPMod spMod) {
-        Log.d(TAG, "removeAppropriateModList getYear: " + spMod.getYear());
-        switch (spMod.getYear()){
-            case 1:
-                if(spMod.getCompleted()) {
-                    modListC1.remove(spMod);
-                    modListC0.remove(spMod);
-                }
-                else {
-                    modListY1.remove(spMod);
-                    modListY0.remove(spMod);
-                }
-                return;
-            case 2:
-                if(spMod.getCompleted()) {
-                    modListC2.remove(spMod);
-                    modListC0.remove(spMod);
-                }
-                else {
-                    modListY2.remove(spMod);
-                    modListY0.remove(spMod);
-                }
-                return;
-            case 3:
-                if(spMod.getCompleted()) {
-                    modListC3.remove(spMod);
-                    modListC0.remove(spMod);
-                }
-                else {
-                    modListY3.remove(spMod);
-                    modListY0.remove(spMod);
-                }
-                return;
-            default:
-                Log.d(TAG, "loadAppropriateModList: ************************************Errror in case");
-        }
-        //Log.d(TAG, "loadAppropriateModList: ");
-    } //removeAppropriateModList
-
     public void updateDBStuMod(SPMod spMod){
         int completed = spMod.getCompleted() ? 1 : 0;
 
@@ -262,13 +220,6 @@ public class SPModRepo {
 
     public static ArrayList<Module> completedParentModules(int module_ID){
         ArrayList<Module> compPMods = new ArrayList<>();
-        compPMods = null;
-        return compPMods;
-    }
-
-    public static ArrayList<Module> getParentsOf(int module_ID) {
-        ArrayList<Module> parents = new ArrayList<>();
-
         String query = "SELECT " + DBHelper.PREREQ_MOD_ID + "" +
                 " FROM " + DBHelper.TBL_PREREQ +
                 " WHERE " + DBHelper.PREREQ_PREREQ_ID  + " = " + module_ID;
@@ -281,45 +232,15 @@ public class SPModRepo {
             while (!cursorPreReq.isAfterLast()) {
                 int parent_ID = Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_MOD_ID)));
                 Module mod = new Module(parent_ID);
-                Log.d(TAG, "getParentsOf: Add parent");
-                parents.add(mod);
+                Log.d(TAG, "getParentsOf: Add parent: "+ parent_ID +mod.getCode());
+                if(Module.isCompleted(Globals.getStudent_ID(), mod.getModule_ID())){
+                    compPMods.add(mod);
+                }
                 cursorPreReq.moveToNext();
             }
+            Log.d(TAG, "completedParentModules compmods size: " + compPMods.size());
         }
-        return parents;
-    }
-/*    public void unlockParents(SPMod spMod) {
-
-        ArrayList<Module> parents = getParentsOf(spMod.getModule_ID());
-        //parents is a list of modules that depend on the current module we have just swiped being completed
-        for (Module modSingle : parents){
-            //now check if each of the parents prereqs to see if they have been completed
-            ArrayList<PreReq> preReqs = SPModRepo.getPreReqs(modSingle.getModule_ID());
-            if(arePreReqsComplete(preReqs)){
-                //we can unlock the modsingle. First we need to find the modsingle. Given that we have just completed
-                //a module its parents must be in yet to complete and locked
-                //TODO upto here
-                SPMod spModParent = new SPMod(
-                        modSingle.getModule_ID(),
-                        modSingle.getCode(),
-                        modSingle.getName(),
-                        preReqs,
-                        false,
-                        true
-                );
-                int y0 = modListY0.indexOf(spModParent);
-                switch (spModParent.getYear()) {
-                    case 1:
-                }
-                spModParent.setCompleted(true);
-                modListY0.set(i,spModParent);
-            }
-
-        }
-
+        return compPMods;
     }
 
-*/
-
-
-}
+} //SPModRepo
