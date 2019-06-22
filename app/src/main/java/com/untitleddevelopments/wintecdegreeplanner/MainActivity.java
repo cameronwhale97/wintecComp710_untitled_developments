@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB2;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
+import com.untitleddevelopments.wintecdegreeplanner.admin.AdminAddStudentActivity;
 import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("maria");
-        PrefsManager.setUserType("admin");
+        PrefsManager.setProgrammer("jonah");
+        PrefsManager.setUserType("user");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -80,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
             case "jonah":
                 //do Jonahs stuff
-                //Intent jonahIntent = new Intent(this, about_screen.class);
-                //startActivity(jonahIntent);
+                Intent jonahIntent = new Intent(this, manage_students.class);
+                startActivity(jonahIntent);
 
 
             default:
@@ -97,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 //Cam strt his returning student view
                 displayToast("Calling student screen");
             default:
-                Intent cw_intent = new Intent(this, otsDisclaimer.class);
-                startActivity(cw_intent);
+                //Intent cw_intent = new Intent(this, otsDisclaimer.class);
+               //startActivity(cw_intent);
 
                 displayToast("First time setup");
         }

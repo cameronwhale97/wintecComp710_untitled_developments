@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity_edit_student"></activity>
+        <activity android:name=".edit_student"></activity>
+        <activity android:name=".manage_students" />
+        <activity android:name=".activity_add_student" />
         <activity android:name=".about_edit" />
         <activity android:name=".about_screen" />
         <activity android:name=".global.PrefsTestActivity" />
@@ -52,14 +54,14 @@
             android:theme="@style/AppTheme.NoActionBar" /> <!-- ADMIN UI/ACTIVITIES STARTS -->
         <activity
             android:name=".admin.AdminMainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".admin.AdminAddStudentActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity> <!-- ADMIN UI/ACTIVITIES ENDS -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- ADMIN UI/ACTIVITIES ENDS -->
         <!-- Module Activities -->
         <activity
             android:name=".ui.StuPlan.ModulePopup"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".ui.StuPlan.OnLongClickTest" />
         <activity android:name=".modules.modules_credits_edit" />
         <activity android:name=".modules.modules_desc_edit" />

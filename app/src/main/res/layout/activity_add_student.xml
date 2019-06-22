@@ -31,7 +31,7 @@
             app:srcCompat="@drawable/wintec_logo_logotipo" />
 
         <ImageButton
-            android:id="@+id/edit_btnMenu"
+            android:id="@+id/es_btnMenu"
             android:layout_width="80dp"
             android:layout_height="60dp"
             android:layout_marginRight="40dp"
@@ -50,7 +50,7 @@
         android:layout_marginLeft="80dp"
         android:layout_marginTop="80dp"
         android:layout_marginRight="20dp"
-        android:text="Edit Student"
+        android:text="Edit Student Details"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -107,7 +107,7 @@
             android:text="First name"/>
 
         <EditText
-            android:id="@+id/edit_etFName"
+            android:id="@+id/et_esFName"
             android:layout_width="264dp"
             android:layout_height="32dp"
             android:layout_marginRight="20dp"
@@ -133,7 +133,7 @@
             android:text="Last name"/>
 
         <EditText
-            android:id="@+id/edit_etLName"
+            android:id="@+id/et_esLName"
             android:layout_width="264dp"
             android:layout_height="32dp"
             android:layout_marginRight="20dp"
@@ -159,7 +159,7 @@
             android:text="Student ID"/>
 
         <EditText
-            android:id="@+id/edit_etStudentID"
+            android:id="@+id/et_esStudentID"
             android:layout_width="264dp"
             android:layout_height="32dp"
             android:layout_marginRight="20dp"
@@ -187,7 +187,7 @@
 
         <!-- drop down list for pathways -->
         <Spinner
-            android:id="@+id/edit_etStreams"
+            android:id="@+id/esStreams"
             android:layout_width="264dp"
             android:layout_height="32dp"
             android:layout_marginRight="20dp"
@@ -214,7 +214,7 @@
         <!-- edit text for start date -->
         <!-- simply using textbox for date, not any fancy date picker -->
         <EditText
-            android:id="@+id/edit_etStartDate"
+            android:id="@+id/et_esStartDate"
             android:layout_width="264dp"
             android:layout_height="32dp"
             android:layout_marginRight="20dp"
@@ -226,7 +226,7 @@
             android:layout_marginTop="5dp"/>
 
         <ImageButton
-            android:id="@+id/edit_btnAdd"
+            android:id="@+id/es_btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"

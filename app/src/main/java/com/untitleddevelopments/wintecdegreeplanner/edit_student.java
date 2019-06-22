@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,9 +18,6 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
-import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
-import com.untitleddevelopments.wintecdegreeplanner.R;
-import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +28,7 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * This activity adds a new student in the database.
  */
-public class activity_edit_student extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener{
+public class edit_student extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener{
 
     /**
      * Button to sve student in DB
@@ -47,11 +43,11 @@ public class activity_edit_student extends AppCompatActivity implements View.OnC
     /**
      * form fields
      */
-    private EditText et_esFName;
-    private EditText et_esLName;
-    private EditText et_esStudentID;
-    private Spinner  esStreams;
-    private EditText et_esStartDate;
+    private EditText et_FName;
+    private EditText et_LName;
+    private EditText et_StudentID;
+    private Spinner  spStreams;
+    private EditText et_StartDate;
 
 
     ArrayList<Stream> streams;
@@ -61,19 +57,19 @@ public class activity_edit_student extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_student);
 
-        btnAdd = findViewById(R.id.es_btnAdd);
-        btnMenu = findViewById(R.id.es_btnMenu);
+        btnAdd = findViewById(R.id.edit_btnAdd);
+        btnMenu = findViewById(R.id.edit_btnMenu);
 
         // setting event handlers for buttons
         btnAdd.setOnClickListener(this);
         btnMenu.setOnClickListener(this);
 
         // setting up student form UI references from XML
-        et_esFName     = findViewById(R.id.et_esFName);
-        et_esLName     = findViewById(R.id.et_esLName);
-        et_esStudentID  = findViewById(R.id.et_esStudentID);
-        et_esStartDate = findViewById(R.id.et_esStartDate);
-        esStreams   = findViewById(R.id.esStreams);
+        et_FName     = findViewById(R.id.edit_etFName);
+        et_LName     = findViewById(R.id.edit_etLName);
+        et_StudentID  = findViewById(R.id.edit_etStudentID);
+        et_StartDate = findViewById(R.id.edit_etStartDate);
+        spStreams   = findViewById(R.id.edit_etStreams);
 
 
         populateStreamsInDropdownList();
@@ -98,7 +94,7 @@ public class activity_edit_student extends AppCompatActivity implements View.OnC
                 android.R.layout.simple_spinner_dropdown_item, streamNames);
 
         // Set the spinners adapter to the previously created one.
-        esStreams.setAdapter(adapter);
+        spStreams.setAdapter(adapter);
     }
 
     private List<String> getStreamNames() {
@@ -116,25 +112,25 @@ public class activity_edit_student extends AppCompatActivity implements View.OnC
 
 
         // ensure the first name is filled
-        if (et_esFName.getText().toString().length() == 0 ) {
+        if (et_FName.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the first name of student!", Toast.LENGTH_LONG).show();
             return false;
         }
 
         // ensure the last name is filled
-        if (et_esLName.getText().toString().length() == 0 ) {
+        if (et_LName.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the last name of student!", Toast.LENGTH_LONG).show();
             return false;
         }
 
         // ensure the student id is filled
-        if (et_esStudentID.getText().toString().length() == 0 ) {
+        if (et_StudentID.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the student ID!", Toast.LENGTH_LONG).show();
             return false;
         }
 
         // ensure that start date is filled
-        if (et_esStartDate.getText().toString().length() == 0 ) {
+        if (et_StartDate.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the start date!", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -151,7 +147,7 @@ public class activity_edit_student extends AppCompatActivity implements View.OnC
             return false;
         }
 
-        String streamName = esStreams.getSelectedItem().toString();
+        String streamName = spStreams.getSelectedItem().toString();
 
         int streamID = getStreamIdFromName(streamName);
 
@@ -163,11 +159,11 @@ public class activity_edit_student extends AppCompatActivity implements View.OnC
          *
          */
         ContentValues contentStudent = new ContentValues();
-        contentStudent.put(DBHelper.STUDENT_FIRSTNAME, et_esFName.getText().toString());
-        contentStudent.put(DBHelper.STUDENT_SURNAME, et_esLName.getText().toString() );
-        contentStudent.put(DBHelper.STUDENT_STUDENTID, et_esStudentID.getText().toString() );
+        contentStudent.put(DBHelper.STUDENT_FIRSTNAME, et_FName.getText().toString());
+        contentStudent.put(DBHelper.STUDENT_SURNAME, et_LName.getText().toString() );
+        contentStudent.put(DBHelper.STUDENT_STUDENTID, et_StudentID.getText().toString() );
         contentStudent.put(DBHelper.STUDENT_PHOTOURI, "");
-        contentStudent.put(DBHelper.STUDENT_STARTDATE, et_esStartDate.getText().toString() );
+        contentStudent.put(DBHelper.STUDENT_STARTDATE, et_StartDate.getText().toString() );
         contentStudent.put(DBHelper.STUDENT_STATUS, 1);
         contentStudent.put(DBHelper.STUDENT_STREAM_ID, streamID);
 
@@ -215,9 +211,9 @@ public class activity_edit_student extends AppCompatActivity implements View.OnC
         popup.setOnMenuItemClickListener(this);
 
         // loading menu from xml
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
-        popup.show();
+        //MenuInflater inflater = popup.getMenuInflater();
+        //inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
+        //popup.show();
     }
 
     @Override
@@ -225,19 +221,21 @@ public class activity_edit_student extends AppCompatActivity implements View.OnC
         switch(view.getId()) {
 
             // save student in DB
-            case R.id.es_btnAdd:
+            case R.id.edit_btnAdd:
                 boolean status = saveStudentInDatabase();
 
                 // checking the status of saving student in DB
                 if(status) {
                     Toast.makeText(this, "Student Saved Successfully", Toast.LENGTH_LONG).show();
                 }
+                Intent i = new Intent(this, manage_students.class);
+                startActivity(i);
 
                 break;
 
             // show top menu
-            case R.id.btnMenu:
-                showTopMenu(view);
+            case R.id.edit_btnMenu:
+                //showTopMenu(view);
                 break;
         }
     }
