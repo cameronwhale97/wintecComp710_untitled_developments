@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
+
 import java.util.List;
 
 public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.ViewHolder>
@@ -65,13 +67,12 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
     @Override
     public void onClick(final View view) {
         int pos = recyclerView.getChildLayoutPosition(view);
-        String geoff = "";
-        if(isYTC) {
-            geoff = "YTC";
-        } else {
-            geoff = "Complete";
-        }
-        Toast.makeText(mContext, "pos: " +   geoff + pos, Toast.LENGTH_LONG).show();
+        String geoff = isYTC ? "YTC" : "Complete";
+        SPMod spMod =  mSPMods.get(pos);
+        Globals.setSPMod(spMod);
+        SPModuleDetailFragment  spModuleDetailFragment = new SPModuleDetailFragment();
+//        spModuleDetailFragment.show();
+        Toast.makeText(mContext, "pos: " +   geoff + " " + pos + mSPMods.get(pos).getCode(), Toast.LENGTH_LONG).show();
     }
 
     @Override
