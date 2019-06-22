@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
@@ -83,6 +84,20 @@ public class AdminMainActivity extends AppCompatActivity
         // setting event handlers for button to this class
         btnAddStudent.setOnClickListener(this);
         btnMenu.setOnClickListener(this);
+
+        //
+        // NOTE:-
+        //--------------------------------------------------------------------------
+        //
+        // This may be redundant if Main Activity has already created the database.
+        // Therefore, ensureDatabaseExists returns true and DB is not created again.
+        // Set up database if needed...
+        //--------------------------------------------------------------------------
+
+        if(!DBManager.getInstance().ensureDatabaseExists(this)) {
+            Toast.makeText(this, "Warning: Database does not exist!!!",
+                    Toast.LENGTH_LONG).show();
+        }
 
 
         /**
