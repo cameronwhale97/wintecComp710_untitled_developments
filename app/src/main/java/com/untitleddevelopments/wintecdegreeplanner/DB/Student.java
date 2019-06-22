@@ -1,6 +1,9 @@
 package com.untitleddevelopments.wintecdegreeplanner.DB;
 import android.database.Cursor;
 import android.util.Log;
+
+import java.util.ArrayList;
+
 import static android.support.constraint.Constraints.TAG;
 
 public class Student {
@@ -75,6 +78,38 @@ public class Student {
         this.startDate = startDate;
         this.photoURI = photoURI;
         this.status = status;
+    }
+
+    public static ArrayList<Student> getAllStudents() {
+
+        ArrayList<Student> students = new ArrayList<Student>();
+
+        String query = "SELECT * FROM " + DBHelper.TBL_STUDENT;
+
+        Log.d(TAG, "-- getAllStreams: " + query);
+
+        DBManager.getInstance().openDatabase();
+
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+
+        if (cursor.moveToFirst()) {
+
+            while (!cursor.isAfterLast()) {
+
+
+                //int streamID = cursor.getInt(cursor.getColumnIndex(DBHelper.STREAM_ID));
+                String firstName = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_FIRSTNAME));
+
+                String msg = String.format("-- Student: firstName=%s", firstName);
+
+                Log.d(TAG, msg);
+
+                cursor.moveToNext();
+            }
+        }
+
+        return students;
+
     }
 
     //getter setter

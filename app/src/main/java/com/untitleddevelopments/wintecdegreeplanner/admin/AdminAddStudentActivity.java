@@ -1,9 +1,11 @@
 package com.untitleddevelopments.wintecdegreeplanner.admin;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,10 +18,13 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
+import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.support.constraint.Constraints.TAG;
 
 
 /**
@@ -137,18 +142,61 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
 
     private boolean saveStudentInDatabase() {
 
+
+
         // before saving student, ensure that the form is filled completely.
         if(!isStudentFormComplete()) {
             return false;
         }
 
-        //TODO - save student in DB
+        String streamName = spStreams.getSelectedItem().toString();
 
-        return true;
+        int streamID = getStreamIdFromName(streamName);
+
+        Toast.makeText(this, "streamID: " + streamID, Toast.LENGTH_LONG).show();
+
+        /**
+         *
+         * saving student in database
+         *
+         */
+         ContentValues contentStudent = new ContentValues();
+         contentStudent.put(DBHelper.STUDENT_FIRSTNAME, etFName.getText().toString());
+         contentStudent.put(DBHelper.STUDENT_SURNAME, etLName.getText().toString() );
+         contentStudent.put(DBHelper.STUDENT_STUDENTID, etStudntID.getText().toString() );
+         contentStudent.put(DBHelper.STUDENT_PHOTOURI, "");
+         contentStudent.put(DBHelper.STUDENT_STARTDATE, etStartDate.getText().toString() );
+         contentStudent.put(DBHelper.STUDENT_STATUS, 1);
+         contentStudent.put(DBHelper.STUDENT_STREAM_ID, streamID);
+
+         DBManager.getInstance().openDatabase();
+
+         return DBManager.getInstance().insert(DBHelper.TBL_STUDENT, contentStudent);
     }
 
 
+    /**
+     * function gets stream ID from database for given stream name
+     */
     private int getStreamIdFromName(String streamName) {
+
+
+        String query = "SELECT * FROM " + DBHelper.TBL_STREAM +
+                " WHERE " + DBHelper.STREAM_NAME + " = '" + streamName + "'";
+
+        Log.d(TAG, "getStreamIdFromName: " + query);
+
+        DBManager.getInstance().openDatabase();
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            // return stream id for given streamName
+            return cursor.getInt(cursor.getColumnIndex(DBHelper.STREAM_ID));
+        }
+
+
+       // this should not happen!!!
        return 0;
     }
 
@@ -177,6 +225,7 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
             // save student in DB
             case R.id.btnAdd:
                 saveStudentInDatabase();
+                Student.getAllStudents();
                 break;
 
             // show top menu
