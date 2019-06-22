@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (userType) {
             case "admin":
-                //call the first admin screen ToDo Navi
+                //startActivity(new Intent(this, AdminMainActivity.class));
                 displayToast("Calling admin screen");
 
             case "student":
