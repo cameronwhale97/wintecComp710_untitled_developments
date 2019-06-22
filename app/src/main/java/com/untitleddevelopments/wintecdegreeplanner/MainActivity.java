@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("");
+        PrefsManager.setProgrammer("geoff");
         PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();

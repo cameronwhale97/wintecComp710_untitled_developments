@@ -6,6 +6,7 @@ import android.util.Log;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.annotation.Nullable;
@@ -15,7 +16,6 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
-import com.untitleddevelopments.wintecdegreeplanner.DB.PreReq;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPModRepo;
 import com.untitleddevelopments.wintecdegreeplanner.R;
@@ -87,7 +87,7 @@ public class PlaceholderFragment extends Fragment  {
             }
         });
         recyclerVYetToComp = view.findViewById(R.id.sp_recyclerv_yet_to_comp);
-        adapterYTC = new SPRecycViewAdapt(getActivity(), pageViewModel.getModsYetToComp().getValue());
+        adapterYTC = new SPRecycViewAdapt(recyclerVYetToComp, getActivity(), pageViewModel.getModsYetToComp().getValue(),true);
         recyclerVYetToComp.setAdapter(adapterYTC);
         recyclerVYetToComp.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -107,7 +107,7 @@ public class PlaceholderFragment extends Fragment  {
 
         recyclerVComp = view.findViewById(R.id.sp_recyclerv_comp);
 
-        adapterComp = new SPRecycViewAdapt(getActivity(),  pageViewModel.getModsCompleted().getValue());
+        adapterComp = new SPRecycViewAdapt(recyclerVComp, getActivity(),  pageViewModel.getModsCompleted().getValue(), false);
 
         recyclerVComp.setAdapter(adapterComp);
         recyclerVComp.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -156,6 +156,7 @@ public class PlaceholderFragment extends Fragment  {
             sPModRepo = SPModRepo.getInstance();
             mAdapter = adapter;
         }
+
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
@@ -198,7 +199,6 @@ public class PlaceholderFragment extends Fragment  {
     } //deal Swipe left to complete finished
 
 //    ******************************************* Deal with Right Swipe Undo ******************************************
-
     public class SwipeToUnComp extends ItemTouchHelper.SimpleCallback {
         private SPModRepo sPModRepo;            //Create reference to Geoffs Data repo
         private static final String TAG = "SwipeToUnComp";
@@ -245,19 +245,11 @@ public class PlaceholderFragment extends Fragment  {
                 }
                 displayToast("Unable to 'uncomplete' this module as it is a pre-requisite of: "+ errorString);
             }
-
             refreshDataLists();
-
-
-
-
             //Globals.getPageViewModel().setModsYetToComp(year);
 //            pageViewModel.setModsYetToComp(spMod.getYear());
 //            pageViewModel.setModsCompleted(spMod.getYear());
             //refreshDataLists();
-            refreshDataLists();
-
-            sPModRepo.updateDBStuMod(spMod);
         } //onSwiped
 
         @Override
@@ -266,10 +258,11 @@ public class PlaceholderFragment extends Fragment  {
             return false;
         } //onMove
 
-//        public void dealWithCompleted (int position, int year) {
-//            Log.d(TAG, "dealWithCompleted: year="+ year + " pos=" + position);
-    } //dealWith Swipe Right tio undo finished
+    } //dealWith Swipe Right to undo finished
 
+    private void openModuleDetailsDialog(){
+
+    }
     private void displayToast(String message){
         //this is used for debugging
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();

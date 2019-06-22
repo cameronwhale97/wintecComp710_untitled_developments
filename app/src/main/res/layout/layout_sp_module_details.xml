@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDPMBgLgrey"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/SPTVModDetModCodeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorDPMFieldColour"
+        android:text="TextView"
+        android:textColor="@color/colorDPMWhite"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorDPMWhite"
+        android:text="Prescription"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/SPTVModDetModDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modules description" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorDPMWhite"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="NZQA Level"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/SPTVModDetModNZQALevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Level 6" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/SPTVModDetModNZQACredits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/SPTVModDetModPreReqs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/SPTVModDetModCoReq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/SPTVModDetModModType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+</LinearLayout>
