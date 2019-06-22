@@ -1,16 +1,21 @@
 package com.untitleddevelopments.wintecdegreeplanner.admin;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +33,8 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
      */
     private ImageButton btnMenu;
 
+    ArrayList<Stream> streams;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,47 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
 
         btnAdd.setOnClickListener(this);
         btnMenu.setOnClickListener(this);
+
+        populateStreamsInDropdownList();
+    }
+
+
+    private void populateStreamsInDropdownList() {
+
+        streams = Stream.getAllStreams();
+
+        List<String> streamNames = getStreamNames();
+
+        // Reference: stackoverflow.com
+        // https://stackoverflow.com/questions/13377361/how-to-create-a-drop-down-list
+
+        //get the spinner from the xml.
+        Spinner dropdown = findViewById(R.id.spStreams);
+
+        // Create an adapter to describe how the items are displayed,
+        // adapters are used in several places in android.
+        // There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, streamNames);
+
+        // Set the spinners adapter to the previously created one.
+        dropdown.setAdapter(adapter);
+    }
+
+    private List<String> getStreamNames() {
+        List<String> streamNames = new ArrayList<String>();
+
+
+        for(int i=0; i<streams.size(); i++) {
+            streamNames.add(streams.get(i).getName());
+        }
+
+        return streamNames;
+    }
+
+
+    private int getStreamIdFromName(String streamName) {
+       return 0;
     }
 
     private void saveStudentInDB() {
@@ -60,7 +108,7 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
 
         // loading menu from xml
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.top_menu, popup.getMenu());
+        inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
         popup.show();
     }
 

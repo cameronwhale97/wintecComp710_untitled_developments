@@ -53,7 +53,8 @@
 
 
         <!-- ADMIN UI/ACTIVITIES STARTS -->
-        <activity android:name=".admin.AdminMainActivity">
+        <activity android:name=".admin.AdminMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity

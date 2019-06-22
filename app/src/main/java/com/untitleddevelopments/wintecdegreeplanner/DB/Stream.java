@@ -3,6 +3,8 @@ package com.untitleddevelopments.wintecdegreeplanner.DB;
 import android.database.Cursor;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import static android.support.constraint.Constraints.TAG;
 
 public class Stream {
@@ -30,6 +32,40 @@ public class Stream {
             this.name = cursor.getString(cursor.getColumnIndex(DBHelper.STREAM_NAME));
             this.iconURI = (cursor.getString(cursor.getColumnIndex(DBHelper.STREAM_ICONURI)));
         }
+    }
+
+    public static ArrayList<Stream> getAllStreams() {
+
+        ArrayList<Stream> streams = new ArrayList<Stream>();
+
+        String query = "SELECT * FROM " + DBHelper.TBL_STREAM;
+
+        Log.d(TAG, "-- getAllStreams: " + query);
+
+        DBManager.getInstance().openDatabase();
+
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+
+        if (cursor.moveToFirst()) {
+
+            while (!cursor.isAfterLast()) {
+
+
+                int streamID = cursor.getInt(cursor.getColumnIndex(DBHelper.STREAM_ID));
+                String streamName = cursor.getString(cursor.getColumnIndex(DBHelper.STREAM_NAME));
+                String streamIconURI = cursor.getString(cursor.getColumnIndex(DBHelper.STREAM_ICONURI));
+
+                streams.add(new Stream(streamID, streamName, streamIconURI));
+
+                String msg = String.format("-- Adding stream: ID=%d, name=%s, iconurl=%s", streamID, streamName, streamIconURI);
+                Log.d(TAG, msg);
+
+                cursor.moveToNext();
+            }
+        }
+
+        return streams;
+
     }
 
     //getter setter
