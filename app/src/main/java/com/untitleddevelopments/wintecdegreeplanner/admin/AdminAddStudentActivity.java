@@ -226,8 +226,13 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
 
             // save student in DB
             case R.id.btnAdd:
-                saveStudentInDatabase();
-                Student.getAllStudents();
+                boolean status = saveStudentInDatabase();
+
+                // checking the status of saving student in DB
+                if(status) {
+                    Toast.makeText(this, "Student Saved Successfully", Toast.LENGTH_LONG).show();
+                }
+
                 break;
 
             // show top menu

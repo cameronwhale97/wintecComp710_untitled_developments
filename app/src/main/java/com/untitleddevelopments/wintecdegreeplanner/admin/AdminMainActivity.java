@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.admin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB;
+import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
@@ -73,6 +75,12 @@ public class AdminMainActivity extends AppCompatActivity
      */
     private ImageButton btnMenu;
 
+    /**
+     * list to store students fetched from DB
+     */
+    ArrayList<Student> students;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +117,25 @@ public class AdminMainActivity extends AppCompatActivity
         /**
          * preparing dummy data of student names
          */
-        FakeDB.populateStudentNames(dataStudents); // FIXME - use student names from DB
+        //FakeDB.populateStudentNames(dataStudents); // FIXME - use student names from DB
+
+
+
+        students = Student.getAllStudents();
 
         setupListAdapter();
+
+    }
+
+    private List<String> getStudentFullNames() {
+        List<String> studentNames = new ArrayList<String>();
+
+
+        for(int i=0; i<students.size(); i++) {
+            studentNames.add(students.get(i).getFullName());
+        }
+
+        return studentNames;
     }
 
 
@@ -120,13 +144,11 @@ public class AdminMainActivity extends AppCompatActivity
         adapter = new ArrayAdapter<String>(
                 AdminMainActivity.this,
                 R.layout.student_cell,
-                R.id.studentName, dataStudents);
+                R.id.studentName, getStudentFullNames());
 
         lvStudents.setAdapter(adapter);
 
-
         lvStudents.setOnItemClickListener(this);
-
 
         /**
          * Note:

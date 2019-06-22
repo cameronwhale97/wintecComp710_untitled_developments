@@ -84,26 +84,34 @@ public class Student {
 
         ArrayList<Student> students = new ArrayList<Student>();
 
-        String query = "SELECT * FROM " + DBHelper.TBL_STUDENT;
+        String query = "SELECT * FROM " + DBHelper.TBL_STUDENT + " WHERE " + DBHelper.STUDENT_STATUS + "=1";
 
-        Log.d(TAG, "-- getAllStreams: " + query);
+        Log.d(TAG, "-- getAllStudents: " + query);
 
         DBManager.getInstance().openDatabase();
 
         Cursor cursor = DBManager.getInstance().getDetails(query);
 
+
         if (cursor.moveToFirst()) {
 
             while (!cursor.isAfterLast()) {
 
+                int student_ID       = cursor.getInt(cursor.getColumnIndex(DBHelper.STUDENT_ID));
 
-                //int streamID = cursor.getInt(cursor.getColumnIndex(DBHelper.STREAM_ID));
-                String firstName = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_FIRSTNAME));
+                String firstName       = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_FIRSTNAME));
+                String lastName        = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_SURNAME));
+                String studentID       = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_STUDENTID));
+                int studentStreamID    = cursor.getInt(cursor.getColumnIndex(DBHelper.STUDENT_STREAM_ID));
+                String startDate       = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_STARTDATE));
+
+
 
                 String msg = String.format("-- Student: firstName=%s", firstName);
 
                 Log.d(TAG, msg);
-
+                Student student = new Student(student_ID, firstName, lastName, studentID, studentStreamID, startDate,"", 1);
+                students.add(student);
                 cursor.moveToNext();
             }
         }
@@ -180,5 +188,11 @@ public class Student {
         this.status = status;
     }
 
+    // function checks if the given fullname matches
+    // with the fullname of the student
+    public boolean fullNameMatches(String fullname) {
+        return fullname.equals(firstname + " " + surname);
+    }
 
-}
+
+}//Student
