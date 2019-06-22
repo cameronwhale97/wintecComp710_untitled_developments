@@ -233,7 +233,7 @@ public class manage_students extends AppCompatActivity
         Globals.setStudent_ID(student_ID);
 
         // showing Student Plan Activity
-        startActivity(new Intent(this, edit_student.class));
+        startActivity(new Intent(this, view_student.class));
 
     }
 
