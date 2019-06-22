@@ -64,6 +64,28 @@
         </activity>
         <!-- ADMIN UI/ACTIVITIES ENDS -->
 
+        <!-- Module Activities -->
+        <activity
+            android:name=".ui.StuPlan.ModulePopup"
+            android:theme="@style/AppTheme.CustomTheme">
+        </activity>
+
+        <activity
+            android:name=".ui.StuPlan.OnLongClickTest"></activity>
+
+        <activity
+            android:name=".modules.modules_credits_edit"></activity>
+
+        <activity
+            android:name=".modules.modules_desc_edit"></activity>
+
+        <activity
+            android:name=".modules.modules_level_edit"></activity>
+
+        <activity
+            android:name=".modules.modules_title_edit"></activity>
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
