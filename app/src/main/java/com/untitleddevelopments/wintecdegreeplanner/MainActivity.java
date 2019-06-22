@@ -12,7 +12,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
-import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OnLongClickTest;
+import com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("maria");
+        PrefsManager.setProgrammer("geoff");
         PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
@@ -55,10 +55,11 @@ public class MainActivity extends AppCompatActivity {
                 //if student 1 does not exist - then student 0 is returned
                 if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
                 startActivity(new Intent(this, StuPlanActivity.class));
-                return;
+//                startActivity(new Intent(this, DBTestActivity.class));
+                break;
 
             case "cameron":
-//                do Camerons stuff
+                //do Camerons stuff
                 Log.d(TAG," Got to cameron ");
                 Intent cw_intent = new Intent(this, otsDisclaimer.class);
                 startActivity(cw_intent);
@@ -66,19 +67,16 @@ public class MainActivity extends AppCompatActivity {
 
             case "maria":
                 //do Marias stuff
-                Intent mariaIntent = new Intent(this, OnLongClickTest.class);
-                startActivity(mariaIntent);
-                return;
+
 
             case "navi":
                 //do Navis stuff
 
 
-
             case "jonah":
                 //do Jonahs stuff
-//                Intent jonahIntent = new Intent(this, about_screen.class);
-//                startActivity(jonahIntent);
+                //Intent jonahIntent = new Intent(this, about_screen.class);
+                //startActivity(jonahIntent);
 
 
             default:

@@ -4,11 +4,10 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
-
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
-
 import java.util.ArrayList;
 import java.util.List;
+import static java.lang.Integer.parseInt;
 
 public class SPModRepo {
     private static final String TAG = "SPModRepo";
@@ -105,7 +104,7 @@ public class SPModRepo {
             cursorModule.moveToFirst();
             while (!cursorModule.isAfterLast()) {
                 SPMod spMod = new SPMod( //using the Module Class constructor
-                        Integer.parseInt(cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_ID))),
+                        parseInt(cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_ID))),
                         cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_CODE)),
                         cursorModule.getString(cursorModule.getColumnIndex(DBHelper.MODULE_NAME)),
                         null,           //I get pre reqs in the next few lines - because I need to access other Tables in DB
@@ -119,7 +118,8 @@ public class SPModRepo {
                     spMod.setCompleted(true);
                     spMod.setLocked(false);
                 } else {
-                    if (SPMod.preReqsAreDone(preReqs)) spMod.setLocked(false);
+                    Log.d(TAG, "loadUpYrData: calling arePreReqDone for spMod: "+spMod.getModule_ID()+spMod.getCode());
+                    if (arePreReqsComplete(preReqs)) spMod.setLocked(false);
                 }
                 loadAppropriateModList(spMod);
                 cursorModule.moveToNext();
@@ -167,66 +167,18 @@ public class SPModRepo {
     //Log.d(TAG, "loadAppropriateModList: ");
 } //loadAppropriateModList
 
-    public void removeAppropriateModList(SPMod spMod) {
-        Log.d(TAG, "removeAppropriateModList getYear: " + spMod.getYear());
-        switch (spMod.getYear()){
-            case 1:
-                if(spMod.getCompleted()) {
-                    modListC1.remove(spMod);
-                    modListC0.remove(spMod);
-                }
-                else {
-                    modListY1.remove(spMod);
-                    modListY0.remove(spMod);
-                }
-                return;
-            case 2:
-                if(spMod.getCompleted()) {
-                    modListC2.remove(spMod);
-                    modListC0.remove(spMod);
-                }
-                else {
-                    modListY2.remove(spMod);
-                    modListY0.remove(spMod);
-                }
-                return;
-            case 3:
-                if(spMod.getCompleted()) {
-                    modListC3.remove(spMod);
-                    modListC0.remove(spMod);
-                }
-                else {
-                    modListY3.remove(spMod);
-                    modListY0.remove(spMod);
-                }
-                return;
-            default:
-                Log.d(TAG, "loadAppropriateModList: ************************************Errror in case");
-        }
-        //Log.d(TAG, "loadAppropriateModList: ");
-    } //removeAppropriateModList
-
     public void updateDBStuMod(SPMod spMod){
-        int student_ID = Globals.getStudent_ID();
-        int module_ID = spMod.getModule_ID();
-        String myMsg;
+        int completed = spMod.getCompleted() ? 1 : 0;
 
-        boolean updatedOK = false;
         ContentValues contentStuMod = new ContentValues();
-        contentStuMod.put(DBHelper.STUMOD_STU_ID, student_ID);
-        contentStuMod.put(DBHelper.STUMOD_MOD_ID, module_ID);
-        contentStuMod.put(DBHelper.STUMOD_COMPLETED,spMod.getCompleted());
+        contentStuMod.put(DBHelper.STUMOD_STU_ID, Globals.getStudent_ID());
+        contentStuMod.put(DBHelper.STUMOD_MOD_ID, spMod.getModule_ID());
+        contentStuMod.put(DBHelper.STUMOD_COMPLETED, completed );
+        DBManager.getInstance().openDatabase();
+        DBManager.getInstance().replace(DBHelper.TBL_STUMOD, contentStuMod);
+        Log.d(TAG, "updateDBStuMod: ");    } //updateDBStuMod
 
-        updatedOK = DBManager.getInstance().update(
-                DBHelper.TBL_STUMOD,                          //pass in table name
-                contentStuMod,                                //pass in content values this can be one or many columns of a row.
-                DBHelper.STUMOD_STU_ID + "=? " + DBHelper.STUMOD_MOD_ID + "=?"  ,        //pass in where clause - note the ?
-                new String[] {Integer.toString(student_ID), Integer.toString(module_ID)});                         //pass in a String array - in this case my array is just 1 item
-        myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
-        Log.e(TAG,  myMsg);
-    } //updateDBStuMod
-
-    private ArrayList<PreReq> getPreReqs(int module_id) {
+    public static ArrayList<PreReq> getPreReqs(int module_id) {
         ArrayList<PreReq> preReqs = new ArrayList<PreReq>();
         String query = "SELECT * FROM " + DBHelper.TBL_PREREQ +
                 " WHERE " + DBHelper.PREREQ_MOD_ID  + " = " + module_id;
@@ -238,8 +190,8 @@ public class SPModRepo {
             cursorPreReq.moveToFirst();
             while (!cursorPreReq.isAfterLast()) {
                 PreReq preSingle = new PreReq( //using the PreReq Class constructor
-                        Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_MOD_ID))),
-                        Module.getModCodeFrmDB(Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_PREREQ_ID))))
+                        parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_PREREQ_ID))),
+                        Module.getModCodeFrmDB(parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_PREREQ_ID))))
                 );
 //                Log.d(TAG, "getPreReqs: Add preSingle");
                 preReqs.add(preSingle);
@@ -250,7 +202,45 @@ public class SPModRepo {
         return preReqs;
     } //getPreReqs
 
+    public static Boolean arePreReqsComplete(ArrayList<PreReq> preReqs){
+        Boolean done = true;
+        if(preReqs != null){
+            for (PreReq pReqSingle : preReqs){
+                Log.d(TAG, "arePreReqsComplete calling isCompleted for PreReqID: " + pReqSingle.getPreReq_ID()+pReqSingle.getCode());
+                if(!Module.isCompleted(Globals.getStudent_ID(), pReqSingle.getPreReq_ID())){
+                    Log.d(TAG, "arePreReqsComplete: done is false!");
+                    done = false;
+                    break; //once false break out of for loop
+                }
+                //so if any pre-req is not completed our preReqs are not done
+            }
+        }
+        return done;
+    } //arePreReqsComplete
 
+    public static ArrayList<Module> completedParentModules(int module_ID){
+        ArrayList<Module> compPMods = new ArrayList<>();
+        String query = "SELECT " + DBHelper.PREREQ_MOD_ID + "" +
+                " FROM " + DBHelper.TBL_PREREQ +
+                " WHERE " + DBHelper.PREREQ_PREREQ_ID  + " = " + module_ID;
+        Log.d(TAG, "Get Parents: " + query);
+        DBManager.getInstance().openDatabase();
+        Cursor cursorPreReq = DBManager.getInstance().getDetails(query);
+//        Log.d(TAG, "getPreReqs: cursor count: "+cursorPreReq.getCount());
+        if (cursorPreReq != null && cursorPreReq.getCount() > 0) {
+            cursorPreReq.moveToFirst();
+            while (!cursorPreReq.isAfterLast()) {
+                int parent_ID = Integer.parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_MOD_ID)));
+                Module mod = new Module(parent_ID);
+                Log.d(TAG, "getParentsOf: Add parent: "+ parent_ID +mod.getCode());
+                if(Module.isCompleted(Globals.getStudent_ID(), mod.getModule_ID())){
+                    compPMods.add(mod);
+                }
+                cursorPreReq.moveToNext();
+            }
+            Log.d(TAG, "completedParentModules compmods size: " + compPMods.size());
+        }
+        return compPMods;
+    }
 
-
-}
+} //SPModRepo

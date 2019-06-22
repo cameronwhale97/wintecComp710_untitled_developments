@@ -83,6 +83,15 @@ public class DBManager {
         return true;
     }
 
+    public boolean replace (String tableName, ContentValues values) {
+        try {
+            mDB.insertWithOnConflict(tableName,null , values, SQLiteDatabase.CONFLICT_REPLACE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
     public boolean delete(String tableName, String delWhereClause, String[] delWhereArgs){
         try {
             mDB.delete(tableName, delWhereClause, delWhereArgs);

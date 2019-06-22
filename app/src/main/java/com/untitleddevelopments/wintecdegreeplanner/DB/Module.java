@@ -131,14 +131,14 @@ public class Module {
         Cursor cursor = DBManager.getInstance().getDetails(query);
         if (cursor != null && cursor.getCount() > 0) {
             cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                compFromDB = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.STUMOD_COMPLETED)));
-                cursor.moveToNext();
+            compFromDB = Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBHelper.STUMOD_COMPLETED)));
+            if(compFromDB == 1) {
+                comp = true;
+                Log.d(TAG, "isCompleted: fromare.. module is completed!");
             }
-            if(compFromDB == 1) comp = true;
         }
         return comp;
-    }
+    } //isCompleted
 
     public static String getModCodeFrmDB(int module_ID){
         String code = "";
@@ -153,6 +153,9 @@ public class Module {
             code = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_CODE));
         }
         return code;
-    }
+    } //getModCodeFrmDB
+
+
+
 
 }

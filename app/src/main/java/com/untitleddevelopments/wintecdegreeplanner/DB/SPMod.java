@@ -97,17 +97,8 @@ public class SPMod {
         return preString;
     } //toStringPreReqs
 
-    public static Boolean preReqsAreDone(ArrayList<PreReq> preReqs){
-        Boolean done = true;
-        if(preReqs == null){
-            done = true; //there are no prereqs we say they are done
-        } else {
-            for (PreReq pReqSingle : preReqs){
-                if(!Module.isCompleted(Globals.getStudent_ID(), pReqSingle.getPreReq_ID())) done = false;
-                //so if any pre-req is not completed our preReqs are not done
-            }
-        }
-        return done;
-    } //preReqsAreDone
+
+
+
 }
 

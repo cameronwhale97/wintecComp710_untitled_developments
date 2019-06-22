@@ -10,21 +10,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import java.util.List;
 
-public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.ViewHolder>{
+public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.ViewHolder>
+    implements View.OnClickListener {
     //The ViewHolder class is defined as a class at the bottom
     private static final String TAG = "SPRecycViewAdapt";
     private List<SPMod> mSPMods;
     private Context mContext;
+    private View.OnClickListener clickListener;
+    private boolean isYTC;
+
+    private RecyclerView recyclerView;
+
         //constructor
-    public SPRecycViewAdapt(Context context, List<SPMod> mMods ) {
+    public SPRecycViewAdapt(RecyclerView recyclerView, Context context, List<SPMod> mMods, Boolean isYTC ) {
         //Log.d(TAG, "SPRecycViewAdapt Constrcting: First Item= " + mMods.toString());
         this.mSPMods = mMods;
         this.mContext = context;
+        this.recyclerView = recyclerView;
+        this.isYTC = isYTC;
     }
+
     @NonNull
     @Override
     //this method is responsible for inflating the view...
@@ -32,7 +42,8 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_listitem, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
-    }
+    } //onCreateViewHolder
+
     //This method gets called every time an item gets added to the list...
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
@@ -42,23 +53,34 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         if(mSPMods.get(position).getLocked()) {
             holder.padlock.setImageResource(R.drawable.baseline_lock_2);
         } else {
-            holder.padlock.setImageResource(R.drawable.baseline_lock_open_11);
-        }
-//        Log.d(TAG, "onBindViewHolder:OBVHPre " + mSPMods.get(position).toStringPreReqs());
-        holder.layoutItem.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: clicked on: " + mSPMods.get(position).getCode());
+            if(mSPMods.get(position).getCompleted()){
+                holder.padlock.setImageResource(R.drawable.green_tick);
+            } else {
+                holder.padlock.setImageResource(R.drawable.baseline_lock_open_11);
             }
-        });
-
+        }
+        holder.layoutItem.setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(final View view) {
+        int pos = recyclerView.getChildLayoutPosition(view);
+        String geoff = "";
+        if(isYTC) {
+            geoff = "YTC";
+        } else {
+            geoff = "Complete";
+        }
+        Toast.makeText(mContext, "pos: " +   geoff + pos, Toast.LENGTH_LONG).show();
+    }
+
     @Override
     public int getItemCount() {
         return mSPMods.size();
-    }
+    } //getItemCount
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder  {
+
         TextView code;
         TextView name;
         TextView preReq;
@@ -72,5 +94,5 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
             layoutItem = itemView.findViewById(R.id.SPListItemLayout);
             padlock = itemView.findViewById(R.id.SPIVlock);
         }
-    }
+    } //ViewHolder
 }

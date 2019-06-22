@@ -80,7 +80,7 @@
             android:layout_marginLeft="20dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:paddingLeft="4dp"
             android:paddingTop="2dp"
             android:paddingRight="2dp"
@@ -166,10 +166,64 @@
             android:layout_marginLeft="20dp"
             android:textSize="16sp"
             android:hint="Student ID"
+            android:inputType="number"
             android:background="@drawable/ots_textbox"
             android:paddingLeft="10dp"
             android:layout_marginTop="5dp"/>
 
+        <TextView
+            android:id="@+id/tvStream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="2dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="2dp"
+            android:text="Pathway"/>
+
+        <!-- drop down list for pathways -->
+        <Spinner
+            android:id="@+id/spStreams"
+            android:layout_width="264dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+
+        <TextView
+            android:id="@+id/tvStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="2dp"
+            android:paddingRight="2dp"
+            android:paddingBottom="2dp"
+            android:text="Start Date"/>
+
+        <!-- edit text for start date -->
+        <!-- simply using textbox for date, not any fancy date picker -->
+        <EditText
+            android:id="@+id/etStartDate"
+            android:layout_width="264dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:hint="Start Date"
+            android:background="@drawable/ots_textbox"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="5dp"/>
 
         <ImageButton
             android:id="@+id/btnAdd"
@@ -178,6 +232,8 @@
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+
             android:background="@null"
             android:scaleType="fitXY"
             android:src="@drawable/ots_admin_add_button"/>

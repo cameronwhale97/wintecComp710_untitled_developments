@@ -12,14 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".modules.modules_credits_edit"></activity>
-        <activity android:name=".modules.modules_level_edit" />
-        <activity android:name=".modules.modules_desc_edit" />
-        <activity android:name=".modules.modules_title_edit" />
-        <activity
-            android:name=".ui.StuPlan.ModulePopup"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity android:name=".ui.StuPlan.OnLongClickTest" />
         <activity android:name=".about_edit" />
         <activity android:name=".about_screen" />
         <activity android:name=".global.PrefsTestActivity" />
@@ -27,12 +19,10 @@
         <activity
             android:name=".ui.StuPlan.StuPlanActivity"
             android:label="@string/title_activity_stu_plan" />
-        <!--
- <activity
+        <!-- <activity
             android:name=".GeoffsSandpit.GeoffTest"
             android:label="@string/title_activity_geoff_test"
-            android:theme="@style/AppTheme.NoActionBar" />  End of Geoffs
-        -->
+            android:theme="@style/AppTheme.NoActionBar" />  End of Geoffs -->
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">
@@ -41,7 +31,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- cw apps -->
+        </activity>
+
+        <!-- cw apps -->
+
         <activity
             android:name=".otsDisclaimer"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -53,14 +46,24 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".otsAdminPassword"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".otsStudentDone"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- ADMIN UI/ACTIVITIES STARTS -->
-        <activity android:name=".admin.AdminMainActivity" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        <!-- ADMIN UI/ACTIVITIES STARTS -->
+        <activity android:name=".admin.AdminMainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".admin.AdminAddStudentActivity"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- ADMIN UI/ACTIVITIES ENDS -->
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <!-- ADMIN UI/ACTIVITIES ENDS -->
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
