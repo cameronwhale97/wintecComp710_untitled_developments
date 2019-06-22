@@ -11,7 +11,11 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +32,8 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
      * Button to show top menu
      */
     private ImageButton btnMenu;
+
+    ArrayList<Stream> streams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,24 +52,40 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
 
     private void populateStreamsInDropdownList() {
 
+        streams = Stream.getAllStreams();
+
+        List<String> streamNames = getStreamNames();
+
         // Reference: stackoverflow.com
         // https://stackoverflow.com/questions/13377361/how-to-create-a-drop-down-list
 
         //get the spinner from the xml.
         Spinner dropdown = findViewById(R.id.spStreams);
 
-        //create a list of items for the spinner.
-        String[] items = new String[] {"1", "2", "three"};
-
         // Create an adapter to describe how the items are displayed,
         // adapters are used in several places in android.
         // There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, items);
+                android.R.layout.simple_spinner_dropdown_item, streamNames);
 
         // Set the spinners adapter to the previously created one.
         dropdown.setAdapter(adapter);
+    }
 
+    private List<String> getStreamNames() {
+        List<String> streamNames = new ArrayList<String>();
+
+
+        for(int i=0; i<streams.size(); i++) {
+            streamNames.add(streams.get(i).getName());
+        }
+
+        return streamNames;
+    }
+
+
+    private int getStreamIdFromName(String streamName) {
+       return 0;
     }
 
     private void saveStudentInDB() {

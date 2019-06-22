@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +39,8 @@ public class AdminMainActivity extends AppCompatActivity
         implements View.OnClickListener,
         PopupMenu.OnMenuItemClickListener,
         AdapterView.OnItemClickListener {
+
+    private final String TAG = "AdminMainActivity";
 
     /**
      * list view for student names
@@ -97,6 +100,8 @@ public class AdminMainActivity extends AppCompatActivity
         if(!DBManager.getInstance().ensureDatabaseExists(this)) {
             Toast.makeText(this, "Warning: Database does not exist!!!",
                     Toast.LENGTH_LONG).show();
+        } else {
+            Log.d(TAG, "-- DB exists -- ");
         }
 
 
