@@ -121,7 +121,8 @@ public class SPModRepo {
                     spMod.setCompleted(true);
                     spMod.setLocked(false);
                 } else {
-                    if (arePreReqsDone(preReqs)) spMod.setLocked(false);
+                    Log.d(TAG, "loadUpYrData: calling arePreReqDone for spMod: "+spMod.getModule_ID()+spMod.getCode());
+                    if (arePreReqsComplete(preReqs)) spMod.setLocked(false);
                 }
                 loadAppropriateModList(spMod);
                 cursorModule.moveToNext();
@@ -231,7 +232,7 @@ public class SPModRepo {
             cursorPreReq.moveToFirst();
             while (!cursorPreReq.isAfterLast()) {
                 PreReq preSingle = new PreReq( //using the PreReq Class constructor
-                        parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_MOD_ID))),
+                        parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_PREREQ_ID))),
                         Module.getModCodeFrmDB(parseInt(cursorPreReq.getString(cursorPreReq.getColumnIndex(DBHelper.PREREQ_PREREQ_ID))))
                 );
 //                Log.d(TAG, "getPreReqs: Add preSingle");
@@ -243,18 +244,27 @@ public class SPModRepo {
         return preReqs;
     } //getPreReqs
 
-    public static Boolean arePreReqsDone(ArrayList<PreReq> preReqs){
+    public static Boolean arePreReqsComplete(ArrayList<PreReq> preReqs){
         Boolean done = true;
-        if(preReqs == null){
-            done = true; //there are no prereqs we say they are done
-        } else {
+        if(preReqs != null){
             for (PreReq pReqSingle : preReqs){
-                if(!Module.isCompleted(Globals.getStudent_ID(), pReqSingle.getPreReq_ID())) done = false;
+                Log.d(TAG, "arePreReqsComplete calling isCompleted for PreReqID: " + pReqSingle.getPreReq_ID()+pReqSingle.getCode());
+                if(!Module.isCompleted(Globals.getStudent_ID(), pReqSingle.getPreReq_ID())){
+                    Log.d(TAG, "arePreReqsComplete: done is false!");
+                    done = false;
+                    break; //once false break out of for loop
+                }
                 //so if any pre-req is not completed our preReqs are not done
             }
         }
         return done;
-    } //arePreReqsDone
+    } //arePreReqsComplete
+
+    public static ArrayList<Module> completedParentModules(int module_ID){
+        ArrayList<Module> compPMods = new ArrayList<>();
+        compPMods = null;
+        return compPMods;
+    }
 
     public static ArrayList<Module> getParentsOf(int module_ID) {
         ArrayList<Module> parents = new ArrayList<>();
@@ -275,11 +285,41 @@ public class SPModRepo {
                 parents.add(mod);
                 cursorPreReq.moveToNext();
             }
-//            Log.d(TAG, "getPreReqs: first prereq." + preReqs.get(0).getCode());
         }
-
         return parents;
     }
+/*    public void unlockParents(SPMod spMod) {
+
+        ArrayList<Module> parents = getParentsOf(spMod.getModule_ID());
+        //parents is a list of modules that depend on the current module we have just swiped being completed
+        for (Module modSingle : parents){
+            //now check if each of the parents prereqs to see if they have been completed
+            ArrayList<PreReq> preReqs = SPModRepo.getPreReqs(modSingle.getModule_ID());
+            if(arePreReqsComplete(preReqs)){
+                //we can unlock the modsingle. First we need to find the modsingle. Given that we have just completed
+                //a module its parents must be in yet to complete and locked
+                //TODO upto here
+                SPMod spModParent = new SPMod(
+                        modSingle.getModule_ID(),
+                        modSingle.getCode(),
+                        modSingle.getName(),
+                        preReqs,
+                        false,
+                        true
+                );
+                int y0 = modListY0.indexOf(spModParent);
+                switch (spModParent.getYear()) {
+                    case 1:
+                }
+                spModParent.setCompleted(true);
+                modListY0.set(i,spModParent);
+            }
+
+        }
+
+    }
+
+*/
 
 
 }
