@@ -1,4 +1,4 @@
-package com.untitleddevelopments.wintecdegreeplanner.admin;
+package com.untitleddevelopments.wintecdegreeplanner;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,9 +18,6 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
-import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
-import com.untitleddevelopments.wintecdegreeplanner.R;
-import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +28,7 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * This activity adds a new student in the database.
  */
-public class AdminAddStudentActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener{
+public class edit_student extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener{
 
     /**
      * Button to sve student in DB
@@ -47,11 +43,11 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
     /**
      * form fields
      */
-    private EditText etFName;
-    private EditText etLName;
-    private EditText etStudntID;
+    private EditText et_FName;
+    private EditText et_LName;
+    private EditText et_StudentID;
     private Spinner  spStreams;
-    private EditText etStartDate;
+    private EditText et_StartDate;
 
 
     ArrayList<Stream> streams;
@@ -59,21 +55,21 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_add_student);
+        setContentView(R.layout.activity_edit_student);
 
-        btnAdd = findViewById(R.id.btnAdd);
-        btnMenu = findViewById(R.id.btnMenu);
+        btnAdd = findViewById(R.id.edit_btnAdd);
+        btnMenu = findViewById(R.id.edit_btnMenu);
 
         // setting event handlers for buttons
         btnAdd.setOnClickListener(this);
         btnMenu.setOnClickListener(this);
 
         // setting up student form UI references from XML
-        etFName     = findViewById(R.id.etFName);
-        etLName     = findViewById(R.id.etLName);
-        etStudntID  = findViewById(R.id.etStudntID);
-        etStartDate = findViewById(R.id.etStartDate);
-        spStreams   = findViewById(R.id.spStreams);
+        et_FName     = findViewById(R.id.edit_etFName);
+        et_LName     = findViewById(R.id.edit_etLName);
+        et_StudentID  = findViewById(R.id.edit_etStudentID);
+        et_StartDate = findViewById(R.id.edit_etStartDate);
+        spStreams   = findViewById(R.id.edit_etStreams);
 
 
         populateStreamsInDropdownList();
@@ -116,25 +112,25 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
 
 
         // ensure the first name is filled
-        if (etFName.getText().toString().length() == 0 ) {
+        if (et_FName.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the first name of student!", Toast.LENGTH_LONG).show();
             return false;
         }
 
         // ensure the last name is filled
-        if (etLName.getText().toString().length() == 0 ) {
+        if (et_LName.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the last name of student!", Toast.LENGTH_LONG).show();
             return false;
         }
 
         // ensure the student id is filled
-        if (etStudntID.getText().toString().length() == 0 ) {
+        if (et_StudentID.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the student ID!", Toast.LENGTH_LONG).show();
             return false;
         }
 
         // ensure that start date is filled
-        if (etStartDate.getText().toString().length() == 0 ) {
+        if (et_StartDate.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the start date!", Toast.LENGTH_LONG).show();
             return false;
         }
@@ -162,18 +158,18 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
          * saving student in database
          *
          */
-         ContentValues contentStudent = new ContentValues();
-         contentStudent.put(DBHelper.STUDENT_FIRSTNAME, etFName.getText().toString());
-         contentStudent.put(DBHelper.STUDENT_SURNAME, etLName.getText().toString() );
-         contentStudent.put(DBHelper.STUDENT_STUDENTID, etStudntID.getText().toString() );
-         contentStudent.put(DBHelper.STUDENT_PHOTOURI, "");
-         contentStudent.put(DBHelper.STUDENT_STARTDATE, etStartDate.getText().toString() );
-         contentStudent.put(DBHelper.STUDENT_STATUS, 1);
-         contentStudent.put(DBHelper.STUDENT_STREAM_ID, streamID);
+        ContentValues contentStudent = new ContentValues();
+        contentStudent.put(DBHelper.STUDENT_FIRSTNAME, et_FName.getText().toString());
+        contentStudent.put(DBHelper.STUDENT_SURNAME, et_LName.getText().toString() );
+        contentStudent.put(DBHelper.STUDENT_STUDENTID, et_StudentID.getText().toString() );
+        contentStudent.put(DBHelper.STUDENT_PHOTOURI, "");
+        contentStudent.put(DBHelper.STUDENT_STARTDATE, et_StartDate.getText().toString() );
+        contentStudent.put(DBHelper.STUDENT_STATUS, 1);
+        contentStudent.put(DBHelper.STUDENT_STREAM_ID, streamID);
 
-         DBManager.getInstance().openDatabase();
+        DBManager.getInstance().openDatabase();
 
-         return DBManager.getInstance().insert(DBHelper.TBL_STUDENT, contentStudent);
+        return DBManager.getInstance().insert(DBHelper.TBL_STUDENT, contentStudent);
     }
 
 
@@ -198,8 +194,8 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
         }
 
 
-       // this should not happen!!!
-       return 0;
+        // this should not happen!!!
+        return 0;
     }
 
     /**
@@ -215,9 +211,9 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
         popup.setOnMenuItemClickListener(this);
 
         // loading menu from xml
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
-        popup.show();
+        //MenuInflater inflater = popup.getMenuInflater();
+        //inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
+        //popup.show();
     }
 
     @Override
@@ -225,19 +221,21 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
         switch(view.getId()) {
 
             // save student in DB
-            case R.id.btnAdd:
+            case R.id.edit_btnAdd:
                 boolean status = saveStudentInDatabase();
 
                 // checking the status of saving student in DB
                 if(status) {
                     Toast.makeText(this, "Student Saved Successfully", Toast.LENGTH_LONG).show();
                 }
+                Intent i = new Intent(this, manage_students.class);
+                startActivity(i);
 
                 break;
 
             // show top menu
-            case R.id.btnMenu:
-                showTopMenu(view);
+            case R.id.edit_btnMenu:
+                //showTopMenu(view);
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package com.untitleddevelopments.wintecdegreeplanner.admin;
+package com.untitleddevelopments.wintecdegreeplanner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
-import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
-import com.untitleddevelopments.wintecdegreeplanner.R;
-import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
@@ -39,12 +36,12 @@ import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
  *
  * Author: Navjot Singh
  */
-public class AdminMainActivity extends AppCompatActivity
+public class manage_students extends AppCompatActivity
         implements View.OnClickListener,
         PopupMenu.OnMenuItemClickListener,
         AdapterView.OnItemClickListener {
 
-    private final String TAG = "AdminMainActivity";
+    private final String TAG = "manage_students";
 
     /**
      * list view for student names
@@ -86,12 +83,12 @@ public class AdminMainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_main);
+        setContentView(R.layout.activity_manage_students);
 
-        lvStudents      = findViewById(R.id.lvStudents);
-        etSearchStudent = findViewById(R.id.etSearchStudent);
-        btnAddStudent   = findViewById(R.id.btnAddStudent);
-        btnMenu         = findViewById(R.id.btnMenu);
+        lvStudents      = findViewById(R.id.ms_lvStudents);
+        etSearchStudent = findViewById(R.id.ms_etSearchStudent);
+        btnAddStudent   = findViewById(R.id.ms_btnAddStudent);
+        btnMenu         = findViewById(R.id.ms_btnMenu);
 
 
         // setting event handlers for button to this class
@@ -142,7 +139,7 @@ public class AdminMainActivity extends AppCompatActivity
     private  void setupListAdapter() {
         // set data to Adapter
         adapter = new ArrayAdapter<String>(
-                AdminMainActivity.this,
+                manage_students.this,
                 R.layout.student_cell,
                 R.id.studentName, getStudentFullNames());
 
@@ -158,7 +155,7 @@ public class AdminMainActivity extends AppCompatActivity
         etSearchStudent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                AdminMainActivity.this.adapter.getFilter().filter(s);
+                manage_students.this.adapter.getFilter().filter(s);
             }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -193,13 +190,13 @@ public class AdminMainActivity extends AppCompatActivity
         switch(view.getId()) {
 
             // show add student activity of admin
-            case R.id.btnAddStudent:
-                startActivity(new Intent(this, AdminAddStudentActivity.class));
+            case R.id.ms_btnAddStudent:
+                startActivity(new Intent(this, activity_add_student.class));
                 break;
 
             // show top menu
-            case R.id.btnMenu:
-                showTopMenu(view);
+            case R.id.ms_btnMenu:
+                //showTopMenu(view);
                 break;
         }
     }
@@ -236,7 +233,7 @@ public class AdminMainActivity extends AppCompatActivity
         Globals.setStudent_ID(student_ID);
 
         // showing Student Plan Activity
-        startActivity(new Intent(this, StuPlanActivity.class));
+        startActivity(new Intent(this, view_student.class));
 
     }
 
