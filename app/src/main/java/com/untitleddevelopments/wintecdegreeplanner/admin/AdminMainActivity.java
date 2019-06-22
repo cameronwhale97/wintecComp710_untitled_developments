@@ -2,10 +2,13 @@ package com.untitleddevelopments.wintecdegreeplanner.admin;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,7 +28,7 @@ import com.untitleddevelopments.wintecdegreeplanner.R;
  *
  * Author: Navjot Singh
  */
-public class AdminMainActivity extends AppCompatActivity {
+public class AdminMainActivity extends AppCompatActivity implements View.OnClickListener{
 
     /**
      * list view for student names
@@ -47,6 +50,11 @@ public class AdminMainActivity extends AppCompatActivity {
      */
     ArrayList<String> dataStudents = new ArrayList<String>();
 
+    /**
+     * Button to show add student/form screen/activity
+     */
+    FloatingActionButton btnAddStudent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,9 @@ public class AdminMainActivity extends AppCompatActivity {
 
         lvStudents      = findViewById(R.id.lvStudents);
         etSearchStudent = findViewById(R.id.etSearchStudent);
+        btnAddStudent   = findViewById(R.id.btnAddStudent);
+
+        btnAddStudent.setOnClickListener(this);
 
 
         /**
@@ -94,5 +105,14 @@ public class AdminMainActivity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.btnAddStudent:
+                startActivity(new Intent(this, AdminAddStudentActivity.class));
+                break;
+        }
+    }
 
 }//AdminMainActivity
