@@ -166,6 +166,7 @@
             android:layout_marginLeft="20dp"
             android:textSize="16sp"
             android:hint="Student ID"
+            android:inputType="number"
             android:background="@drawable/ots_textbox"
             android:paddingLeft="10dp"
             android:layout_marginTop="5dp"/>
