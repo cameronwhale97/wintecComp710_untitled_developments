@@ -9,8 +9,10 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB2;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
+import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OnLongClickTest;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("");
-        PrefsManager.setUserType("");
+        PrefsManager.setProgrammer("maria");
+        PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
 
             case "cameron":
-                //do Camerons stuff
+//                do Camerons stuff
                 Log.d(TAG," Got to cameron ");
                 Intent cw_intent = new Intent(this, otsDisclaimer.class);
                 startActivity(cw_intent);
@@ -64,16 +66,19 @@ public class MainActivity extends AppCompatActivity {
 
             case "maria":
                 //do Marias stuff
-
+                Intent mariaIntent = new Intent(this, OnLongClickTest.class);
+                startActivity(mariaIntent);
+                return;
 
             case "navi":
                 //do Navis stuff
 
 
+
             case "jonah":
                 //do Jonahs stuff
-                //Intent jonahIntent = new Intent(this, about_screen.class);
-                //startActivity(jonahIntent);
+//                Intent jonahIntent = new Intent(this, about_screen.class);
+//                startActivity(jonahIntent);
 
 
             default:
