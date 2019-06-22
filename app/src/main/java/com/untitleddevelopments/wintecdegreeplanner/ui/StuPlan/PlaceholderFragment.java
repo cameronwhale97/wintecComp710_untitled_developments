@@ -91,6 +91,14 @@ public class PlaceholderFragment extends Fragment  {
         recyclerVYetToComp.setAdapter(adapterYTC);
         recyclerVYetToComp.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+//        recyclerVYetToComp.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                SPModuleDetailFragment  spModuleDetailFragment = new SPModuleDetailFragment();
+//                spModuleDetailFragment.show(getFragmentManager(),"Geoff);
+//            }
+//        }));
+
 //        The follwing code is used to deal with swipes TO THE LEFT
         ItemTouchHelper itemTouchHlpLeft = new
                 ItemTouchHelper(new SwipeToComplete(adapterYTC));

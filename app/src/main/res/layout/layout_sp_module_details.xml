@@ -9,7 +9,7 @@
         android:id="@+id/SPTVModDetModCodeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorDPMFieldColour"
+        android:background="@color/colorDPMPopTitleDgrey"
         android:text="COMP601 | Object Oriented Programming"
         android:textColor="@color/colorDPMWhite"
         android:textSize="30sp" />
