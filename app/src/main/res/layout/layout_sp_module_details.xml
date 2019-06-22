@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorDPMFieldColour"
-        android:text="TextView"
+        android:text="COMP601 | Object Oriented Programming"
         android:textColor="@color/colorDPMWhite"
         android:textSize="30sp" />
 
@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorDPMWhite"
         android:text="Prescription"
+        android:padding="20dp"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -27,18 +28,21 @@
         android:id="@+id/SPTVModDetModDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modules description" />
+        android:padding="20dp"
+        android:background="@color/colorDPMWhite"
+        android:text="As the API's have radically changed, It wouldn't surprise me if you were to create an OnClickListener for each item. It isn't that much of a hassle though. In your implementation of As the API's have radically changed, It wouldn't surprise me if you were to create an OnClickListener for each item. It isn't that much of a hassle though. In your implementation of " />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:background="@color/colorDPMWhite"
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:padding="20dp"
             android:text="NZQA Level"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -47,32 +51,105 @@
             android:id="@+id/SPTVModDetModNZQALevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Level 6" />
-
+            android:text="Level 6"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/SPTVModDetModNZQACredits"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginTop="10dp"
+        android:background="@color/colorDPMWhite"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/SPTVModDetModPreReqs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="NZQA Credits"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/SPTVModDetModCoReq"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <TextView
+            android:id="@+id/SPTVModDetModNZQACredits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="15"
+            android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/SPTVModDetModModType"
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginTop="10dp"
+        android:background="@color/colorDPMWhite"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="Pre-requisite"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/SPTVModDetModPreReqs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMP501"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorDPMWhite"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="Co-requisite"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/SPTVModDetModCoReq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="COMP501"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorDPMWhite"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="Type of Module"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/SPTVModDetModModType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Core" 
+            android:textSize="24sp"/>
+    </LinearLayout>
+
 </LinearLayout>
