@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,8 +21,7 @@ import android.widget.Toast;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB;
 import com.untitleddevelopments.wintecdegreeplanner.R;
-
-
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 
 /**
@@ -33,7 +33,10 @@ import com.untitleddevelopments.wintecdegreeplanner.R;
  *
  * Author: Navjot Singh
  */
-public class AdminMainActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener{
+public class AdminMainActivity extends AppCompatActivity
+        implements View.OnClickListener,
+        PopupMenu.OnMenuItemClickListener,
+        AdapterView.OnItemClickListener {
 
     /**
      * list view for student names
@@ -100,6 +103,10 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
 
         lvStudents.setAdapter(adapter);
 
+
+        lvStudents.setOnItemClickListener(this);
+
+
         /**
          * Note:
          * text watcher will update the list when text changes
@@ -165,6 +172,17 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
             default:
                 return false;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+                            long id) {
+
+        //TODO - put student ID in globals
+
+        Toast.makeText(this, "ToDo: Add student ID in globals", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, StuPlanActivity.class));
+
     }
 
 }//AdminMainActivity
