@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.admin;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -241,6 +243,10 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
             case R.id.miReturnToMain:
                 Toast.makeText(this, "Return To Main", Toast.LENGTH_LONG).show();
 
+                return true;
+
+            case R.id.miAbout:
+                startActivity(new Intent(this, about_screen.class));
                 return true;
 
             default:

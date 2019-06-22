@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 
@@ -184,9 +185,13 @@ public class AdminMainActivity extends AppCompatActivity
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
+
             case R.id.miReturnToMain:
                 Toast.makeText(this, "Return To Main", Toast.LENGTH_LONG).show();
+                return true;
 
+            case R.id.miAbout:
+                startActivity(new Intent(this, about_screen.class));
                 return true;
 
             default:
