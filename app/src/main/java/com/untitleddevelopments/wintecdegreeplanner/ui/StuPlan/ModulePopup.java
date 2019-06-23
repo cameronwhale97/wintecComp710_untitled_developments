@@ -50,7 +50,7 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
         getWindow().setLayout((int)(width*.8),(int)(height*.7));
 
         currentModuleId = Globals.getModule_ID();
-        SPMod spMod = Globals.getSPMod();
+        SPMod spMod = new SPMod();
 
         Module currentModule = new Module(currentModuleId);
 
