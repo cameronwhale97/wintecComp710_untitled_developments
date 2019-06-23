@@ -36,7 +36,6 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
 
         //constructor
     public SPRecycViewAdapt(RecyclerView recyclerView, FragmentActivity parentAcitivty, List<SPMod> mMods, Boolean isYTC ) {
-        //Log.d(TAG, "SPRecycViewAdapt Constrcting: First Item= " + mMods.toString());
         this.mSPMods = mMods;
         this.parentAcitivty = parentAcitivty;
         this.recyclerView = recyclerView;
@@ -76,8 +75,9 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         String geoff = isYTC ? "YTC" : "Complete";
         SPMod spMod =  mSPMods.get(pos);
         Globals.setSPMod(spMod);
+        Log.d(TAG, "onClick: ");
 
-//        parentAcitivty.startActivity(new Intent(parentAcitivty, zOldSPModuleDetail.class));
+        parentAcitivty.startActivity(new Intent(parentAcitivty, SPModuleDetail.class));
 
 //        FragmentTransaction ft = parentAcitivty.getSupportFragmentManager().beginTransaction();
 //        ft.replace(R.id.fragment_placeholder, new SPModuleDetailFragment());

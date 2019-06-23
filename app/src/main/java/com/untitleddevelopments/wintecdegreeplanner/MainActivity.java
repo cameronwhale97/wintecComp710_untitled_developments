@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 Student testStu = new Student(1);
                 //if student 1 does not exist - then student 0 is returned
                 if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
-//                startActivity(new Intent(this, StuPlanActivity.class));
-                startActivity(new Intent(this, SPModuleDetail.class));
+                startActivity(new Intent(this, StuPlanActivity.class));
+//                startActivity(new Intent(this, SPModuleDetail.class));
 //                startActivity(new Intent(this, DBTestActivity.class));
                 break;
 

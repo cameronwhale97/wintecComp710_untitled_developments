@@ -13,10 +13,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.StuPlan.SPModuleDetail"></activity>
-        <activity
-            android:name=".ui.StuPlan.zOldSPModuleDetail"
-            android:label="@string/title_activity_spmodule_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".modules.modules_main" />
         <activity android:name=".view_student" />
         <activity android:name=".edit_student" />
