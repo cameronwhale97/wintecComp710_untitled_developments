@@ -22,6 +22,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llTop" />
 
+    <TextView
+        android:id="@+id/moduleHeading2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="Select the module you would like to update"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modulesHeading1" />
+
     <EditText
         android:id="@+id/searchModule"
         android:layout_width="fill_parent"
@@ -32,7 +41,7 @@
         android:textSize="14dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modulesHeading1" />
+        app:layout_constraintTop_toBottomOf="@+id/moduleHeading2" />
 
     <ListView
         android:id="@+id/lvModules"

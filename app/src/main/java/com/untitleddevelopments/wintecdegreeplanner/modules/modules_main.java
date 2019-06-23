@@ -25,8 +25,9 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.ModulePopup;
 
-public class modules_main extends AppCompatActivity {
+public class modules_main extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView lvModules;
     ArrayAdapter<String> adapter;
@@ -73,7 +74,7 @@ public class modules_main extends AppCompatActivity {
 
         lvModules.setAdapter(adapter);
 
-//        lvModules.setOnItemClickListener(this);
+        lvModules.setOnItemClickListener(this);
 
         searchModule.addTextChangedListener(new TextWatcher() {
             @Override
@@ -90,4 +91,14 @@ public class modules_main extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        int moduleID = modules.get(position).getModule_ID();
+
+        Toast.makeText(this, "Module ID:" + moduleID, Toast.LENGTH_LONG).show();
+
+        startActivity(new Intent(this, ModulePopup.class));
+
+    }
 }
