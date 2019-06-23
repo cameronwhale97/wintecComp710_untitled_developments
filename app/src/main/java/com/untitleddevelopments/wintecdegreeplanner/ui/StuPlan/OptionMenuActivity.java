@@ -2,6 +2,7 @@ package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ public class OptionMenuActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
+        Log.d(TAG, "onCreateOptionsMenu: ");
         menuInflater.inflate(R.menu.admin_top_menu, menu);
 /*
         if (PrefsManager.getUserType() == "admin") {
