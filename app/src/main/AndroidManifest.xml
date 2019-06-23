@@ -55,6 +55,9 @@
             android:name=".otsStudentDone"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <activity
+            android:name=".stuViewMainMenu"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!-- ADMIN UI/ACTIVITIES STARTS -->
         <activity
