@@ -1,14 +1,10 @@
 package com.untitleddevelopments.wintecdegreeplanner.admin;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.PopupMenu;
 import android.util.Log;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -19,9 +15,8 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
-import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
-import com.untitleddevelopments.wintecdegreeplanner.about_screen;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +27,13 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * This activity adds a new student in the database.
  */
-public class AdminAddStudentActivity extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener{
+public class AdminAddStudentActivity extends OptionMenuActivity implements View.OnClickListener{
 
     /**
      * Button to sve student in DB
      */
     private ImageButton btnAdd;
 
-    /**
-     * Button to show top menu
-     */
-    private ImageButton btnMenu;
 
     /**
      * form fields
@@ -62,11 +53,9 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
         setContentView(R.layout.activity_admin_add_student);
 
         btnAdd = findViewById(R.id.btnAdd);
-        btnMenu = findViewById(R.id.btnMenu);
 
         // setting event handlers for buttons
         btnAdd.setOnClickListener(this);
-        btnMenu.setOnClickListener(this);
 
         // setting up student form UI references from XML
         etFName     = findViewById(R.id.etFName);
@@ -202,25 +191,7 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
        return 0;
     }
 
-    /**
-     * function creates the popup menu from xml and sets its event handler.
-     * @param view    View/anchor on which the popup menu will be shown.
-     */
-    private void showTopMenu(View view) {
-
-        Toast.makeText(this, "Top menu", Toast.LENGTH_LONG).show();
-
-        // creating popup menu and setting up event handler
-        PopupMenu popup = new PopupMenu(this, view);
-        popup.setOnMenuItemClickListener(this);
-
-        // loading menu from xml
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
-        popup.show();
-    }
-
-    @Override
+     @Override
     public void onClick(View view) {
         switch(view.getId()) {
 
@@ -235,27 +206,6 @@ public class AdminAddStudentActivity extends AppCompatActivity implements View.O
 
                 break;
 
-            // show top menu
-            case R.id.btnMenu:
-                showTopMenu(view);
-                break;
-        }
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.miReturnToMain:
-                Toast.makeText(this, "Return To Main", Toast.LENGTH_LONG).show();
-
-                return true;
-
-            case R.id.miAbout:
-                startActivity(new Intent(this, about_screen.class));
-                return true;
-
-            default:
-                return false;
         }
     }
 

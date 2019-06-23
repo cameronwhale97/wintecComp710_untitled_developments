@@ -6,41 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".admin.AdminMainActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/llTop"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/colorDPMbackground"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed">
-
-        <ImageView
-            android:id="@+id/wintecLogo"
-            android:layout_width="160dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="31dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/wintec_logo_logotipo" />
-
-        <ImageButton
-            android:id="@+id/btnMenu"
-            android:layout_width="80dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="500dp"
-            android:layout_marginTop="20dp"
-            android:background="@null"
-            android:scaleType="fitXY"
-            android:src="@drawable/menu_dots"/>
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -52,10 +17,10 @@
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llTop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:text="@string/adminWelcome"/>
 

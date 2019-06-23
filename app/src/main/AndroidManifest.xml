@@ -61,11 +61,12 @@
         <!-- ADMIN UI/ACTIVITIES STARTS -->
         <activity
             android:name=".admin.AdminMainActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            >
+
+        </activity>
 
         <activity
-            android:name=".admin.AdminAddStudentActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".admin.AdminAddStudentActivity" />
 
         <!-- ADMIN UI/ACTIVITIES ENDS -->
 

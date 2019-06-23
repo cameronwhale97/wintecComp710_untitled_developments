@@ -233,10 +233,6 @@ public class activity_add_student extends AppCompatActivity implements View.OnCl
 
                 break;
 
-            // show top menu
-            case R.id.btnMenu:
-                showTopMenu(view);
-                break;
         }
     }
 
