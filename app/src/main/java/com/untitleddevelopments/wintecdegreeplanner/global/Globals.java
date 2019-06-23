@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.global;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
+import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.PageViewModel;
@@ -15,6 +16,7 @@ public class Globals {
     private static Student student;
     private static Module module;
     private static Stream stream;
+    private static SPMod spMod;
 
 
     private static PageViewModel pageViewModel;
@@ -66,11 +68,12 @@ public class Globals {
         return Globals.stream;
     }
 
-    public static synchronized void setPageViewModel(PageViewModel pageViewModel) {
-        Globals.pageViewModel = pageViewModel;
+    public static synchronized void setSPMod(SPMod spMod) {
+        Globals.spMod = spMod;
     }
-    public static synchronized PageViewModel getPageViewModel() {
-        return Globals.pageViewModel;
+    public static synchronized SPMod getSPMod() {
+        return Globals.spMod;
     }
+
 
 }//Globals

@@ -3,7 +3,6 @@ package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,11 +14,13 @@ import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 
+import java.lang.reflect.Field;
+
 /**
  * This activity to control the student plan for both students and admin. It contains a tabbed activity
  * which is used for each year
  */
-public class StuPlanActivity extends AppCompatActivity {
+public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR needs extends
     private static final String TAG = "StuPlanActivity";
     //views and layouts...
     TextView SPTVStuNameAndStuID;
@@ -27,7 +28,8 @@ public class StuPlanActivity extends AppCompatActivity {
     CustomViewPager viewPager;
     LinearLayout SPstudentDetailsPanel;
     LinearLayout SPLLayDelStuPopup;
-    //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
+
+        //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
     private PageViewModel pageViewModel;
     Stream currentStream;                       // used to determine the student is still using the same stream
     int currentStudent_ID;                      //used to keep tabs on what student we are dealing with
@@ -36,7 +38,7 @@ public class StuPlanActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);                 //**TOOLBAR
 
         userType = PrefsManager.getUserType();
         Log.d(TAG, "onCreate: user type: " + userType);
@@ -80,11 +82,12 @@ public class StuPlanActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-    }
+    }//onCreate
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume: Globals get student id: " + Globals.getStudent_ID());
         if(Globals.getStudent_ID() != currentStudent_ID){
             //We have a new student so initialise everything!
             currentStudent_ID = Globals.getStudent_ID();
@@ -102,25 +105,30 @@ public class StuPlanActivity extends AppCompatActivity {
         SPTVStuNameAndStuID.setText(currentStudent.getFullName()+ ", " + currentStudent.getStudentID());
         SPTVStreamName.setText(currentStream.getName());
     }
+
     public void onClickEditStudent(View view){
-        //ToDO Code this once Navi has done his stuff
+        //ToDO Code this once Jonah has done his stuff
         displayMessage("onClickEditStudent clicked "+ Integer.toString(currentStudent.getStudent_ID()));
         Globals.setStudent(currentStudent);
         //startActivity(new Intent(this, ToDo Navs's edit Activity.class));
 
-    }
+    } //onClickEditStudent
+
     public void onClickDeleteStudent(View view){
         //ToDO Geoff
         displayMessage("onClick Delete Student clicked " + Integer.toString(currentStudent.getStudent_ID()));
         Globals.setStudent(currentStudent);
         //startActivity(new Intent(this, ToDo
-    }
+    } //onClickDeleteStudent
+
     public void onbtnDelConfirmYes(){
         displayMessage("Yes Clicked");
     }
+
     public void onbtnDelConfirmNo(){
         displayMessage("No Clicked");
     }
+
 
     private void displayMessage(String msg) {
         Log.i(TAG, msg);

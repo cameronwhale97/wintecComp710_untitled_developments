@@ -5,6 +5,8 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class Module {
     private static final String TAG = "Module";
 
@@ -45,6 +47,46 @@ public class Module {
         }
     }
 
+    //Maria using Navi's code
+
+    public static ArrayList<Module> getAllModules(){
+
+        ArrayList<Module> modules = new ArrayList<Module>();
+
+        String query = "SELECT * FROM " + DBHelper.TBL_MODULE;
+
+        Log.d(TAG, "-- getAllModules: " + query);
+
+        DBManager.getInstance().openDatabase();
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+
+        if (cursor.moveToFirst()) {
+
+            while (!cursor.isAfterLast()) {
+
+                int module_ID = cursor.getInt(cursor.getColumnIndex(DBHelper.MODULE_ID));
+                String code = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_CODE));
+                String name = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_NAME));
+                String description = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_DESCRIPTION));
+                int NZQALevel = cursor.getInt(cursor.getColumnIndex(DBHelper.MODULE_NZQALEVEL));
+                int NZQACredits = cursor.getInt(cursor.getColumnIndex(DBHelper.MODULE_NZQACREDITS));
+                String coReq = cursor.getString(cursor.getColumnIndex(DBHelper.MODULE_COREQ));
+
+                Module module = new Module(module_ID, code, name, description, NZQALevel, NZQACredits, coReq);
+                modules.add(module);
+                cursor.moveToNext();
+            }
+
+        }
+
+        return modules;
+    }
+
+
+
+
+
+
     @Override
     public String toString() {
         return "Module{" +
@@ -65,6 +107,10 @@ public class Module {
 
     public void setModule_ID(int module_ID) {
         this.module_ID = module_ID;
+    }
+
+    public String getFullTitle() {
+        return code + " | " + name;
     }
 
     public String getCode() {

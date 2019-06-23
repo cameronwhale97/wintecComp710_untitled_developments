@@ -1,6 +1,13 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +17,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
+
 import java.util.List;
 
 public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.ViewHolder>
@@ -20,17 +28,16 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
     //The ViewHolder class is defined as a class at the bottom
     private static final String TAG = "SPRecycViewAdapt";
     private List<SPMod> mSPMods;
-    private Context mContext;
+    private FragmentActivity parentAcitivty;
     private View.OnClickListener clickListener;
     private boolean isYTC;
 
     private RecyclerView recyclerView;
 
         //constructor
-    public SPRecycViewAdapt(RecyclerView recyclerView, Context context, List<SPMod> mMods, Boolean isYTC ) {
-        //Log.d(TAG, "SPRecycViewAdapt Constrcting: First Item= " + mMods.toString());
+    public SPRecycViewAdapt(RecyclerView recyclerView, FragmentActivity parentAcitivty, List<SPMod> mMods, Boolean isYTC ) {
         this.mSPMods = mMods;
-        this.mContext = context;
+        this.parentAcitivty = parentAcitivty;
         this.recyclerView = recyclerView;
         this.isYTC = isYTC;
     }
@@ -65,13 +72,18 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
     @Override
     public void onClick(final View view) {
         int pos = recyclerView.getChildLayoutPosition(view);
-        String geoff = "";
-        if(isYTC) {
-            geoff = "YTC";
-        } else {
-            geoff = "Complete";
-        }
-        Toast.makeText(mContext, "pos: " +   geoff + pos, Toast.LENGTH_LONG).show();
+        String geoff = isYTC ? "YTC" : "Complete";
+        SPMod spMod =  mSPMods.get(pos);
+        Globals.setSPMod(spMod);
+        Log.d(TAG, "onClick: ");
+
+        parentAcitivty.startActivity(new Intent(parentAcitivty, SPModuleDetail.class));
+
+//        FragmentTransaction ft = parentAcitivty.getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.fragment_placeholder, new SPModuleDetailFragment());
+//        ft.commit();
+
+        Toast.makeText(parentAcitivty, "test - pos: " +   geoff + " " + pos + mSPMods.get(pos).getCode(), Toast.LENGTH_LONG).show();
     }
 
     @Override

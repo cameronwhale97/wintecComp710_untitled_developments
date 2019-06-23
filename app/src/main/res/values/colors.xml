@@ -9,6 +9,8 @@
     <color name="colorDPMFieldColour">#9E9999</color>
     <color name="colorDPMTabHighlight">#C5C5C5</color>
     <color name="colorDPMBgLgrey">#EFEFEF</color>
+    <color name="colorDPMPopTitleDgrey">#707070</color>
+
 
 
     <color name="adminTitleBar">#444444</color>

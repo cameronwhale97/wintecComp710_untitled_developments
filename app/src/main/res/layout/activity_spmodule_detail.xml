@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".ui.StuPlan.SPModuleDetail">
+</LinearLayout>
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorDPMBgLgrey"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.StuPlan.SPModuleDetail">
 
     <TextView
         android:id="@+id/SPTVModDetModCodeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorDPMFieldColour"
+        android:background="@color/colorDPMPopTitleDgrey"
         android:text="COMP601 | Object Oriented Programming"
         android:textColor="@color/colorDPMWhite"
         android:textSize="30sp" />
@@ -118,7 +132,7 @@
             android:text="Co-requisite"
             android:textSize="24sp"
             android:textStyle="bold" />
-        
+
         <TextView
             android:id="@+id/SPTVModDetModCoReq"
             android:layout_width="match_parent"
@@ -148,7 +162,7 @@
             android:id="@+id/SPTVModDetModModType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Core" 
+            android:text="Core"
             android:textSize="24sp"/>
     </LinearLayout>
 

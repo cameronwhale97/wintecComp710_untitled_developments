@@ -6,13 +6,13 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"> <!-- Edited to this for GG and anyone else for the overflow menu (CW) -->
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorDPMbackground</item>
-    <item name="colorPrimaryDark">@color/colorDPMbackground</item>
-    <item name="colorAccent">@color/colorDPMbackground</item>
-    <!-- Geoff Added -->
-    <item name="android:windowBackground">@color/colorDPMWhite</item>
-</style>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorDPMbackground</item>
+        <item name="colorPrimaryDark">@color/colorDPMbackground</item>
+        <item name="colorAccent">@color/colorDPMbackground</item>
+        <!-- Geoff Added -->
+        <item name="android:windowBackground">@color/colorDPMWhite</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -24,7 +24,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- Module Popup/More Info. -->
-    <style name ="AppTheme.CustomTheme">
+    <style name="AppTheme.CustomTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="windowActionBar">false</item>
