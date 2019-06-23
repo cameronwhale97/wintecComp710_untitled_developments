@@ -21,8 +21,7 @@ public class OptionMenuActivity extends AppCompatActivity {
         setLogoInActionBar();
     }
 
-
-        public void setLogoInActionBar() {
+    public void setLogoInActionBar() {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.wintec_logo_logotipo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -34,13 +33,12 @@ public class OptionMenuActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         Log.d(TAG, "onCreateOptionsMenu: ");
         menuInflater.inflate(R.menu.admin_top_menu, menu);
-/*
+
         if (PrefsManager.getUserType() == "admin") {
             menuInflater.inflate(R.menu.admin_top_menu, menu);
         } else {
-            menuInflater.inflate(R.menu.admin_top_menu, menu);
+            menuInflater.inflate(R.menu.student_top_menu, menu);
         }
-  */
 //        return super.onCreateOptionsMenu(menu);
         return true;
     }
@@ -57,8 +55,13 @@ public class OptionMenuActivity extends AppCompatActivity {
             case R.id.miAbout:
                 startActivity(new Intent(this, about_screen.class));
                 return true;
+
+            case R.id.mStuEditMyDetails:
+                startActivity(new Intent(this, about_screen.class));
+                return true;
+
             default:
-                return super.onOptionsItemSelected(item);
+            return super.onOptionsItemSelected(item);
         }
     }
 }

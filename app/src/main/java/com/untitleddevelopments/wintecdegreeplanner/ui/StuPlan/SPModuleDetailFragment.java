@@ -4,9 +4,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
@@ -16,7 +19,7 @@ import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 
 import org.w3c.dom.Text;
 
-public class SPModuleDetailFragment extends AppCompatDialogFragment {
+public class SPModuleDetailFragment extends Fragment {
     private TextView modCodeName;
     private TextView description;
     private TextView NZQALevel;
@@ -25,7 +28,16 @@ public class SPModuleDetailFragment extends AppCompatDialogFragment {
     private TextView modType;
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+
+
+        Log.d("SPModuleDetailFragment", "---- onCreateView ---");
+
+        // Defines the xml file for the fragment
+        return inflater.inflate(R.layout.layout_sp_module_details, parent, false);
+    }
+
+    public Dialog onCreateDialog123(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflator = getActivity().getLayoutInflater();
         View view = inflator.inflate(R.layout.layout_sp_module_details, null);

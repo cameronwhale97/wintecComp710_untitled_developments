@@ -1,6 +1,12 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,17 +27,17 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
     //The ViewHolder class is defined as a class at the bottom
     private static final String TAG = "SPRecycViewAdapt";
     private List<SPMod> mSPMods;
-    private Context mContext;
+    private FragmentActivity parentAcitivty;
     private View.OnClickListener clickListener;
     private boolean isYTC;
 
     private RecyclerView recyclerView;
 
         //constructor
-    public SPRecycViewAdapt(RecyclerView recyclerView, Context context, List<SPMod> mMods, Boolean isYTC ) {
+    public SPRecycViewAdapt(RecyclerView recyclerView, FragmentActivity parentAcitivty, List<SPMod> mMods, Boolean isYTC ) {
         //Log.d(TAG, "SPRecycViewAdapt Constrcting: First Item= " + mMods.toString());
         this.mSPMods = mMods;
-        this.mContext = context;
+        this.parentAcitivty = parentAcitivty;
         this.recyclerView = recyclerView;
         this.isYTC = isYTC;
     }
@@ -69,9 +75,12 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         String geoff = isYTC ? "YTC" : "Complete";
         SPMod spMod =  mSPMods.get(pos);
         Globals.setSPMod(spMod);
-        SPModuleDetailFragment  spModuleDetailFragment = new SPModuleDetailFragment();
-//        spModuleDetailFragment.show();
-        Toast.makeText(mContext, "pos: " +   geoff + " " + pos + mSPMods.get(pos).getCode(), Toast.LENGTH_LONG).show();
+        FragmentTransaction ft = parentAcitivty.getSupportFragmentManager().beginTransaction();
+
+        ft.replace(R.id.fragment_placeholder, new SPModuleDetailFragment());
+        ft.commit();
+
+        Toast.makeText(parentAcitivty, "test - pos: " +   geoff + " " + pos + mSPMods.get(pos).getCode(), Toast.LENGTH_LONG).show();
     }
 
     @Override

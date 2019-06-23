@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("geoff");
+        PrefsManager.setProgrammer("");
         PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (userType) {
             case "admin":
-//                startActivity(new Intent(this, AdminMainActivity.class));
+                startActivity(new Intent(this, AdminMainActivity.class));
                 displayToast("Calling admin screen");
 
             case "student":
