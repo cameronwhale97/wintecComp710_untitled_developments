@@ -53,13 +53,21 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".otsStudentDone"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- ADMIN UI/ACTIVITIES STARTS -->
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+        <!-- ADMIN UI/ACTIVITIES STARTS -->
         <activity
             android:name=".admin.AdminMainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".admin.AdminAddStudentActivity"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- ADMIN UI/ACTIVITIES ENDS -->
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- ADMIN UI/ACTIVITIES ENDS -->
+
+
         <!-- Module Activities -->
         <activity
             android:name=".ui.StuPlan.ModulePopup"
