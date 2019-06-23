@@ -11,22 +11,18 @@ import android.support.v7.widget.PopupMenu;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
-import com.untitleddevelopments.wintecdegreeplanner.DB.FakeDB;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
-import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 
@@ -39,15 +35,14 @@ import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
  *
  * Author: Navjot Singh
  */
-public class AdminMainActivity extends AppCompatActivity
+public class AdminMainActivity extends OptionMenuActivity
         implements View.OnClickListener,
-        PopupMenu.OnMenuItemClickListener,
         AdapterView.OnItemClickListener {
 
     private final String TAG = "AdminMainActivity";
 
     /**
-     * list view for student names
+     * List view for student names
      */
     private ListView lvStudents;
 
@@ -72,12 +67,7 @@ public class AdminMainActivity extends AppCompatActivity
     FloatingActionButton btnAddStudent;
 
     /**
-     * Button to show top menu
-     */
-    private ImageButton btnMenu;
-
-    /**
-     * list to store students fetched from DB
+     * List to store students fetched from DB
      */
     ArrayList<Student> students;
 
@@ -91,12 +81,10 @@ public class AdminMainActivity extends AppCompatActivity
         lvStudents      = findViewById(R.id.lvStudents);
         etSearchStudent = findViewById(R.id.etSearchStudent);
         btnAddStudent   = findViewById(R.id.btnAddStudent);
-        btnMenu         = findViewById(R.id.btnMenu);
 
 
         // setting event handlers for button to this class
         btnAddStudent.setOnClickListener(this);
-        btnMenu.setOnClickListener(this);
 
         //
         // NOTE:-
@@ -116,12 +104,9 @@ public class AdminMainActivity extends AppCompatActivity
 
 
         /**
-         * preparing dummy data of student names
+         * when the activity starts load all the student from the database
+         * and fill the info in students array list
          */
-        //FakeDB.populateStudentNames(dataStudents); // FIXME - use student names from DB
-
-
-
         students = Student.getAllStudents();
 
         setupListAdapter();
@@ -156,36 +141,31 @@ public class AdminMainActivity extends AppCompatActivity
          * search data when text changes in EditText
          */
         etSearchStudent.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                AdminMainActivity.this.adapter.getFilter().filter(s);
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                /**
+                 * NOTE:
+                 * ------------------------------------------------------
+                 *
+                 * We should apply text filter on the list of students
+                 * after the text has changed in the search box
+                 */
+                AdminMainActivity.this.adapter.getFilter().filter(s);
             }
+
             @Override
             public void afterTextChanged(Editable s) {
             }
         });
     }
 
-    /**
-     * function creates the popup menu from xml and sets its event handler.
-     * @param view    View/anchor on which the popup menu will be shown.
-     */
-    private void showTopMenu(View view) {
 
-        Toast.makeText(this, "Top menu", Toast.LENGTH_LONG).show();
-
-        // creating popup menu and setting up event handler
-        PopupMenu popup = new PopupMenu(this, view);
-        popup.setOnMenuItemClickListener(this);
-
-        // loading menu from xml
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
-        popup.show();
-    }
 
 
     @Override
@@ -197,29 +177,10 @@ public class AdminMainActivity extends AppCompatActivity
                 startActivity(new Intent(this, AdminAddStudentActivity.class));
                 break;
 
-            // show top menu
-            case R.id.btnMenu:
-                showTopMenu(view);
-                break;
+
         }
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.miReturnToMain:
-                Toast.makeText(this, "Return To Main", Toast.LENGTH_LONG).show();
-                return true;
-
-            case R.id.miAbout:
-                startActivity(new Intent(this, about_screen.class));
-                return true;
-
-            default:
-                return false;
-        }
-    }
 
     @Override
     public void onItemClick(AdapterView<?> parent,
