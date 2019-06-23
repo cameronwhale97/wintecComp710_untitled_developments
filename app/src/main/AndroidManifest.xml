@@ -22,6 +22,7 @@
         <activity android:name=".tests.DBTestActivity" /> <!-- Geoffs activities -->
         <activity
             android:name=".ui.StuPlan.StuPlanActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/title_activity_stu_plan" />
         <!--
  <activity

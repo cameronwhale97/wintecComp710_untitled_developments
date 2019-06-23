@@ -3,7 +3,7 @@ package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -19,7 +19,7 @@ import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
  * This activity to control the student plan for both students and admin. It contains a tabbed activity
  * which is used for each year
  */
-public class StuPlanActivity extends AppCompatActivity {
+public class StuPlanActivity extends OptionMenuActivity {
     private static final String TAG = "StuPlanActivity";
     //views and layouts...
     TextView SPTVStuNameAndStuID;
@@ -27,6 +27,9 @@ public class StuPlanActivity extends AppCompatActivity {
     CustomViewPager viewPager;
     LinearLayout SPstudentDetailsPanel;
     LinearLayout SPLLayDelStuPopup;
+    private Toolbar myToolbar;
+
+
     //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
     private PageViewModel pageViewModel;
     Stream currentStream;                       // used to determine the student is still using the same stream
@@ -45,12 +48,16 @@ public class StuPlanActivity extends AppCompatActivity {
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
 
         //Make all our references to our xml...
+        myToolbar = findViewById(R.id.myToolbar);
         setContentView(R.layout.activity_stu_plan);
         SPstudentDetailsPanel = findViewById(R.id.SPstudentDetailsPanel);
         SPTVStreamName = findViewById(R.id.SPTVStreamName);
         SPTVStuNameAndStuID = findViewById((R.id.SPTVStuNameAndStuID));
         viewPager = findViewById(R.id.view_pager);
         TabLayout tabs = findViewById(R.id.tabs);
+
+        setSupportActionBar(myToolbar);
+
 
         if(userType == "student") {
             //We don't show student details to the student as the have no options to edit or delete themselves from here
@@ -102,6 +109,7 @@ public class StuPlanActivity extends AppCompatActivity {
         SPTVStuNameAndStuID.setText(currentStudent.getFullName()+ ", " + currentStudent.getStudentID());
         SPTVStreamName.setText(currentStream.getName());
     }
+
     public void onClickEditStudent(View view){
         //ToDO Code this once Navi has done his stuff
         displayMessage("onClickEditStudent clicked "+ Integer.toString(currentStudent.getStudent_ID()));
@@ -121,6 +129,7 @@ public class StuPlanActivity extends AppCompatActivity {
     public void onbtnDelConfirmNo(){
         displayMessage("No Clicked");
     }
+
 
     private void displayMessage(String msg) {
         Log.i(TAG, msg);
