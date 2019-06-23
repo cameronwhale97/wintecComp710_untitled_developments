@@ -162,6 +162,7 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    //Edits the student that is selected in Globals student id
     private boolean saveStudentInDatabase() {
 
         // before saving student, ensure that the form is filled completely.
