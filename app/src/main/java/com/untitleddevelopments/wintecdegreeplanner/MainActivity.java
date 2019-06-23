@@ -13,6 +13,7 @@ import com.untitleddevelopments.wintecdegreeplanner.admin.AdminAddStudentActivit
 import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
+import com.untitleddevelopments.wintecdegreeplanner.modules.modules_main;
 import com.untitleddevelopments.wintecdegreeplanner.tests.DBTestActivity;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OnLongClickTest;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("jonah");
-        PrefsManager.setUserType("user");
+        PrefsManager.setProgrammer("maria");
+        PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -70,13 +71,15 @@ public class MainActivity extends AppCompatActivity {
             case "maria":
                 //do Marias stuff
 
-                Intent mariaIntent = new Intent(this, OnLongClickTest.class);
+                Intent mariaIntent = new Intent(this, modules_main.class);
                 startActivity(mariaIntent);
                 return;
 
 
             case "navi":
                 //do Navis stuff
+                Intent naviIntent = new Intent(this, AdminMainActivity.class);
+                startActivity(naviIntent);
 
 
             case "jonah":
