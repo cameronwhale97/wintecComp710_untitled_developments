@@ -84,9 +84,6 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
-       // testFragmentShowing();
-
     }//onCreate
 
     @Override

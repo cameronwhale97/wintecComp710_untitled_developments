@@ -14,6 +14,7 @@
     <string name="manageStudents">Manage Students</string>
     <string name="selectStudents">Select a student or create a new entry to start building a plan.</string>
     <string name="searchStudent">Search for a Student</string>
+    <string name="title_activity_spmodule_detail">SPModuleDetail</string>
 
 
 </resources>

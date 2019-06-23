@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -75,10 +76,12 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         String geoff = isYTC ? "YTC" : "Complete";
         SPMod spMod =  mSPMods.get(pos);
         Globals.setSPMod(spMod);
-        FragmentTransaction ft = parentAcitivty.getSupportFragmentManager().beginTransaction();
 
-        ft.replace(R.id.fragment_placeholder, new SPModuleDetailFragment());
-        ft.commit();
+//        parentAcitivty.startActivity(new Intent(parentAcitivty, zOldSPModuleDetail.class));
+
+//        FragmentTransaction ft = parentAcitivty.getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.fragment_placeholder, new SPModuleDetailFragment());
+//        ft.commit();
 
         Toast.makeText(parentAcitivty, "test - pos: " +   geoff + " " + pos + mSPMods.get(pos).getCode(), Toast.LENGTH_LONG).show();
     }
