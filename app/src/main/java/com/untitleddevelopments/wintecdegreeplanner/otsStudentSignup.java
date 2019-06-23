@@ -12,14 +12,16 @@ import android.widget.ImageView;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
+import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 
-public class otsStudentSignup extends AppCompatActivity {
-    private static final String TAG = "otsStudentSignup";  //used for logCat
+import java.util.ArrayList;
 
-    public static  String ots_stuFirstname = "";
-    public static  String ots_stuLastname = "";
-    public static  String ots_stuID = "";
+public class otsStudentSignup extends AppCompatActivity {
+
+    public static String ots_stuFirstname = "";
+    public static String ots_stuLastname = "";
+    public static String ots_stuID = "";
 
 
     @Override
@@ -27,36 +29,41 @@ public class otsStudentSignup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ots_student_signup);
 
-        EditText otsFirst = (EditText)findViewById(R.id.editText2);
-        EditText otsLast = (EditText)findViewById(R.id.editText3);
-        EditText otsID = (EditText)findViewById(R.id.editText);
+        final EditText otsFirst = (EditText)findViewById(R.id.editText2);
+        final EditText otsLast = (EditText)findViewById(R.id.editText3);
+        final EditText otsID = (EditText)findViewById(R.id.editText);
 
-        ots_stuFirstname = otsFirst.getText().toString();
-        ots_stuLastname = otsLast.getText().toString();
-        ots_stuID = otsID.getText().toString();
+        final String TAG = "otsStudentPush";
 
-        Log.d(TAG, "onCreate: " + otsFirst);
+        Log.e(TAG,"otsPush"+ots_stuFirstname);
+
 
         ImageView otsStudent = findViewById(R.id.imageView6);
         otsStudent.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
+                ots_stuFirstname = otsFirst.getText().toString();
+                ots_stuLastname = otsLast.getText().toString();
+                ots_stuID = otsID.getText().toString();
+
                 otsStuPush();
                 Intent stusignupDone = new Intent(otsStudentSignup.this, otsStudentDone.class);
                 startActivity(stusignupDone);
+               // finish();
 
             }
         });
     }
 
-    private void otsStuPush() {
+  private void otsStuPush() {
         boolean inserted;
         ContentValues contentModule = new ContentValues();
-        contentModule.put(DBHelper.STUDENT_FIRSTNAME, "Cameron");
-        contentModule.put(DBHelper.STUDENT_SURNAME, "Doe!!!!!!!!!!!!!!!!!!!!!!");
+        contentModule.put(DBHelper.STUDENT_FIRSTNAME, ots_stuFirstname);
+        contentModule.put(DBHelper.STUDENT_SURNAME, ots_stuLastname);
         contentModule.put(DBHelper.STUDENT_STUDENTID, ots_stuID);
-        contentModule.put(DBHelper.STUDENT_STREAM_ID, 0);
+        //contentModule.put(DBHelper.STUDENT_STREAM_ID, 0);
         contentModule.put(DBHelper.STUDENT_STARTDATE, "");
         contentModule.put(DBHelper.STUDENT_PHOTOURI, "");
         contentModule.put(DBHelper.STUDENT_STATUS, 1);
