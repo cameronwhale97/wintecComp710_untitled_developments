@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 
 public class view_student extends AppCompatActivity {
+
 
     TextView tvFname;
     TextView tvLname;
@@ -40,8 +42,18 @@ public class view_student extends AppCompatActivity {
 
     }
 
+    //When edit is pressed
     public void onClickViewStudentsEdit(View v){
         Intent i = new Intent(this, edit_student.class);
+        startActivity(i);
+    }
+
+    //When delete is pressed
+    public void onClickViewStudentsDelete(View v){
+        edit_student.deleteStudent(Globals.getStudent_ID());
+        Toast.makeText(this, "Student Deleted Successfully", Toast.LENGTH_LONG).show();
+
+        Intent i = new Intent(this, manage_students.class);
         startActivity(i);
 
     }

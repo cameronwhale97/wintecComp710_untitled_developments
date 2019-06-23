@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,6 +19,9 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
+import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
+import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +52,10 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
     private EditText et_StudentID;
     private Spinner  spStreams;
     private EditText et_StartDate;
-
+    Student s;
 
     ArrayList<Stream> streams;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +75,30 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
         et_StudentID  = findViewById(R.id.edit_etStudentID);
         et_StartDate = findViewById(R.id.edit_etStartDate);
         spStreams   = findViewById(R.id.edit_etStreams);
+        s = new Student(Globals.getStudent_ID());
 
 
         populateStreamsInDropdownList();
     }
 
+    //Deletes a student based on the Student_ID you pass in
+    public static void deleteStudent(int sID) {
+        ContentValues contentStudent = new ContentValues();
+        contentStudent.put(DBHelper.STUDENT_STATUS, 0);
+
+
+        boolean updatedOK = false;
+        DBManager.getInstance().openDatabase();
+        updatedOK = DBManager.getInstance().update(
+                DBHelper.TBL_STUDENT,                          //pass in table name
+                contentStudent,                                //pass in content values this can be one or many columns of a row.
+                DBHelper.STUDENT_ID + "=" + sID,       //pass in where
+                null);                         //pass in a String array
+
+        String myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
+
+        Log.e(TAG,  myMsg);
+    }
 
     private void populateStreamsInDropdownList() {
 
@@ -138,9 +162,8 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    //Edits the student that is selected in Globals student id
     private boolean saveStudentInDatabase() {
-
-
 
         // before saving student, ensure that the form is filled completely.
         if(!isStudentFormComplete()) {
@@ -167,9 +190,18 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
         contentStudent.put(DBHelper.STUDENT_STATUS, 1);
         contentStudent.put(DBHelper.STUDENT_STREAM_ID, streamID);
 
+        boolean updatedOK = false;
         DBManager.getInstance().openDatabase();
+        updatedOK = DBManager.getInstance().update(
+                DBHelper.TBL_STUDENT,                          //pass in table name
+                contentStudent,                                //pass in content values this can be one or many columns of a row.
+                 DBHelper.STUDENT_ID + "=" + s.getStudent_ID(),       //pass in where
+                null);                         //pass in a String array
 
-        return DBManager.getInstance().insert(DBHelper.TBL_STUDENT, contentStudent);
+        String myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
+        Log.e(TAG,  myMsg);
+
+        return true;
     }
 
 
@@ -211,9 +243,9 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
         popup.setOnMenuItemClickListener(this);
 
         // loading menu from xml
-        //MenuInflater inflater = popup.getMenuInflater();
-        //inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
-        //popup.show();
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.admin_top_menu, popup.getMenu());
+        popup.show();
     }
 
     @Override
@@ -228,7 +260,7 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
                 if(status) {
                     Toast.makeText(this, "Student Saved Successfully", Toast.LENGTH_LONG).show();
                 }
-                Intent i = new Intent(this, manage_students.class);
+                Intent i = new Intent(this, AdminMainActivity.class);
                 startActivity(i);
 
                 break;
@@ -256,5 +288,6 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
                 return false;
         }
     }
+
 
 }//AdminAddStudentActivity
