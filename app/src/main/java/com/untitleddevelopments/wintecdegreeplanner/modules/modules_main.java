@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.ModulePopup;
 
 public class modules_main extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -49,6 +50,8 @@ public class modules_main extends AppCompatActivity implements AdapterView.OnIte
         modules = Module.getAllModules();
 
         setupListAdapter();
+
+
     }
 
 
@@ -96,7 +99,11 @@ public class modules_main extends AppCompatActivity implements AdapterView.OnIte
 
         int moduleID = modules.get(position).getModule_ID();
 
-        Toast.makeText(this, "Module ID:" + moduleID, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Module ID:" + moduleID, Toast.LENGTH_LONG).show();
+
+        //Will this clash with anyones code?
+
+        Globals.setModule_ID(moduleID);
 
         startActivity(new Intent(this, ModulePopup.class));
 
