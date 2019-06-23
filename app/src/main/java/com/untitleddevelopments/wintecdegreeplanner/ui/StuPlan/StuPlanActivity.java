@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,11 +16,13 @@ import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 
+import java.lang.reflect.Field;
+
 /**
  * This activity to control the student plan for both students and admin. It contains a tabbed activity
  * which is used for each year
  */
-public class StuPlanActivity extends OptionMenuActivity {
+public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR needs extends
     private static final String TAG = "StuPlanActivity";
     //views and layouts...
     TextView SPTVStuNameAndStuID;
@@ -27,10 +30,9 @@ public class StuPlanActivity extends OptionMenuActivity {
     CustomViewPager viewPager;
     LinearLayout SPstudentDetailsPanel;
     LinearLayout SPLLayDelStuPopup;
-    private Toolbar myToolbar;
+    private Toolbar myToolbar;              //**TOOLBAR
 
-
-    //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
+        //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
     private PageViewModel pageViewModel;
     Stream currentStream;                       // used to determine the student is still using the same stream
     int currentStudent_ID;                      //used to keep tabs on what student we are dealing with
@@ -39,7 +41,7 @@ public class StuPlanActivity extends OptionMenuActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);                 //**TOOLBAR
 
         userType = PrefsManager.getUserType();
         Log.d(TAG, "onCreate: user type: " + userType);
@@ -48,7 +50,7 @@ public class StuPlanActivity extends OptionMenuActivity {
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
 
         //Make all our references to our xml...
-        myToolbar = findViewById(R.id.myToolbar);
+        myToolbar = findViewById(R.id.myToolbar);           //**TOOLBAR
         setContentView(R.layout.activity_stu_plan);
         SPstudentDetailsPanel = findViewById(R.id.SPstudentDetailsPanel);
         SPTVStreamName = findViewById(R.id.SPTVStreamName);
@@ -56,7 +58,7 @@ public class StuPlanActivity extends OptionMenuActivity {
         viewPager = findViewById(R.id.view_pager);
         TabLayout tabs = findViewById(R.id.tabs);
 
-        setSupportActionBar(myToolbar);
+        //setSupportActionBar(myToolbar);                     //**TOOLBAR
 
 
         if(userType == "student") {
@@ -87,6 +89,8 @@ public class StuPlanActivity extends OptionMenuActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+
     }
 
     @Override

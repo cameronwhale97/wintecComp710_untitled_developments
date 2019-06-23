@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +16,20 @@ public class OptionMenuActivity extends AppCompatActivity {
     private static final String TAG = "OptionMenuActivity";
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setLogoInActionBar();
+    }
+
+
+        public void setLogoInActionBar() {
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.wintec_logo_logotipo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         Log.d(TAG, "onCreateOptionsMenu: ");
@@ -26,7 +41,8 @@ public class OptionMenuActivity extends AppCompatActivity {
             menuInflater.inflate(R.menu.admin_top_menu, menu);
         }
   */
-        return super.onCreateOptionsMenu(menu);
+//        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override

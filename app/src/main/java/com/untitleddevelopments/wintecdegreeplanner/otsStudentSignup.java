@@ -15,6 +15,8 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 
 public class otsStudentSignup extends AppCompatActivity {
+    private static final String TAG = "otsStudentSignup";  //used for logCat
+
     public static  String ots_stuFirstname = "";
     public static  String ots_stuLastname = "";
     public static  String ots_stuID = "";
@@ -33,6 +35,8 @@ public class otsStudentSignup extends AppCompatActivity {
         ots_stuLastname = otsLast.getText().toString();
         ots_stuID = otsID.getText().toString();
 
+        Log.d(TAG, "onCreate: " + otsFirst);
+
         ImageView otsStudent = findViewById(R.id.imageView6);
         otsStudent.setOnClickListener(new View.OnClickListener() {
 
@@ -49,8 +53,8 @@ public class otsStudentSignup extends AppCompatActivity {
     private void otsStuPush() {
         boolean inserted;
         ContentValues contentModule = new ContentValues();
-        contentModule.put(DBHelper.STUDENT_FIRSTNAME, "John");
-        contentModule.put(DBHelper.STUDENT_SURNAME, "Doe");
+        contentModule.put(DBHelper.STUDENT_FIRSTNAME, "Cameron");
+        contentModule.put(DBHelper.STUDENT_SURNAME, "Doe!!!!!!!!!!!!!!!!!!!!!!");
         contentModule.put(DBHelper.STUDENT_STUDENTID, ots_stuID);
         contentModule.put(DBHelper.STUDENT_STREAM_ID, 0);
         contentModule.put(DBHelper.STUDENT_STARTDATE, "");
