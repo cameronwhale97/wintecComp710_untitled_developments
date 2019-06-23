@@ -47,7 +47,7 @@ public class AdminMainActivity extends AppCompatActivity
     private final String TAG = "AdminMainActivity";
 
     /**
-     * list view for student names
+     * List view for student names
      */
     private ListView lvStudents;
 
@@ -77,7 +77,7 @@ public class AdminMainActivity extends AppCompatActivity
     private ImageButton btnMenu;
 
     /**
-     * list to store students fetched from DB
+     * List to store students fetched from DB
      */
     ArrayList<Student> students;
 
@@ -116,12 +116,9 @@ public class AdminMainActivity extends AppCompatActivity
 
 
         /**
-         * preparing dummy data of student names
+         * when the activity starts load all the student from the database
+         * and fill the info in students array list
          */
-        //FakeDB.populateStudentNames(dataStudents); // FIXME - use student names from DB
-
-
-
         students = Student.getAllStudents();
 
         setupListAdapter();
@@ -156,13 +153,24 @@ public class AdminMainActivity extends AppCompatActivity
          * search data when text changes in EditText
          */
         etSearchStudent.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                AdminMainActivity.this.adapter.getFilter().filter(s);
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                /**
+                 * NOTE:
+                 * ------------------------------------------------------
+                 *
+                 * We should apply text filter on the list of students
+                 * after the text has changed in the search box
+                 */
+                AdminMainActivity.this.adapter.getFilter().filter(s);
             }
+
             @Override
             public void afterTextChanged(Editable s) {
             }
