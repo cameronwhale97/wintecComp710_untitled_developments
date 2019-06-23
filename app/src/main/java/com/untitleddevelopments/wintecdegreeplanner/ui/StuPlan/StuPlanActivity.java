@@ -3,7 +3,7 @@ package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,7 +30,6 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
     CustomViewPager viewPager;
     LinearLayout SPstudentDetailsPanel;
     LinearLayout SPLLayDelStuPopup;
-    private Toolbar myToolbar;              //**TOOLBAR
 
         //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
     private PageViewModel pageViewModel;
@@ -50,16 +49,12 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
 
         //Make all our references to our xml...
-        myToolbar = findViewById(R.id.myToolbar);           //**TOOLBAR
         setContentView(R.layout.activity_stu_plan);
         SPstudentDetailsPanel = findViewById(R.id.SPstudentDetailsPanel);
         SPTVStreamName = findViewById(R.id.SPTVStreamName);
         SPTVStuNameAndStuID = findViewById((R.id.SPTVStuNameAndStuID));
         viewPager = findViewById(R.id.view_pager);
         TabLayout tabs = findViewById(R.id.tabs);
-
-        //setSupportActionBar(myToolbar);                     //**TOOLBAR
-
 
         if(userType == "student") {
             //We don't show student details to the student as the have no options to edit or delete themselves from here
@@ -90,12 +85,14 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
             }
         });
 
+       // testFragmentShowing();
 
-    }
+    }//onCreate
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume: Globals get student id: " + Globals.getStudent_ID());
         if(Globals.getStudent_ID() != currentStudent_ID){
             //We have a new student so initialise everything!
             currentStudent_ID = Globals.getStudent_ID();
@@ -115,21 +112,24 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
     }
 
     public void onClickEditStudent(View view){
-        //ToDO Code this once Navi has done his stuff
+        //ToDO Code this once Jonah has done his stuff
         displayMessage("onClickEditStudent clicked "+ Integer.toString(currentStudent.getStudent_ID()));
         Globals.setStudent(currentStudent);
         //startActivity(new Intent(this, ToDo Navs's edit Activity.class));
 
-    }
+    } //onClickEditStudent
+
     public void onClickDeleteStudent(View view){
         //ToDO Geoff
         displayMessage("onClick Delete Student clicked " + Integer.toString(currentStudent.getStudent_ID()));
         Globals.setStudent(currentStudent);
         //startActivity(new Intent(this, ToDo
-    }
+    } //onClickDeleteStudent
+
     public void onbtnDelConfirmYes(){
         displayMessage("Yes Clicked");
     }
+
     public void onbtnDelConfirmNo(){
         displayMessage("No Clicked");
     }

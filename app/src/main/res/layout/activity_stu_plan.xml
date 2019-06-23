@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.StuPlan.StuPlanActivity">
 
+    <!--
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
             android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
     </android.support.design.widget.AppBarLayout>
-
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -109,6 +110,12 @@
 
         </LinearLayout>
 
+        <FrameLayout
+            android:id="@+id/fragment_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
         <!--
         previously I had <android.support.v4.view.ViewPager.
         To get CustomViewPager (which is used to stop L&R swiping inside tabs)
@@ -134,6 +141,8 @@
 
 
         </com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.CustomViewPager>
+
+        </FrameLayout>
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

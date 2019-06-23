@@ -21,9 +21,8 @@
         <activity android:name=".about_screen" />
         <activity android:name=".global.PrefsTestActivity" />
         <activity android:name=".tests.DBTestActivity" /> <!-- Geoffs activities -->
-        <activity
-            android:name=".ui.StuPlan.StuPlanActivity"
-            android:label="" />
+        <activity android:name=".ui.StuPlan.StuPlanActivity"
+             />
         <!--
  <activity
             android:name=".GeoffsSandpit.GeoffTest"
