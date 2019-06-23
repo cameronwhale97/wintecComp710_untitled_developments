@@ -1,8 +1,13 @@
 package com.untitleddevelopments.wintecdegreeplanner.DB;
 
+import android.database.Cursor;
+import android.util.Log;
+
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 
 import java.util.ArrayList;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class SPMod {
     private int module_ID;
@@ -96,6 +101,29 @@ public class SPMod {
         }
         return preString;
     } //toStringPreReqs
+
+    public boolean isCore(){
+        DBManager.getInstance().openDatabase();
+        //find out how many streams we have
+        String query = "SELECT * FROM " + DBHelper.TBL_STREAM;
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+        int noOfStreams = cursor.getCount();
+        Log.d(TAG,  query + "isCore #streams=" + noOfStreams);
+
+        //Now join stream with table_stream for a particular module and get count.
+        //If the result of this count = the number of streams the subject is core.
+        query = "SELECT * FROM " + DBHelper.TBL_STREAM +
+                " INNER JOIN " + DBHelper.TBL_MODSTR +
+                " ON " + DBHelper.TBL_STREAM + "." + DBHelper.STREAM_ID + " = " +
+                DBHelper.TBL_MODSTR + "." + DBHelper.MODSTR_STR_ID + " WHERE " +
+                DBHelper.MODSTR_MOD_ID + " = " + module_ID;
+        cursor = DBManager.getInstance().getDetails(query);
+        int noInJoined = cursor.getCount();
+        Log.d(TAG,  query + "isCore #in joined" + noInJoined);
+
+        if(noInJoined == noOfStreams) return true;
+        else return false;
+    }
 
 
 

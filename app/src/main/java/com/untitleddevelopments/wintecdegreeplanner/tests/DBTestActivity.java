@@ -25,10 +25,10 @@ public class DBTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dbtest);
 
         Log.d(TAG, "Got to DBTestActivity");
-//        testSelect();
-//        testInsert();
-//        testDelete();
-//        testUpdate();
+        testSelect();
+        testInsert();
+        testDelete();
+        testUpdate();
         testReplace();
         finish();
     }

@@ -32,29 +32,29 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
         //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
     private PageViewModel pageViewModel;
     Stream currentStream;                       // used to determine the student is still using the same stream
-    int currentStudent_ID;                      //used to keep tabs on what student we are dealing with
+    int currentStudent_ID;                      //used to keep track on what student we are dealing with
     Student currentStudent;                     //throughout the entire activity
-    String userType;                            //either "student" or "admin"
+//    String userType;                            //either "student" or "admin"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);                 //**TOOLBAR
 
-        userType = PrefsManager.getUserType();
-        Log.d(TAG, "onCreate: user type: " + userType);
+//        userType = PrefsManager.getUserType();
+        Log.d(TAG, "onCreate: user type: " + PrefsManager.getUserType());
         currentStudent_ID = -1;          //initialise to a wierd number
         //PageView model holds all references to our data...
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
 
         //Make all our references to our xml...
         setContentView(R.layout.activity_stu_plan);
-        SPstudentDetailsPanel = findViewById(R.id.SPstudentDetailsPanel);
+        SPstudentDetailsPanel = findViewById(R.id.SPstudentDetailsPanel);   //container for student details
         SPTVStreamName = findViewById(R.id.SPTVStreamName);
         SPTVStuNameAndStuID = findViewById((R.id.SPTVStuNameAndStuID));
-        viewPager = findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);                          //container for tabs
         TabLayout tabs = findViewById(R.id.tabs);
 
-        if(userType == "student") {
+        if(PrefsManager.getUserType() == "student") {
             //We don't show student details to the student as the have no options to edit or delete themselves from here
             SPstudentDetailsPanel.setVisibility(View.GONE);
             Log.d(TAG, "onCreate: setting to invisible...");

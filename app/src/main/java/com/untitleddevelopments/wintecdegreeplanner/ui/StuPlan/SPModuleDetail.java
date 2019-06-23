@@ -45,7 +45,11 @@ public class SPModuleDetail extends OptionMenuActivity {
         String preReqsString =  spMod.toStringPreReqs();
         preReqs.setText(preReqsString);
         coReq.setText(mod.getCoReq());
-        modType.setText("TODO Geoff Mod type");
+        if(spMod.isCore()){
+            modType.setText("Core module");
+        } else {
+            modType.setText("Non-Core module");
+        }
 
 
     }
