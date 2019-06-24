@@ -15,6 +15,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.ModulePopup;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
 import static android.support.constraint.Constraints.TAG;
@@ -77,6 +78,8 @@ public class modules_desc_edit extends OptionMenuActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
+
+
         boolean status = saveModuleInDatabase();
 
         if(status) {
@@ -84,5 +87,7 @@ public class modules_desc_edit extends OptionMenuActivity implements View.OnClic
         }
         Intent i = new Intent(this, modules_main.class);
         startActivity(i);
+
+
     }
 }

@@ -96,6 +96,7 @@ public class modules_title_edit extends OptionMenuActivity implements View.OnCli
                 if(status) {
                     Toast.makeText(this, "Module Saved Successfully", Toast.LENGTH_LONG).show();
                 }
+
                 Intent i = new Intent(this, modules_main.class);
                 startActivity(i);
 

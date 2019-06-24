@@ -15,6 +15,7 @@ import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.SPMod;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.modules.modules_credits_edit;
 import com.untitleddevelopments.wintecdegreeplanner.modules.modules_desc_edit;
 import com.untitleddevelopments.wintecdegreeplanner.modules.modules_level_edit;
 import com.untitleddevelopments.wintecdegreeplanner.modules.modules_title_edit;
@@ -49,12 +50,13 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
 
         getWindow().setLayout((int)(width*.8),(int)(height*.7));
 
+
+
         currentModuleId = Globals.getModule_ID();
-//        SPMod spMod = new SPMod();
 
         Module currentModule = new Module(currentModuleId);
 
-//        Toast.makeText(this, "Module ID:" + currentModuleId, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Module ID:" + currentModuleId, Toast.LENGTH_LONG).show();
 
         //Ref to TextViews
         moduleFullTitle = findViewById(R.id.moduleTitle);
@@ -103,7 +105,7 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
         nzqaCredits.setOnClickListener(this);
 
         //Confirm what code is vs module id
-        moduleType.setOnClickListener(this);
+//        moduleType.setOnClickListener(this);
 
 
 
@@ -117,7 +119,7 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
             case R.id.titleCard : i = new Intent(this, modules_title_edit.class); startActivity(i); break;
             case R.id.prescriptionCard : i = new Intent(this, modules_desc_edit.class); startActivity(i); break;
             case R.id.levelCard : i = new Intent(this, modules_level_edit.class); startActivity(i); break;
-            case R.id.creditsCard : i = new Intent(this, modules_level_edit.class); startActivity(i); break;
+            case R.id.creditsCard : i = new Intent(this, modules_credits_edit.class); startActivity(i); break;
             default: break;
         }
 
