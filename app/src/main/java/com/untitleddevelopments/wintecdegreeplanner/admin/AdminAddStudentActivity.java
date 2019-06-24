@@ -202,6 +202,7 @@ public class AdminAddStudentActivity extends OptionMenuActivity implements View.
                 // checking the status of saving student in DB
                 if(status) {
                     Toast.makeText(this, "Student Saved Successfully", Toast.LENGTH_LONG).show();
+                    finish();
                 }
 
                 break;

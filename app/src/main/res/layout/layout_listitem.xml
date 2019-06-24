@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Comp602"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/SPTVModuleName"
@@ -40,7 +40,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="Web App Development"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
         </LinearLayout>
 
         <TextView
@@ -50,6 +50,6 @@
             android:layout_weight="5"
             android:gravity="center"
             android:text="Pre Requsite: COMP601,COMP602,COMP603"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 </LinearLayout>

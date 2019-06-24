@@ -50,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorDPMCTA"
+                android:fontFamily="@font/roboto"
                 android:gravity="center"
                 android:minHeight="70dp"
                 android:padding="5dp"
@@ -68,7 +69,7 @@
 
                 <ImageView
                     android:id="@+id/SPIVPersonICON"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -87,11 +88,11 @@
                     android:padding="5dp"
                     android:text="Geoff Genner, 1234567"
                     android:textAlignment="viewStart"
-                    android:textSize="30sp" />
+                    android:textSize="24sp" />
 
                 <ImageView
                     android:id="@+id/SPIVPencilIcon"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/colorDPMWhite"
@@ -100,7 +101,7 @@
 
                 <ImageView
                     android:id="@+id/SPBinIcon"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/colorDPMWhite"

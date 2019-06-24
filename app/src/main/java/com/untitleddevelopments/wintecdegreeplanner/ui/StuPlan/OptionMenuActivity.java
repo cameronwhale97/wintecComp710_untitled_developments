@@ -49,8 +49,12 @@ public class OptionMenuActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent menuIntent;
+        Log.d(TAG, "onOptionsItemSelected: [" + PrefsManager.getUserType() +"]");
 
-        if (PrefsManager.getUserType() == "admin") {
+        if (PrefsManager.getUserType().equals("admin")) {
+
+            Log.d(TAG, "onOptionsItemSelected: admin switch "+item.getItemId());
+
             switch (item.getItemId()) {
 
                 case R.id.miReturnToMain:
@@ -67,6 +71,7 @@ public class OptionMenuActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.miUpdateModules:
+                    Log.d(TAG, "onOptionsItemSelected: update");
                     startActivity(new Intent(this, modules_main.class));
                     return true;
 
@@ -78,7 +83,12 @@ public class OptionMenuActivity extends AppCompatActivity {
                     return super.onOptionsItemSelected(item);
             } //switch
         } else {
+
+            Log.d(TAG, "onOptionsItemSelected: stu switch "+item.getItemId());
+
             switch (item.getItemId()) {
+
+
 
                 case R.id.miAbout:
                     startActivity(new Intent(this, about_screen.class));
