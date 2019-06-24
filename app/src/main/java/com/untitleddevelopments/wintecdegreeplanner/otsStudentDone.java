@@ -27,8 +27,8 @@ public class otsStudentDone extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent StuPlanActivity = new Intent(otsStudentDone.this, StuPlanActivity.class);
-                startActivity(StuPlanActivity);
+                Intent stuViewMainMenu = new Intent(otsStudentDone.this, stuViewMainMenu.class);
+                startActivity(stuViewMainMenu);
             }
         });
 

@@ -14,6 +14,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
+import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,8 @@ public class otsStudentSignup extends AppCompatActivity {
         contentModule.put(DBHelper.STUDENT_FIRSTNAME,ots_stuFirstname);
         contentModule.put(DBHelper.STUDENT_SURNAME, ots_stuLastname);
         contentModule.put(DBHelper.STUDENT_STUDENTID, ots_stuID);
-        //contentModule.put(DBHelper.STUDENT_STREAM_ID, 0);
+        PrefsManager.setUserType("student");
+        //contentModule.put(DBHelper.STUDENT_STREAM_ID, 1);
         contentModule.put(DBHelper.STUDENT_STARTDATE, "");
         contentModule.put(DBHelper.STUDENT_PHOTOURI, "");
         contentModule.put(DBHelper.STUDENT_STATUS, 1);

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setUserType("admim");
 
         PrefsManager.setProgrammer("cameron");
-        PrefsManager.setUserType("admin");
+        //PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG," Got to geoff ");
                 Globals.setStream_ID(1);
                 Globals.setStudent_ID(1);
-                Student testStu = new Student(1);
+                Student testStu = new Student(0);
                 //if student 1 does not exist - then student 0 is returned
                 if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
                 startActivity(new Intent(this, StuPlanActivity.class));
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             case "cameron":
                 //do Camerons stuff
                 Log.d(TAG," Got to cameron ");
-                Intent cw_intent = new Intent(this, stuViewMainMenu.class);
+                Intent cw_intent = new Intent(this, otsDisclaimer.class);
                 startActivity(cw_intent);
                 break;
 
@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
                 //Cam strt his returning student view
                 displayToast("Calling student screen");
             default:
-                //Intent cw_intent = new Intent(this, otsDisclaimer.class);
-               //startActivity(cw_intent);
+                Intent cw_intent = new Intent(this, otsDisclaimer.class);
+                startActivity(cw_intent);
 
                 displayToast("First time setup");
         }

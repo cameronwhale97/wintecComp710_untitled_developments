@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
+import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
 public class otsAdminDone extends AppCompatActivity {
@@ -22,7 +24,8 @@ public class otsAdminDone extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent StuPlanActivity = new Intent(otsAdminDone.this, StuPlanActivity.class);
+                PrefsManager.setUserType("admin");
+                Intent StuPlanActivity = new Intent(otsAdminDone.this, AdminMainActivity.class);
                 startActivity(StuPlanActivity);
             }
         });
