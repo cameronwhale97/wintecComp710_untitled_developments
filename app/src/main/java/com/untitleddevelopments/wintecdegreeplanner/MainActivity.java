@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("geof");
+        PrefsManager.setProgrammer("cameron");
         PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             case "cameron":
                 //do Camerons stuff
                 Log.d(TAG," Got to cameron ");
-                Intent cw_intent = new Intent(this, otsDisclaimer.class);
+                Intent cw_intent = new Intent(this, stuViewMainMenu.class);
                 startActivity(cw_intent);
                 break;
 
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
         switch (userType) {
             case "admin":
-                startActivity(new Intent(this, AdminMainActivity.class));
-//                displayToast("Calling admin screen");
+                //startActivity(new Intent(this, AdminMainActivity.class));
+                displayToast("Calling admin screen");
 
             case "student":
                 //Cam strt his returning student view

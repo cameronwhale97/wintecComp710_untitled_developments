@@ -51,11 +51,20 @@
             android:name=".otsAdminPassword"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".otsAdminDone"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".otsStudentDone"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".stuViewMainMenu"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- ADMIN UI/ACTIVITIES STARTS -->
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+
+
+        <!-- ADMIN UI/ACTIVITIES STARTS -->
         <activity android:name=".admin.AdminMainActivity" />
         <activity android:name=".admin.AdminAddStudentActivity" /> <!-- ADMIN UI/ACTIVITIES ENDS -->
         <!-- Module Activities -->
