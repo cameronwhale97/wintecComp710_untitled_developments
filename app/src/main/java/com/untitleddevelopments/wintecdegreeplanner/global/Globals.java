@@ -15,7 +15,7 @@ public class Globals {
 
     private static Student student;
     private static Module module;
-    private static Stream stream;
+//    private static Stream stream;
     private static SPMod spMod;
 
 
@@ -61,12 +61,12 @@ public class Globals {
         return Globals.module;
     }
 
-    public static synchronized void setStream(Stream stream) {
-        Globals.stream = stream;
-    }
-    public static synchronized Stream getStream() {
-        return Globals.stream;
-    }
+//    public static synchronized void setStream(Stream stream) {
+//        Globals.stream = stream;
+//    }
+//    public static synchronized Stream getStream() {
+//        return Globals.stream;
+//    }
 
     public static synchronized void setSPMod(SPMod spMod) {
         Globals.spMod = spMod;
