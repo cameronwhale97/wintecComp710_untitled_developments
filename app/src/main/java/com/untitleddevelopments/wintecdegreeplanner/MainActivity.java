@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("geoff");
+        PrefsManager.setProgrammer("cameron");
         PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             case "cameron":
                 //do Camerons stuff
                 Log.d(TAG," Got to cameron ");
-                Intent cw_intent = new Intent(this, otsDisclaimer.class);
+                Intent cw_intent = new Intent(this, stuViewMainMenu.class);
                 startActivity(cw_intent);
                 break;
 

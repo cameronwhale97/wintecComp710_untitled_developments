@@ -17,4 +17,13 @@
     <string name="title_activity_spmodule_detail">SPModuleDetail</string>
 
 
+    <!--cw strings-->
+    <string name="db">Database Architecture</string>
+    <string name="mwd">Multimedia and Web Development</string>
+    <string name="ne">Network Engineering</string>
+    <string name="se">Software Engineering</string>
+
+
+
+
 </resources>
