@@ -111,7 +111,7 @@
         app:layout_constraintStart_toStartOf="@+id/imageView2">
 
         <ImageButton
-            android:id="@+id/editDescButton"
+            android:id="@+id/editTitleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

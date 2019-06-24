@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
+import com.untitleddevelopments.wintecdegreeplanner.edit_student;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 
@@ -31,9 +34,10 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
 
         //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
     private PageViewModel pageViewModel;
-    Stream currentStream;                       // used to determine the student is still using the same stream
     int currentStudent_ID;                      //used to keep track on what student we are dealing with
     Student currentStudent;                     //throughout the entire activity
+    int currentStream_ID;
+    Stream currentStream;                       // used to determine the student is still using the same stream
 //    String userType;                            //either "student" or "admin"
 
     @Override
@@ -42,7 +46,6 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
 
 //        userType = PrefsManager.getUserType();
         Log.d(TAG, "onCreate: user type: " + PrefsManager.getUserType());
-        currentStudent_ID = -1;          //initialise to a wierd number
         //PageView model holds all references to our data...
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
 
@@ -59,6 +62,13 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
             SPstudentDetailsPanel.setVisibility(View.GONE);
             Log.d(TAG, "onCreate: setting to invisible...");
         }
+        currentStudent_ID = Globals.getStudent_ID();
+        currentStudent =  new Student(currentStudent_ID);
+        currentStream_ID = currentStudent.getStream_ID();
+        Globals.setStream_ID(currentStream_ID);
+        currentStream = new Stream(currentStudent.getStream_ID());
+        Log.d(TAG, "onCreate: stuID:"+ currentStudent_ID + " stream:"+currentStream_ID);
+        pageViewModel.loadUpArrays();
 
         final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 //        viewPager = findViewById(R.id.view_pager);  This was the original code. GG setup CustomViewPager to stop
@@ -87,19 +97,17 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
     @Override
     protected void onResume() {
         super.onResume();
+//        currentStudent_ID = Globals.getStudent_ID();
         Log.d(TAG, "onResume: Globals get student id: " + Globals.getStudent_ID());
-        if(Globals.getStudent_ID() != currentStudent_ID){
-            //We have a new student so initialise everything!
+        if((Globals.getStudent_ID() != currentStudent_ID) || Globals.getStream_ID() != currentStream_ID){
+            //We have a new student or a new stream so initialise everything!
             currentStudent_ID = Globals.getStudent_ID();
-            if(currentStudent_ID == -1) {
-                Log.d(TAG, "onResume: MAJOR PROBLEM NO STUDENT ID IS ON GLOBALS*********************");
-                finish();
-            }
-            //setup our Globals with new details...
             currentStudent = new Student(currentStudent_ID);
-            currentStream = new Stream(currentStudent.getStream_ID());
-            Globals.setStream(currentStream);
+            currentStream_ID = currentStudent.getStream_ID();
+            currentStream = new Stream(currentStream_ID);
 
+            //setup our Globals with new details..
+            Globals.setStream_ID(currentStream_ID);
             pageViewModel.loadUpArrays();           //Freshly read from Database
         }
         SPTVStuNameAndStuID.setText(currentStudent.getFullName()+ ", " + currentStudent.getStudentID());
@@ -107,18 +115,18 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
     }
 
     public void onClickEditStudent(View view){
-        //ToDO Code this once Jonah has done his stuff
         displayMessage("onClickEditStudent clicked "+ Integer.toString(currentStudent.getStudent_ID()));
         Globals.setStudent(currentStudent);
-        //startActivity(new Intent(this, ToDo Navs's edit Activity.class));
+        startActivity(new Intent(this,  edit_student.class));
 
     } //onClickEditStudent
 
     public void onClickDeleteStudent(View view){
         //ToDO Geoff
         displayMessage("onClick Delete Student clicked " + Integer.toString(currentStudent.getStudent_ID()));
-        Globals.setStudent(currentStudent);
-        //startActivity(new Intent(this, ToDo
+        Globals.setStudent_ID(currentStudent_ID);
+        edit_student.deleteStudent(currentStudent_ID);
+        startActivity(new Intent(this,  AdminMainActivity.class));
     } //onClickDeleteStudent
 
     public void onbtnDelConfirmYes(){
