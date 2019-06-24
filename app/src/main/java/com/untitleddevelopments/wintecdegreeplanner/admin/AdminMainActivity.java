@@ -103,6 +103,12 @@ public class AdminMainActivity extends OptionMenuActivity
         }
 
 
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
         /**
          * when the activity starts load all the student from the database
          * and fill the info in students array list
@@ -110,8 +116,8 @@ public class AdminMainActivity extends OptionMenuActivity
         students = Student.getAllStudents();
 
         setupListAdapter();
-
     }
+
 
     private List<String> getStudentFullNames() {
         List<String> studentNames = new ArrayList<String>();
