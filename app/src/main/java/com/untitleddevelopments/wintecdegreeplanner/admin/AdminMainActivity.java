@@ -94,7 +94,7 @@ public class AdminMainActivity extends OptionMenuActivity
         // Therefore, ensureDatabaseExists returns true and DB is not created again.
         // Set up database if needed...
         //--------------------------------------------------------------------------
-
+/*
         if(!DBManager.getInstance().ensureDatabaseExists(this)) {
             Toast.makeText(this, "Warning: Database does not exist!!!",
                     Toast.LENGTH_LONG).show();
@@ -102,7 +102,7 @@ public class AdminMainActivity extends OptionMenuActivity
             Log.d(TAG, "-- DB exists -- ");
         }
 
-
+*/
         /**
          * when the activity starts load all the student from the database
          * and fill the info in students array list
