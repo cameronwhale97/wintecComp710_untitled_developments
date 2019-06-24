@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
+import com.untitleddevelopments.wintecdegreeplanner.modules.modules_main;
 
 public class OptionMenuActivity extends AppCompatActivity {
     private static final String TAG = "OptionMenuActivity";
@@ -58,6 +59,10 @@ public class OptionMenuActivity extends AppCompatActivity {
 
             case R.id.mStuEditMyDetails:
                 startActivity(new Intent(this, about_screen.class));
+                return true;
+
+            case R.id.miUpdateModules:
+                startActivity(new Intent(this, modules_main.class));
                 return true;
 
             default:

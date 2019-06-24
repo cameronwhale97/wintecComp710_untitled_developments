@@ -50,7 +50,7 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
         getWindow().setLayout((int)(width*.8),(int)(height*.7));
 
         currentModuleId = Globals.getModule_ID();
-        SPMod spMod = new SPMod();
+//        SPMod spMod = new SPMod();
 
         Module currentModule = new Module(currentModuleId);
 
@@ -109,8 +109,8 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
 
     }
 
-@Override
-   public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
         Intent i;
 
         switch(v.getId()) {
@@ -121,5 +121,5 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
             default: break;
         }
 
-   }
+    }
 }

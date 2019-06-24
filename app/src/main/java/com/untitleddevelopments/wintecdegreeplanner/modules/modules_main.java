@@ -27,8 +27,9 @@ import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.ModulePopup;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
-public class modules_main extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class modules_main extends OptionMenuActivity implements AdapterView.OnItemClickListener {
 
     private ListView lvModules;
     ArrayAdapter<String> adapter;
@@ -100,8 +101,6 @@ public class modules_main extends AppCompatActivity implements AdapterView.OnIte
         int moduleID = modules.get(position).getModule_ID();
 
 //        Toast.makeText(this, "Module ID:" + moduleID, Toast.LENGTH_LONG).show();
-
-        //Will this clash with anyones code?
 
         Globals.setModule_ID(moduleID);
 
