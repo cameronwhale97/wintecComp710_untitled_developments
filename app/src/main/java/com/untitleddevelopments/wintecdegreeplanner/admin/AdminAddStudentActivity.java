@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
+import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
@@ -125,6 +126,7 @@ public class AdminAddStudentActivity extends OptionMenuActivity implements View.
         return true;
     }
 
+
     private boolean isStudentFormComplete() {
 
 
@@ -143,6 +145,12 @@ public class AdminAddStudentActivity extends OptionMenuActivity implements View.
         // ensure the student id is filled
         if (etStudntID.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the student ID!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        // ensure the student id is unique
+        if ( Student.doesStudentIdExists(etStudntID.getText().toString()) ) {
+            Toast.makeText(this, "Error, this student ID is already used by other student!", Toast.LENGTH_LONG).show();
             return false;
         }
 
