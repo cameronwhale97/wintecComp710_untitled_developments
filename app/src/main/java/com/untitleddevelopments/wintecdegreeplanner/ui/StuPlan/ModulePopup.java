@@ -54,7 +54,7 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
 
         Module currentModule = new Module(currentModuleId);
 
-        Toast.makeText(this, "Module ID:" + currentModuleId, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Module ID:" + currentModuleId, Toast.LENGTH_LONG).show();
 
         //Ref to TextViews
         moduleFullTitle = findViewById(R.id.moduleTitle);

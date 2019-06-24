@@ -70,8 +70,6 @@ public class modules_title_edit extends OptionMenuActivity implements View.OnCli
             return false;
         }
 
-        Toast.makeText(this, "CurrentModule ID: " + currentModuleId, Toast.LENGTH_LONG).show();
-
         ContentValues contentModule = new ContentValues();
         contentModule.put(DBHelper.MODULE_CODE, codeText.getText().toString());
         contentModule.put(DBHelper.MODULE_NAME, titleText.getText().toString());
@@ -95,7 +93,6 @@ public class modules_title_edit extends OptionMenuActivity implements View.OnCli
 
                 boolean status = saveModuleInDatabase();
 
-                // checking the status of saving student in DB
                 if(status) {
                     Toast.makeText(this, "Module Saved Successfully", Toast.LENGTH_LONG).show();
                 }
