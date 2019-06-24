@@ -75,9 +75,17 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
         et_StudentID  = findViewById(R.id.edit_etStudentID);
         et_StartDate = findViewById(R.id.edit_etStartDate);
         spStreams   = findViewById(R.id.edit_etStreams);
+
+        //Gets a student object
         s = new Student(Globals.getStudent_ID());
 
+        //Auto populates the fields
+        et_FName.setText(s.getFirstname());
+        et_LName.setText(s.getSurname());
+        et_StudentID.setText(s.getStudentID());
+        et_StartDate.setText(s.getStartDate());
 
+        //Populates the spinner
         populateStreamsInDropdownList();
     }
 
@@ -119,6 +127,7 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
 
         // Set the spinners adapter to the previously created one.
         spStreams.setAdapter(adapter);
+        spStreams.setSelection(s.getStream_ID() - 1);
     }
 
     private List<String> getStreamNames() {
