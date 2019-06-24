@@ -7,8 +7,9 @@ import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
-public class modules_title_edit extends AppCompatActivity {
+public class modules_title_edit extends OptionMenuActivity {
 
     EditText codeText, titleText;
     int currentModuleId;

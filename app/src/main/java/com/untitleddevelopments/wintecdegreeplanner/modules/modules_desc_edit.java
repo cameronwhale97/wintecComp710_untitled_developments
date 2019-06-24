@@ -6,8 +6,9 @@ import android.widget.EditText;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
-public class modules_desc_edit extends AppCompatActivity {
+public class modules_desc_edit extends OptionMenuActivity {
 
     EditText descText;
     int currentModuleId;
