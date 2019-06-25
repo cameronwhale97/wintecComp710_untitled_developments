@@ -95,14 +95,34 @@ public class modules_main extends OptionMenuActivity implements AdapterView.OnIt
     }
 
 
+
+    private int getModuleIdByName(String moduleName) {
+        for(int i=0; i<modules.size(); i++) {
+            Module module = modules.get(i);
+
+            if(moduleName.equals(module.getFullTitle())){
+                return module.getModule_ID();
+            }
+        }
+
+        // this should never happen, if should never reach here!!!
+        return 0;
+    }
+
+
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        int moduleID = modules.get(position).getModule_ID();
+//        int moduleID = modules.get(position).getModule_ID();
 
-//        Toast.makeText(this, "Module ID:" + moduleID, Toast.LENGTH_LONG).show();
+        Module module = modules.get(position);
+
+        int moduleID = getModuleIdByName(adapter.getItem(position));
 
         Globals.setModule_ID(moduleID);
+
+        Toast.makeText(this, "Module ID:" + moduleID, Toast.LENGTH_LONG).show();
 
         startActivity(new Intent(this, ModulePopup.class));
 
