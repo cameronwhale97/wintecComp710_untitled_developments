@@ -75,6 +75,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorDPMWhite"
                     android:maxWidth="50dp"
+                    android:padding="6dp"
                     android:src="@drawable/baseline_account_circle_5" />
 
                 <TextView
@@ -97,6 +98,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorDPMWhite"
                     android:onClick="onClickEditStudent"
+                    android:padding="6dp"
                     android:src="@drawable/edit_pencil" />
 
                 <ImageView
@@ -106,6 +108,7 @@
                     android:layout_weight="1"
                     android:background="@color/colorDPMWhite"
                     android:onClick="onClickDeleteStudent"
+                    android:padding="6dp"
                     android:src="@drawable/trash_can" />
             </LinearLayout>
 

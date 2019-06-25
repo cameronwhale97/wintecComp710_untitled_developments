@@ -178,6 +178,10 @@ public class SPModRepo {
         DBManager.getInstance().replace(DBHelper.TBL_STUMOD, contentStuMod);
         Log.d(TAG, "updateDBStuMod: ");    } //updateDBStuMod
 
+
+    /// ***********************maria **************************************
+    //ArrayList<PreReq> preReqs = getPreReqs(spMod.getModule_ID());
+
     public static ArrayList<PreReq> getPreReqs(int module_id) {
         ArrayList<PreReq> preReqs = new ArrayList<PreReq>();
         String query = "SELECT * FROM " + DBHelper.TBL_PREREQ +

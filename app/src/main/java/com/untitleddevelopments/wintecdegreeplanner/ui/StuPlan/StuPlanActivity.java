@@ -1,16 +1,23 @@
 package com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
+import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
+import com.untitleddevelopments.wintecdegreeplanner.DelStudentDialog;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
 import com.untitleddevelopments.wintecdegreeplanner.edit_student;
@@ -18,6 +25,8 @@ import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 
 import java.lang.reflect.Field;
+
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * This activity to control the student plan for both students and admin. It contains a tabbed activity
@@ -124,10 +133,41 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
     public void onClickDeleteStudent(View view){
         //ToDO Geoff
         displayMessage("onClick Delete Student clicked " + Integer.toString(currentStudent.getStudent_ID()));
-        Globals.setStudent_ID(currentStudent_ID);
-        edit_student.deleteStudent(currentStudent_ID);
-        startActivity(new Intent(this,  AdminMainActivity.class));
+//        getSupportFragmentManager().beginTransaction().show(new DelStudentDialog()).commit();
+
+        new AlertDialog.Builder(this)
+                .setTitle("Title")
+                .setMessage("Do you really want to whatever?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Toast.makeText(StuPlanActivity.this, "whichButton = " + whichButton, Toast.LENGTH_SHORT).show();
+                    }})
+                .setNegativeButton("No", null).show();
+
+//        Log.d(TAG, "onClickDeleteStudent: ");
+//        deleteStudent(currentStudent_ID);
+        //startActivity(new Intent(this,  AdminMainActivity.class));
     } //onClickDeleteStudent
+
+    public static void deleteStudent(int sID) {
+
+
+        ContentValues contentStudent = new ContentValues();
+        contentStudent.put(DBHelper.STUDENT_STATUS, 0);
+        boolean updatedOK = false;
+        DBManager.getInstance().openDatabase();
+        updatedOK = DBManager.getInstance().update(
+                DBHelper.TBL_STUDENT,                          //pass in table name
+                contentStudent,                                //pass in content values this can be one or many columns of a row.
+                DBHelper.STUDENT_ID + "=" + sID,       //pass in where
+                null);                         //pass in a String array
+
+        String myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
+
+        Log.e(TAG,  myMsg);
+    }
 
     public void onbtnDelConfirmYes(){
         displayMessage("Yes Clicked");
