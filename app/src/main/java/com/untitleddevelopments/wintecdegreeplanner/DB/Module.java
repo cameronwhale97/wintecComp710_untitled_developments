@@ -202,6 +202,9 @@ public class Module {
     } //getModCodeFrmDB
 
 
+    public boolean moduleNameMatches(String moduleName) {
+        return moduleName.equals(code + " | " + name);
+    }
 
 
 }
