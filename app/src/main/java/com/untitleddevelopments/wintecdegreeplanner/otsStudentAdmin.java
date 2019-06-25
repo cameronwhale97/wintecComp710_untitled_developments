@@ -28,7 +28,7 @@ public class otsStudentAdmin extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Globals.setStudent_ID(1);
+                  Globals.setStudent_ID(1);
                 Intent stusignup = new Intent(otsStudentAdmin.this, otsStudentSignup.class);
                 startActivity(stusignup);
             }
