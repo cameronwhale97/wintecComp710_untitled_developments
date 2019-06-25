@@ -76,19 +76,18 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
         modulePrescriptionContent.setText(currentModule.getDescription());
         moduleLevelContent.setText("Level " + String.valueOf(currentModule.getNZQALevel()));
         moduleCreditsContent.setText(String.valueOf(currentModule.getNZQACredits()));
-        moduleCoreqContent.setText(currentModule.getCoReq());
+//        moduleCoreqContent.setText(currentModule.getCoReq());
 
         //Temporary
         moduleTypeContent.setText("Core");
 
 //        modulePrereqContent.setText(currentModule.toStringPreReqs());
 
-        //Not working
-//        if((currentModule.getCoReq()).isEmpty()){
-//            moduleCoreqContent.setText("None");
-//        }else {
-//            moduleCoreqContent.setText(currentModule.getCoReq());
-//        }
+        if((currentModule.getCoReq())== null){
+            moduleCoreqContent.setText("None");
+        }else {
+            moduleCoreqContent.setText(currentModule.getCoReq());
+        }
 
         //View references for cardview
         moduleTitle = (CardView) findViewById(R.id.titleCard);

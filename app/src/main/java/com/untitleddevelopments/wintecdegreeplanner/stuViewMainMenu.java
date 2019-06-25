@@ -35,20 +35,16 @@ public class stuViewMainMenu extends OptionMenuActivity {
      }
 
     public void onClickDBA(View view){
-        Toast.makeText(this, "got here!", Toast.LENGTH_LONG).show();
         writeToDB(4);
     }
 
     public void onClickMWD(View view){
-        Toast.makeText(this, "got here!", Toast.LENGTH_LONG).show();
         writeToDB(1);
     }
     public void onClickNE(View view){
-        Toast.makeText(this, "got here!", Toast.LENGTH_LONG).show();
         writeToDB(2);
     }
     public void onClickSE(View view){
-        Toast.makeText(this, "got here!", Toast.LENGTH_LONG).show();
         writeToDB(3);
     }
 

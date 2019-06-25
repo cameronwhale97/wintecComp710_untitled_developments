@@ -122,7 +122,7 @@ public class modules_main extends OptionMenuActivity implements AdapterView.OnIt
 
         Globals.setModule_ID(moduleID);
 
-        Toast.makeText(this, "Module ID:" + moduleID, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Module ID:" + moduleID, Toast.LENGTH_LONG).show();
 
         startActivity(new Intent(this, ModulePopup.class));
 
