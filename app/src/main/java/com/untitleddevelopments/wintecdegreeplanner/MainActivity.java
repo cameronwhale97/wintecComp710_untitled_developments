@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG," Got to geoff ");
                 Globals.setStream_ID(1);
                 Globals.setStudent_ID(1);
-                //Student testStu = new Student(0);
-                //if student 1 does not exist - then student 0 is returned
-                //if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
+                Student testStu = new Student(1);
+//                if student 1 does not exist - then student 0 is returned
+                if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
                 startActivity(new Intent(this, StuPlanActivity.class));
 //                startActivity(new Intent(this, SPModuleDetail.class));
 //                startActivity(new Intent(this, DBTestActivity.class));

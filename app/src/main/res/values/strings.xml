@@ -23,7 +23,9 @@
     <string name="ne">Network Engineering</string>
     <string name="se">Software Engineering</string>
 
-
+    <!-- GG Yes and No  -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 
 </resources>

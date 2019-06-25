@@ -72,6 +72,7 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
             Log.d(TAG, "onCreate: setting to invisible...");
         }
         currentStudent_ID = Globals.getStudent_ID();
+        Log.d(TAG, "onCreate: stuID:"+ currentStudent_ID );
         currentStudent =  new Student(currentStudent_ID);
         currentStream_ID = currentStudent.getStream_ID();
         Globals.setStream_ID(currentStream_ID);
@@ -139,12 +140,29 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
                 .setTitle("Title")
                 .setMessage("Do you really want to whatever?")
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        Toast.makeText(StuPlanActivity.this, "whichButton = " + whichButton, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(StuPlanActivity.this, "Yaay", Toast.LENGTH_SHORT).show();
                     }})
-                .setNegativeButton("No", null).show();
+                .setNegativeButton(android.R.string.no, null).show();
+
+
+
+//        new AlertDialog.Builder(this)
+//                .setTitle("Delete Student")
+//                .setMessage("Do you really want to delete?")
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+//                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+//
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        Toast.makeText(StuPlanActivity.this, "whichButton = " + whichButton, Toast.LENGTH_SHORT).show();
+//                        deleteStudent(currentStudent_ID);
+//                    }})
+//                .setNegativeButton(R.string.no, null).show();
+
+
+
 
 //        Log.d(TAG, "onClickDeleteStudent: ");
 //        deleteStudent(currentStudent_ID);
