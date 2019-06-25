@@ -114,6 +114,7 @@ public class Student {
                 students.add(student);
                 cursor.moveToNext();
             }
+            cursor.close();
         }
 
         return students;

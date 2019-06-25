@@ -210,7 +210,7 @@ public class AdminMainActivity extends OptionMenuActivity
 
         //Toast.makeText(this, "Student ID:" + student_ID, Toast.LENGTH_LONG).show();
 
-        // setting student ID in globals
+        // setting student ID in globalsstu
         Globals.setStudent_ID(student_ID);
 
         // showing Student Plan Activity

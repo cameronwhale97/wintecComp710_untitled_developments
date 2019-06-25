@@ -124,6 +124,8 @@ public class SPModRepo {
                 loadAppropriateModList(spMod);
                 cursorModule.moveToNext();
             }
+            cursorModule.close();
+
         }
         Log.d(TAG, "loadUpYrData finished:****************************************************************** ");
     } //loadUpYrData
@@ -202,6 +204,7 @@ public class SPModRepo {
                 cursorPreReq.moveToNext();
             }
 //            Log.d(TAG, "getPreReqs: first prereq." + preReqs.get(0).getCode());
+            cursorPreReq.close();
         }
         return preReqs;
     } //getPreReqs
@@ -243,6 +246,7 @@ public class SPModRepo {
                 cursorPreReq.moveToNext();
             }
             Log.d(TAG, "completedParentModules compmods size: " + compPMods.size());
+            cursorPreReq.close();
         }
         return compPMods;
     }

@@ -75,16 +75,10 @@ public class SPRecycViewAdapt extends RecyclerView.Adapter<SPRecycViewAdapt.View
         String geoff = isYTC ? "YTC" : "Complete";
         SPMod spMod =  mSPMods.get(pos);
         Globals.setSPMod(spMod);
-        Log.d(TAG, "onClick: ");
+//        Log.d(TAG, "onClick: ");
 
         parentAcitivty.startActivity(new Intent(parentAcitivty, SPModuleDetail.class));
-
-//        FragmentTransaction ft = parentAcitivty.getSupportFragmentManager().beginTransaction();
-//        ft.replace(R.id.fragment_placeholder, new SPModuleDetailFragment());
-//        ft.commit();
-
-        Toast.makeText(parentAcitivty, "test - pos: " +   geoff + " " + pos + mSPMods.get(pos).getCode(), Toast.LENGTH_LONG).show();
-    }
+   }
 
     @Override
     public int getItemCount() {
