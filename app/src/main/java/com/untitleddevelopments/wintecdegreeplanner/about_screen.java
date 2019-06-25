@@ -10,8 +10,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
-public class about_screen extends AppCompatActivity {
+public class about_screen extends OptionMenuActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
