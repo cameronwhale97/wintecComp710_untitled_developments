@@ -64,7 +64,6 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:layout_editor_absoluteX="0dp">
@@ -89,8 +88,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="NZQA Level"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -112,7 +111,6 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:layout_editor_absoluteX="0dp">
@@ -137,8 +135,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="NZQA Credits"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -160,7 +158,6 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         tools:layout_editor_absoluteX="0dp">
@@ -184,8 +181,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="Pre-requisite"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -207,7 +204,6 @@
         android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
         tools:layout_editor_absoluteX="0dp">
@@ -231,8 +227,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="Co-requisite"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -254,7 +250,6 @@
         android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
         tools:layout_editor_absoluteX="0dp">
@@ -279,8 +274,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="Type of module"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -331,8 +326,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:text="Paper Title"
                     android:textColor="#FFF"
                     android:textSize="24sp"
