@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("geoff");
-        PrefsManager.setUserType("admin");
+        PrefsManager.setProgrammer("ge");
+        PrefsManager.setUserType("sadmin");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -94,16 +94,19 @@ public class MainActivity extends AppCompatActivity {
         switch (userType) {
             case "admin":
                 startActivity(new Intent(this, AdminMainActivity.class));
-                displayToast("Calling admin screen");
+//                displayToast("Calling admin screen");
+                break;
 
             case "student":
                 //Cam strt his returning student view
-                displayToast("Calling student screen");
+//                displayToast("Calling student screen");
+                break;
             default:
                 Intent cw_intent = new Intent(this, otsDisclaimer.class);
 //                startActivity(cw_intent);
 
                 displayToast("First time setup");
+                break;
         }
         //setContentView(R.layout.activity_main);  THIS IS NOT NEEDED
         finish();   //we never go back to the splash so this removes this activity from memory.

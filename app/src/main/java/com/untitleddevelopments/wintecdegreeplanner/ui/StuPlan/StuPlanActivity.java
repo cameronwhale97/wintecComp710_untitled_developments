@@ -43,17 +43,17 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
 
         //ViewPager viewPager;          //Now that wse are using customViewPager this is not needed
     private PageViewModel pageViewModel;
+
+    //Other objects and integers used throughout the Activity...
     int currentStudent_ID;                      //used to keep track on what student we are dealing with
     Student currentStudent;                     //throughout the entire activity
     int currentStream_ID;
     Stream currentStream;                       // used to determine the student is still using the same stream
-//    String userType;                            //either "student" or "admin"
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);                 //**TOOLBAR
 
-//        userType = PrefsManager.getUserType();
         Log.d(TAG, "onCreate: user type: " + PrefsManager.getUserType());
         //PageView model holds all references to our data...
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
@@ -107,7 +107,6 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
     @Override
     protected void onResume() {
         super.onResume();
-//        currentStudent_ID = Globals.getStudent_ID();
         Log.d(TAG, "onResume: Globals get student id: " + Globals.getStudent_ID());
         if((Globals.getStudent_ID() != currentStudent_ID) || Globals.getStream_ID() != currentStream_ID){
             //We have a new student or a new stream so initialise everything!
@@ -118,60 +117,37 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
 
             //setup our Globals with new details..
             Globals.setStream_ID(currentStream_ID);
-            pageViewModel.loadUpArrays();           //Freshly read from Database
+            pageViewModel.loadUpArrays();           //Freshly read from Database as either stream or student has changed
         }
+        //assign the name and stream ...
         SPTVStuNameAndStuID.setText(currentStudent.getFullName()+ ", " + currentStudent.getStudentID());
         SPTVStreamName.setText(currentStream.getName());
     }
 
     public void onClickEditStudent(View view){
-        displayMessage("onClickEditStudent clicked "+ Integer.toString(currentStudent.getStudent_ID()));
         Globals.setStudent(currentStudent);
         startActivity(new Intent(this,  edit_student.class));
-
     } //onClickEditStudent
 
     public void onClickDeleteStudent(View view){
-        //ToDO Geoff
-        displayMessage("onClick Delete Student clicked " + Integer.toString(currentStudent.getStudent_ID()));
-//        getSupportFragmentManager().beginTransaction().show(new DelStudentDialog()).commit();
 
-        new AlertDialog.Builder(this)
-                .setTitle("Title")
-                .setMessage("Do you really want to whatever?")
+        new AlertDialog.Builder(this, R.style.AlertDialog)
+                .setTitle("Delete Student")
+                .setMessage("Do you really want to delete?")
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        Toast.makeText(StuPlanActivity.this, "Yaay", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(StuPlanActivity.this, currentStudent.getFullName() +" has been Deleted", Toast.LENGTH_LONG).show();
+                        deleteStudent(currentStudent_ID);
+                        startActivity(new Intent(StuPlanActivity.this,  AdminMainActivity.class));
                     }})
                 .setNegativeButton(android.R.string.no, null).show();
-
-
-
-//        new AlertDialog.Builder(this)
-//                .setTitle("Delete Student")
-//                .setMessage("Do you really want to delete?")
-//                .setIcon(android.R.drawable.ic_dialog_alert)
-//                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-//
-//                    public void onClick(DialogInterface dialog, int whichButton) {
-//                        Toast.makeText(StuPlanActivity.this, "whichButton = " + whichButton, Toast.LENGTH_SHORT).show();
-//                        deleteStudent(currentStudent_ID);
-//                    }})
-//                .setNegativeButton(R.string.no, null).show();
-
-
-
-
-//        Log.d(TAG, "onClickDeleteStudent: ");
-//        deleteStudent(currentStudent_ID);
-        //startActivity(new Intent(this,  AdminMainActivity.class));
     } //onClickDeleteStudent
 
     public static void deleteStudent(int sID) {
-
-
+        //This method deletes a student from the DB - when given an ID
+        // NOTE: Delete just changes the student status to the number zero.
         ContentValues contentStudent = new ContentValues();
         contentStudent.put(DBHelper.STUDENT_STATUS, 0);
         boolean updatedOK = false;
@@ -185,19 +161,10 @@ public class StuPlanActivity extends OptionMenuActivity {       //**TOOLBAR need
         String myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
 
         Log.e(TAG,  myMsg);
-    }
+    } //deleteStudent
 
-    public void onbtnDelConfirmYes(){
-        displayMessage("Yes Clicked");
-    }
-
-    public void onbtnDelConfirmNo(){
-        displayMessage("No Clicked");
-    }
-
-
-    private void displayMessage(String msg) {
-        Log.i(TAG, msg);
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-    }
+//    private void displayMessage(String msg) {
+//        Log.i(TAG, msg);
+//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+//    }
 }
