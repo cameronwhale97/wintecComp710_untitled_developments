@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("ge");
+        PrefsManager.setProgrammer("geoff");
         PrefsManager.setUserType("admin");
 
         userType = PrefsManager.getUserType();
@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 Student testStu = new Student(1);
 //                if student 1 does not exist - then student 0 is returned
                 if(testStu.getStudent_ID() == 0 ) FakeDB2.InsertStudents();
-                startActivity(new Intent(this, StuPlanActivity.class));
+//                startActivity(new Intent(this, StuPlanActivity.class));
+                startActivity(new Intent(this, stuViewMainMenu.class));
+
 //                startActivity(new Intent(this, SPModuleDetail.class));
 //                startActivity(new Intent(this, DBTestActivity.class));
                 break;
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (userType) {
             case "admin":
-                startActivity(new Intent(this, AdminMainActivity.class));
+//                startActivity(new Intent(this, AdminMainActivity.class));
 //                displayToast("Calling admin screen");
                 break;
 

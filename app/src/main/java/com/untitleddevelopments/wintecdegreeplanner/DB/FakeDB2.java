@@ -11,15 +11,15 @@ public class FakeDB2 {
     public static void InsertStudents() {
         Log.d(TAG, "InsertStudents: Creating bogus students");
         ArrayList<Student> students = new ArrayList<>();
-        students.add(new Student("Peter","Jackson","1654123",1,"12/06/2019","",1));
-        students.add(new Student("Mike","Smith","2654123",2,"12/06/2018","",1));
-        students.add(new Student("Geoff","Genner","3654123",3,"01/02/2019","",1));
-        students.add(new Student("Navi","Singh","4654123",4,"12/04/2019","",1));
-        students.add(new Student("Maria","del Mundo","5654123",4,"12/05/2019","",1));
-        students.add(new Student("Jonah","Dearden","6654123",3,"12/06/2019","",1));
-        students.add(new Student("Cameron","Whale","7654123",2,"12/07/2019","",1));
-        students.add(new Student("Jacinda","Adern","8654123",1,"12/08/2019","",0));
-        students.add(new Student("Winstone","Peters","9654123",1,"12/09/2019","",0));
+        students.add(new Student("Peter1","Jackson","1654123",1,"12/06/2019","",1));
+        students.add(new Student("Mike2","Smith","2654123",2,"12/06/2018","",1));
+        students.add(new Student("Geoff3","Genner","3654123",3,"01/02/2019","",1));
+        students.add(new Student("Navi4","Singh","4654123",4,"12/04/2019","",1));
+        students.add(new Student("Maria5","del Mundo","5654123",4,"12/05/2019","",1));
+        students.add(new Student("Jonah6","Dearden","6654123",3,"12/06/2019","",1));
+        students.add(new Student("Cameron7","Whale","7654123",2,"12/07/2019","",1));
+        students.add(new Student("Jacinda8","Adern","8654123",1,"12/08/2019","",0));
+        students.add(new Student("Winstone9","Peters","9654123",1,"12/09/2019","",0));
         for(int i = 0; i < students.size(); i++){
             boolean inserted;
             ContentValues contentStudent = new ContentValues();
