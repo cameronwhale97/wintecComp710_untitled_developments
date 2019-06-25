@@ -11,32 +11,32 @@
     <TextView
         android:id="@+id/SPTVModsToComplet"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@color/colorDPMWhite"
         android:paddingLeft="20dp"
         android:text="Modules to Complete"
         android:textAlignment="textStart"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sp_recyclerv_yet_to_comp"
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="230dp" />
 
     <TextView
         android:id="@+id/SPTVModsCompleted"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@color/colorDPMWhite"
         android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:text="Completed Modules"
         android:textAlignment="textStart"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sp_recyclerv_comp"
         android:layout_width="match_parent"
-        android:layout_height="250dp" />
+        android:layout_height="230dp" />
 </LinearLayout>
