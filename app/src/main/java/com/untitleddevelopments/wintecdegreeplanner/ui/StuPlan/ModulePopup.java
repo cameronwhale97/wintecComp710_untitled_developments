@@ -48,7 +48,7 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.7));
+        getWindow().setLayout((int)(width*.8),(int)(height*.9));
 
 
 
@@ -56,7 +56,7 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
 
         Module currentModule = new Module(currentModuleId);
 
-        Toast.makeText(this, "Module ID:" + currentModuleId, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Module ID:" + currentModuleId, Toast.LENGTH_LONG).show();
 
         //Ref to TextViews
         moduleFullTitle = findViewById(R.id.moduleTitle);
@@ -81,7 +81,7 @@ public class ModulePopup extends AppCompatActivity implements OnClickListener {
         //Temporary
         moduleTypeContent.setText("Core");
 
-//        modulePrereqContent.setText(spMod.toStringPreReqs());
+//        modulePrereqContent.setText(currentModule.toStringPreReqs());
 
         //Not working
 //        if((currentModule.getCoReq()).isEmpty()){

@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import static android.support.constraint.Constraints.TAG;
 
 public class Student {
+
+    private static String TAG = "Student";
+
     private int student_ID;
     private String firstname;
     private String surname;
@@ -97,15 +100,13 @@ public class Student {
 
             while (!cursor.isAfterLast()) {
 
-                int student_ID       = cursor.getInt(cursor.getColumnIndex(DBHelper.STUDENT_ID));
+                int student_ID         = cursor.getInt(cursor.getColumnIndex(DBHelper.STUDENT_ID));
 
                 String firstName       = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_FIRSTNAME));
                 String lastName        = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_SURNAME));
                 String studentID       = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_STUDENTID));
                 int studentStreamID    = cursor.getInt(cursor.getColumnIndex(DBHelper.STUDENT_STREAM_ID));
                 String startDate       = cursor.getString(cursor.getColumnIndex(DBHelper.STUDENT_STARTDATE));
-
-
 
                 String msg = String.format("-- Student: firstName=%s", firstName);
 
@@ -130,6 +131,13 @@ public class Student {
         DBManager.getInstance().openDatabase();
         Cursor cursor = DBManager.getInstance().getDetails(query);
         return (cursor != null && cursor.getCount() > 0);
+    }
+
+    // quick debug function to log student name and id
+    public void showInfo() {
+
+        Log.d(TAG, "--> " + getFullName() + " - " + getStudent_ID());
+
     }
 
 

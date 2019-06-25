@@ -17,6 +17,7 @@ import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Module;
 
 import com.untitleddevelopments.wintecdegreeplanner.R;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.ModulePopup;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
 import static android.support.constraint.Constraints.TAG;
@@ -99,7 +100,6 @@ public class modules_title_edit extends OptionMenuActivity implements View.OnCli
 
                 Intent i = new Intent(this, modules_main.class);
                 startActivity(i);
-
     }
 
 }
