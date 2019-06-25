@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,8 +52,7 @@ public class stuViewMainMenu extends OptionMenuActivity {
         writeToDB(3);
     }
 
-
-        private void writeToDB(int stream_ID){
+    private void writeToDB(int stream_ID){
         Log.d(TAG, "writeToDB: ");
         ContentValues contentStudent = new ContentValues();
         contentStudent.put(DBHelper.STUDENT_STREAM_ID, stream_ID);
@@ -65,6 +65,7 @@ public class stuViewMainMenu extends OptionMenuActivity {
                 new String[] {Integer.toString(student_ID)});                         //pass in a String array - in this case my array is just 1 item
         String myMsg = updatedOK ? " Update Success!" : " Not Deleted - bugger";
         Log.d(TAG, "Update student with chosen moduel:.." + myMsg);
+        startActivity(new Intent(this, StuPlanActivity.class));
     }
 }
     /*
