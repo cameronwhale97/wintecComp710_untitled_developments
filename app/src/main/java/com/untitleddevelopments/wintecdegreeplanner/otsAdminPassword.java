@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 
 public class otsAdminPassword extends AppCompatActivity {
@@ -30,7 +31,8 @@ public class otsAdminPassword extends AppCompatActivity {
                 admin_password.getEditableText().toString();
 
                 if (ad_password.equals("WinITDPM01")){
-                    PrefsManager.setUserType("admin");
+                    //PrefsManager.setUserType("admin");
+                    //Globals.setStudent_ID(0);
                     Intent adminlogindone = new Intent(otsAdminPassword.this, otsAdminDone.class);
                     startActivity(adminlogindone);
                 }else{
