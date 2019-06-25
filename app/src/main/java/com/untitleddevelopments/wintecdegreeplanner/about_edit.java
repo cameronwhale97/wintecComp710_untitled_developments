@@ -1,5 +1,6 @@
 package com.untitleddevelopments.wintecdegreeplanner;
 
+import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
-public class about_edit extends AppCompatActivity {
+public class about_edit extends OptionMenuActivity {
 
     EditText appVer;
 
@@ -35,6 +37,7 @@ public class about_edit extends AppCompatActivity {
 
         Intent i = new Intent(this, about_screen.class);
         startActivity(i);
+        finish();
 
     }
 

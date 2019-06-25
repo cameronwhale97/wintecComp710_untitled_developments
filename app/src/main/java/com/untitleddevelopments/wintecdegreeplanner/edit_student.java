@@ -1,5 +1,6 @@
 package com.untitleddevelopments.wintecdegreeplanner;
 
+import android.app.VoiceInteractor;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,6 +23,7 @@ import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
 import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
+import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +34,12 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * This activity adds a new student in the database.
  */
-public class edit_student extends AppCompatActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener{
+public class edit_student extends OptionMenuActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener{
 
     /**
      * Button to sve student in DB
      */
     private ImageButton btnAdd;
-
-    /**
-     * Button to show top menu
-     */
-    private ImageButton btnMenu;
 
     /**
      * form fields
@@ -63,11 +60,9 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_edit_student);
 
         btnAdd = findViewById(R.id.edit_btnAdd);
-        btnMenu = findViewById(R.id.edit_btnMenu);
 
         // setting event handlers for buttons
         btnAdd.setOnClickListener(this);
-        btnMenu.setOnClickListener(this);
 
         // setting up student form UI references from XML
         et_FName     = findViewById(R.id.edit_etFName);
@@ -275,9 +270,6 @@ public class edit_student extends AppCompatActivity implements View.OnClickListe
                 break;
 
             // show top menu
-            case R.id.edit_btnMenu:
-                //showTopMenu(view);
-                break;
         }
     }
 
