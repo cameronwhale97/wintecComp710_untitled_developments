@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
+import com.untitleddevelopments.wintecdegreeplanner.global.Globals;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.StuPlanActivity;
 
@@ -27,7 +28,8 @@ public class otsStudentDone extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent stuViewMainMenu = new Intent(otsStudentDone.this, stuViewMainMenu.class);
+                PrefsManager.setUserType("student");
+                 Intent stuViewMainMenu = new Intent(otsStudentDone.this, stuViewMainMenu.class);
                 startActivity(stuViewMainMenu);
             }
         });

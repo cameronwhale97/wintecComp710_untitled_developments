@@ -34,7 +34,10 @@ public class otsStudentSignup extends AppCompatActivity {
         final EditText otsLast = (EditText)findViewById(R.id.editText3);
         final EditText otsID = (EditText)findViewById(R.id.editText);
 
-        final String TAG = "otsStudentPush";
+        final String TAG = "otsDone";
+        Log.e(TAG,""+Globals.getStudent_ID());
+
+
         ImageView otsStudent = findViewById(R.id.imageView6);
         otsStudent.setOnClickListener(new View.OnClickListener() {
 
@@ -48,6 +51,11 @@ public class otsStudentSignup extends AppCompatActivity {
                 otsStuPush();
                 Intent stusignupDone = new Intent(otsStudentSignup.this, otsStudentDone.class);
                 startActivity(stusignupDone);
+
+                    final int x = 1;
+                        Globals.setStudent_ID(x);
+                        final String TAG = "otsDone";
+                        Log.e(TAG,""+Globals.getStudent_ID());
                // finish();
 
             }
@@ -60,7 +68,7 @@ public class otsStudentSignup extends AppCompatActivity {
         contentModule.put(DBHelper.STUDENT_FIRSTNAME,ots_stuFirstname);
         contentModule.put(DBHelper.STUDENT_SURNAME, ots_stuLastname);
         contentModule.put(DBHelper.STUDENT_STUDENTID, ots_stuID);
-        PrefsManager.setUserType("student");
+        //PrefsManager.setUserType("student");
         //contentModule.put(DBHelper.STUDENT_STREAM_ID, 1);
         contentModule.put(DBHelper.STUDENT_STARTDATE, "");
         contentModule.put(DBHelper.STUDENT_PHOTOURI, "");

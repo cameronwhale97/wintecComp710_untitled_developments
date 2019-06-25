@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class stuViewMainMenu extends OptionMenuActivity {
     private static final String TAG = "MainActivity";
     Student student;
-    Integer student_ID;
+    Integer student_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,11 @@ public class stuViewMainMenu extends OptionMenuActivity {
         setContentView(R.layout.activity_stuview_mainmenu);
         student_ID = Globals.getStudent_ID();
         student = new Student(student_ID);
-     }
+
+        Toast.makeText(this, "Debug! "+Globals.getStudent_ID(), Toast.LENGTH_LONG).show();
+
+
+    }
 
     public void onClickDBA(View view){
         writeToDB(4);
