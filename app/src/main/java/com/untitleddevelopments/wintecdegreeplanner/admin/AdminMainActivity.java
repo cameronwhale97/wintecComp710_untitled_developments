@@ -138,8 +138,6 @@ public class AdminMainActivity extends OptionMenuActivity
                 R.layout.student_cell,
                 R.id.studentName, getStudentFullNames());
 
-
-
         // sort the names in alphabetic order before showing in list
         adapter.sort(new Comparator<String>() {
             @Override
@@ -198,6 +196,23 @@ public class AdminMainActivity extends OptionMenuActivity
         }
     }
 
+    /**
+     * After sorting of students names, we need to manually iterate the student list
+     * and compare fullnames to get the student id.
+     */
+    private int getStudentIdByFullName(String fullName) {
+        for(int i=0; i<students.size(); i++) {
+            Student student = students.get(i);
+
+            if(fullName.equals(student.getFullName())) {
+                return student.getStudent_ID();
+            }
+        }
+
+        // this should never happen, if should never reach here!!!
+        return 0;
+    }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent,
@@ -206,7 +221,12 @@ public class AdminMainActivity extends OptionMenuActivity
                             long id) {
 
         // getting student ID from pre-loaded student list from database
-        int student_ID = students.get(position).getStudent_ID();
+        Student student = students.get(position);
+        student.showInfo();
+
+
+        //int student_ID = student.getStudent_ID();
+        int student_ID = getStudentIdByFullName(adapter.getItem(position));
 
         //Toast.makeText(this, "Student ID:" + student_ID, Toast.LENGTH_LONG).show();
 
