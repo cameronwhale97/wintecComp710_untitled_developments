@@ -35,6 +35,7 @@ public class about_edit extends AppCompatActivity {
 
         Intent i = new Intent(this, about_screen.class);
         startActivity(i);
+        finish();
 
     }
 
