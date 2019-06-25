@@ -68,7 +68,9 @@ public class otsStudentSignup extends AppCompatActivity {
         contentModule.put(DBHelper.STUDENT_FIRSTNAME,ots_stuFirstname);
         contentModule.put(DBHelper.STUDENT_SURNAME, ots_stuLastname);
         contentModule.put(DBHelper.STUDENT_STUDENTID, ots_stuID);
-        //PrefsManager.setUserType("student");
+      contentModule.put(DBHelper.STUDENT_STREAM_ID, 9);
+
+      //PrefsManager.setUserType("student");
         //contentModule.put(DBHelper.STUDENT_STREAM_ID, 1);
         contentModule.put(DBHelper.STUDENT_STARTDATE, "");
         contentModule.put(DBHelper.STUDENT_PHOTOURI, "");

@@ -30,12 +30,10 @@ public class stuViewMainMenu extends OptionMenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stuview_mainmenu);
-        student_ID = Globals.getStudent_ID();
+        student_ID = 1;
         student = new Student(student_ID);
-
-        Toast.makeText(this, "Debug! "+Globals.getStudent_ID(), Toast.LENGTH_LONG).show();
-
-
+//        Toast.makeText(this, "Debug! "+Globals.getStudent_ID(), Toast.LENGTH_LONG).show();
+        Log.d(TAG, "onCreate: got here");
     }
 
     public void onClickDBA(View view){
