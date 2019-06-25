@@ -120,6 +120,18 @@ public class Student {
 
     }
 
+    // here sid is the wintec id
+    public static boolean doesStudentIdExists(String wintecID) {
+
+        String query = "SELECT * FROM " + DBHelper.TBL_STUDENT +
+                " WHERE " + DBHelper.STUDENT_STUDENTID + " = '" + wintecID + "'";
+        Log.d(TAG, "doesStudentIdExists: " + query);
+        DBManager.getInstance().openDatabase();
+        Cursor cursor = DBManager.getInstance().getDetails(query);
+        return (cursor != null && cursor.getCount() > 0);
+    }
+
+
     //getter setter
 
     public int getStudent_ID() {

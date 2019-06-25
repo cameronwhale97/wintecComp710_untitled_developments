@@ -15,9 +15,13 @@ import android.widget.Toast;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBHelper;
 import com.untitleddevelopments.wintecdegreeplanner.DB.DBManager;
 import com.untitleddevelopments.wintecdegreeplanner.DB.Stream;
+import com.untitleddevelopments.wintecdegreeplanner.DB.Student;
 import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.ui.StuPlan.OptionMenuActivity;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,6 +105,28 @@ public class AdminAddStudentActivity extends OptionMenuActivity implements View.
         return streamNames;
     }
 
+
+    /**
+     * this function ensures that a given string is a valid date
+     * and it follows the form of dd/MM/yy
+     * @param dateString
+     * @return
+     */
+    private boolean isStartDateValid(String dateString) {
+        DateFormat format = new SimpleDateFormat("dd/MM/yy");
+
+        format.setLenient(false);
+
+        try {
+            format.parse(dateString);
+        } catch (ParseException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+
     private boolean isStudentFormComplete() {
 
 
@@ -122,9 +148,21 @@ public class AdminAddStudentActivity extends OptionMenuActivity implements View.
             return false;
         }
 
+        // ensure the student id is unique
+        if ( Student.doesStudentIdExists(etStudntID.getText().toString()) ) {
+            Toast.makeText(this, "Error, this student ID is already used by other student!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
         // ensure that start date is filled
         if (etStartDate.getText().toString().length() == 0 ) {
             Toast.makeText(this, "Please fill the start date!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        // ensure that start date is valid
+        if (!isStartDateValid(etStartDate.getText().toString()) ) {
+            Toast.makeText(this, "Please fill a valid start date! The format for date is dd/mm/yy.", Toast.LENGTH_LONG).show();
             return false;
         }
 

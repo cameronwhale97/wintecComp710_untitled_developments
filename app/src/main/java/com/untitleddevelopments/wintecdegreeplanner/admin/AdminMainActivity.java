@@ -1,6 +1,7 @@
 package com.untitleddevelopments.wintecdegreeplanner.admin;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import android.content.Intent;
@@ -136,6 +137,16 @@ public class AdminMainActivity extends OptionMenuActivity
                 AdminMainActivity.this,
                 R.layout.student_cell,
                 R.id.studentName, getStudentFullNames());
+
+
+
+        // sort the names in alphabetic order before showing in list
+        adapter.sort(new Comparator<String>() {
+            @Override
+            public int compare(String lhs, String rhs) {
+                return lhs.compareTo(rhs);
+            }
+        });
 
         lvStudents.setAdapter(adapter);
 
