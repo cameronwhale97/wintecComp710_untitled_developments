@@ -12,6 +12,7 @@ import com.untitleddevelopments.wintecdegreeplanner.R;
 import com.untitleddevelopments.wintecdegreeplanner.about_edit;
 import com.untitleddevelopments.wintecdegreeplanner.about_screen;
 import com.untitleddevelopments.wintecdegreeplanner.admin.AdminMainActivity;
+import com.untitleddevelopments.wintecdegreeplanner.edit_student;
 import com.untitleddevelopments.wintecdegreeplanner.global.PrefsManager;
 import com.untitleddevelopments.wintecdegreeplanner.modules.modules_main;
 
@@ -34,12 +35,12 @@ public class OptionMenuActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        Log.d(TAG, "onCreateOptionsMenu: ");
-        menuInflater.inflate(R.menu.admin_top_menu, menu);
 
-        if (PrefsManager.getUserType() == "admin") {
+        if (PrefsManager.getUserType().equals("admin")) {
+            Log.d(TAG, "onCreateOptionsMenu: admin ");
             menuInflater.inflate(R.menu.admin_top_menu, menu);
         } else {
+            Log.d(TAG, "onCreateOptionsMenu: student ");
             menuInflater.inflate(R.menu.student_top_menu, menu);
         }
 //        return super.onCreateOptionsMenu(menu);
@@ -88,15 +89,13 @@ public class OptionMenuActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
 
-
-
                 case R.id.miAbout:
                     startActivity(new Intent(this, about_screen.class));
                     return true;
 
-                case R.id.mStuEditMyDetails:
-                    startActivity(new Intent(this, about_screen.class));
-                    return true;
+//                case R.id.mStuEditMyDetails:
+//                    startActivity(new Intent(this, about_screen.class));
+//                    return true;
 
                 default:
                     return super.onOptionsItemSelected(item);
