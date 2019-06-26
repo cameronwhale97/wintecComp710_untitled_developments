@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 //        PrefsManager.setProgrammer("cameron");
 //        PrefsManager.setUserType("admim");
 
-        PrefsManager.setProgrammer("");
-        PrefsManager.setUserType("");
+//        PrefsManager.setProgrammer("");
+//        PrefsManager.setUserType("");
 
         userType = PrefsManager.getUserType();
         programmer = PrefsManager.getProgrammer();
@@ -73,22 +73,15 @@ public class MainActivity extends AppCompatActivity {
 
             case "maria":
                 //do Marias stuff
-
                 Intent mariaIntent = new Intent(this, OnLongClickTest.class);
                 startActivity(mariaIntent);
                 return;
-
-
             case "navi":
                 //do Navis stuff
-
-
             case "jonah":
                 //do Jonahs stuff
                 Intent jonahIntent = new Intent(this, manage_students.class);
                 startActivity(jonahIntent);
-
-
             default:
                 //run app in normal mode
         }
@@ -100,7 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case "student":
+                Globals.setStudent_ID(1);
                 startActivity(new Intent(this, stuViewMainMenu.class));
+
 //                displayToast("Calling student screen");
                 break;
             default:
