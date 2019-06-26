@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".about_screen"
-    >
+    tools:context=".about_screen">
 
 
     <TextView
@@ -35,28 +34,29 @@
         app:layout_constraintTop_toBottomOf="@+id/About_title"
         app:layout_constraintVertical_bias="0.0">>
 
-        <TableRow android:layout_width="wrap_content"
+        <TableRow
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
                 android:padding="3dip"
                 android:text="Clients"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="15dp" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/roboto_light"
                 android:gravity="right|left"
                 android:padding="10dp"
                 android:text="@string/AppClients"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="15dp" />
         </TableRow>
 
         <TableRow
@@ -64,13 +64,13 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
                 android:padding="3dip"
                 android:text="App Version"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="15dp"
-                android:layout_width="match_parent" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/TextView_About_AppVer"
@@ -90,15 +90,16 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
                 android:padding="3dip"
                 android:text="Developer Group"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="15dp"
-                android:layout_width="match_parent" />
+                android:textSize="15dp" />
 
             <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/roboto_light"
@@ -106,24 +107,25 @@
                 android:padding="10dp"
                 android:text="@string/AppDeveloperGroup"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="15dp"
-                android:layout_width="match_parent" />
+                android:textSize="15dp" />
         </TableRow>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_light"
                 android:padding="3dip"
                 android:text="Android Version"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="15dp"
-                android:layout_width="match_parent" />
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/TextView_About_AndroidVer"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/roboto_light"
@@ -131,20 +133,20 @@
                 android:padding="10dp"
                 android:text="Can't get version"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textSize="15dp"
-                android:layout_width="match_parent" />
+                android:textSize="15dp" />
         </TableRow>
     </TableLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout2"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aboutTable"
-        android:layout_height="wrap_content">
+        app:layout_constraintTop_toBottomOf="@+id/aboutTable">
 
         <ImageButton
             android:id="@+id/AboutScreenButton"
@@ -171,6 +173,68 @@
             android:textColor="#FFFFFF"></TextView>
 
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="460dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
+        app:layout_constraintVertical_bias="0.139"
+        app:srcCompat="@drawable/untitled_devs_logo" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="App Built By:"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="176dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="156dp"
+        android:fontFamily="@font/roboto"
+        android:text="Team Members"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="439dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="Cameron Whale, Geoff Genner, Maria del Mundo, Jonah Dearden, Navjot Singh"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
 
 </android.support.constraint.ConstraintLayout>
